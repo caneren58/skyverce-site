@@ -105,19 +105,19 @@ export default function AboutPage() {
               </div>
             </div>
             
-            <div className="relative">
-              <div className="aspect-square overflow-hidden rounded-lg">
-                <img
-                  src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=2070"
-                  alt="SkyView Istanbul Ekibi"
-                  className="h-full w-full object-cover" />
+            <div className="relative w-full max-w-xl mx-auto">
+  <div className="aspect-square overflow-hidden rounded-lg">
+    <img
+      src="https://images.unsplash.com/photo-1473986512647-3e477424a8f8?..."
+      alt="SkyView İstanbul Ekibi"
+      className="h-full w-full object-cover"
+    />
+  </div>
 
-              </div>
-              <div className="absolute -bottom-6 -right-6 h-full w-full rounded-lg border-2 border-gold -z-10" />
-            </div>
-          </div>
-        </div>
-      </section>
+  {/* Köşedeki altın çerçeveyi düzgün hizalıyoruz */}
+  <div className="absolute inset-0 rounded-lg border-2 border-gold pointer-events-none"></div>
+</div>
+
 
       <section className="border-y border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 lg:px-8">
