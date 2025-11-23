@@ -1,264 +1,233 @@
 "use client";
 
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Users, Award, Target, Heart, Camera, Shield } from "lucide-react";
+import { Camera, Video, Building2, Heart, Landmark, Briefcase, CheckCircle, Clock, Shield, Award, Play } from "lucide-react";
 
-const stats = [
-  { number: "500+", label: "Tamamlanan Proje" },
-  { number: "50+", label: "Kurumsal Müşteri" },
-  { number: "8", label: "Yıllık Deneyim" },
-  { number: "15", label: "Profesyonel Ekip" },
-];
+export default function Home() {
+  const services = [
+    {
+      icon: <Landmark className="h-12 w-12 text-gold" />,
+      title: "Turizm Çekimleri",
+      description: "İstanbul'un tarihi ve turistik mekanlarını havadan çekerek tanıtım filmlerinizi oluşturuyoruz.",
+    },
+    {
+      icon: <Heart className="h-12 w-12 text-gold" />,
+      title: "Düğün & Nişan",
+      description: "Hayatınızın en özel günlerini sinematik drone görüntüleriyle ölümsüzleştiriyoruz.",
+    },
+    {
+      icon: <Building2 className="h-12 w-12 text-gold" />,
+      title: "Emlak Tanıtımı",
+      description: "Gayrimenkullerinizi profesyonel havadan çekimlerle en iyi şekilde tanıtıyoruz.",
+    },
+    {
+      icon: <Briefcase className="h-12 w-12 text-gold" />,
+      title: "Kurumsal Çekimler",
+      description: "İşletmenizi, projenizi veya etkinliğinizi profesyonel drone görüntüleriyle tanıtın.",
+    },
+  ];
 
-const team = [
-  {
-    name: "Mehmet Yılmaz",
-    role: "Kurucu & Baş Pilot",
-    description: "10 yıllık havacılık deneyimi, 500+ başarılı çekim",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800",
-  },
-  {
-    name: "Ayşe Demir",
-    role: "Görüntü Yönetmeni",
-    description: "Sinema ve TV prodüksiyonlarında 8 yıl",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800",
-  },
-  {
-    name: "Can Öztürk",
-    role: "Montaj Uzmanı",
-    description: "Ödüllü video editor, uluslararası projeler",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800",
-  },
-  {
-    name: "Zeynep Kaya",
-    role: "Proje Koordinatörü",
-    description: "Müşteri ilişkileri ve proje yönetimi uzmanı",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800",
-  },
-];
+  const features = [
+    {
+      icon: <Award className="h-8 w-8 text-gold" />,
+      title: "Profesyonel Ekip",
+      description: "Alanında uzman, lisanslı pilotlar ve görüntü yönetmenleri",
+    },
+    {
+      icon: <Camera className="h-8 w-8 text-gold" />,
+      title: "Son Teknoloji Ekipman",
+      description: "4K ve 8K çekim yapabilen profesyonel drone'lar",
+    },
+    {
+      icon: <Shield className="h-8 w-8 text-gold" />,
+      title: "Sigortalı ve Yasal",
+      description: "Tüm izinler ve sigortalar bizden, güvenle çekim yapıyoruz",
+    },
+    {
+      icon: <Clock className="h-8 w-8 text-gold" />,
+      title: "Hızlı Teslimat",
+      description: "Çekim sonrası hızlı montaj ve teslimat süreci",
+    },
+  ];
 
-const values = [
-  {
-    icon: <Target className="h-12 w-12 text-gold" />,
-    title: "Mükemmellik",
-    description: "Her projede en yüksek kalite standartlarını hedefliyoruz.",
-  },
-  {
-    icon: <Heart className="h-12 w-12 text-gold" />,
-    title: "Tutku",
-    description: "İşimizi seviyoruz ve her çekime tutkuyla yaklaşıyoruz.",
-  },
-  {
-    icon: <Shield className="h-12 w-12 text-gold" />,
-    title: "Güvenilirlik",
-    description:
-      "Sözlerimizin arkasında duruyoruz, projeleri zamanında teslim ediyoruz.",
-  },
-  {
-    icon: <Users className="h-12 w-12 text-gold" />,
-    title: "Müşteri Odaklılık",
-    description:
-      "İhtiyaçlarınızı dinliyor, beklentilerinizi aşmaya çalışıyoruz.",
-  },
-];
+  const workflow = [
+    { step: "1", title: "İletişim", description: "Bize ulaşın ve projenizi anlatın" },
+    { step: "2", title: "Planlama", description: "Çekim planını birlikte oluşturalım" },
+    { step: "3", title: "Çekim", description: "Profesyonel ekibimizle çekim yapıyoruz" },
+    { step: "4", title: "Montaj", description: "Görüntüleri düzenleyip size sunuyoruz" },
+    { step: "5", title: "Teslimat", description: "Final dosyalarınızı teslim ediyoruz" },
+  ];
 
-export default function AboutPage() {
   return (
     <div className="min-h-screen">
       <Header />
-
-      {/* Başlık */}
-      <section className="border-b border-gold/20 bg-card py-20 pt-32">
-        <div className="container mx-auto px-4 text-center lg:px-8">
-          <h1 className="mb-6 text-5xl font-bold text-gold gold-glow md:text-6xl">
-            Hakkımızda
-          </h1>
-          <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-            İstanbul&apos;un gökyüzünden en güzel anlarını yakalayan, profesyonel
-            drone çekim stüdyosu
-          </p>
+      
+      {/* Hero Section */}
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?q=80&w=2070')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
         </div>
-      </section>
-
-      {/* Hikayemiz + Drone görseli */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-            {/* Metin */}
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-gold">Hikayemiz</h2>
-              <div className="space-y-4 text-lg text-muted-foreground">
-                <p className="!whitespace-pre-line">
-                  SkyVerce by BC, 2016 yılında İstanbul&apos;da kuruldu. Havacılık
-                  ve sinema sektörlerinden gelen deneyimli ekibimiz, drone
-                  teknolojisinin sunduğu sınırsız yaratıcı olanakları keşfetmek
-                  için bir araya geldi.
-                </p>
-                <p>
-                  İlk yıllarımızda küçük projelerle başladık, ancak kalitemiz ve
-                  profesyonelliğimiz sayesinde hızla büyüdük. Bugün
-                  İstanbul&apos;un en güvenilir ve tercih edilen drone çekim
-                  stüdyolarından biriyiz.
-                </p>
-                <p>
-                  500&apos;den fazla başarılı proje tamamladık; düğünlerden
-                  kurumsal tanıtımlara, emlak projelerinden turizm filmlerine
-                  kadar geniş bir yelpazede hizmet verdik. Her projede aynı
-                  titizliği ve özeni gösteriyor, müşterilerimizin hayallerini
-                  havadan gerçeğe dönüştürüyoruz.
-                </p>
-              </div>
+        
+        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
+          <div className="mx-auto max-w-4xl space-y-8">
+            <h1 className="text-5xl font-bold leading-tight text-gold gold-glow md:text-6xl lg:text-7xl">
+              İstanbul'u Havadan Keşfedin
+            </h1>
+            <p className="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl">
+              Profesyonel drone video ve fotoğraf çekimi ile işletmenizi, etkinliğinizi 
+              veya özel anlarınızı en etkileyici şekilde görselleştiriyoruz.
+            </p>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link href="/rezervasyon">
+                <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
+                  <Camera className="mr-2 h-5 w-5" />
+                  Hemen Rezervasyon Yapın
+                </Button>
+              </Link>
+              <Link href="/portfoy">
+                <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold/10">
+                  <Play className="mr-2 h-5 w-5" />
+                  Portföyümüzü İnceleyin
+                </Button>
+              </Link>
             </div>
-
-            {/* Drone görseli */}
-            <div className="relative w-full max-w-xl mx-auto">
-  <div className="aspect-square overflow-hidden rounded-lg">
-    <img
-      src="https://images.unsplash.com/photo-1473986512647-3e477424a8f8?q=80&w=1200&auto=format&fit=crop"
-      alt="SkyVerce Drone Çekimi"
-      className="h-full w-full object-cover"
-    />
-  </div>
-
-  {/* Köşedeki altın çerçeve */}
-  <div className="pointer-events-none absolute inset-4 rounded-lg border-2 border-gold" />
-</div>
-
-      </section>
-
-      {/* Rakamlarla SkyVerce */}
-      <section className="border-y border-gold/20 bg-card py-20">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold !whitespace-pre-line">
-              Rakamlarla SkyVerce by BC
-            </h2>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="mb-2 text-5xl font-bold text-gold">
-                  {stat.number}
-                </div>
-                <div className="text-lg text-muted-foreground">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* Ekibimiz */}
-      <section className="py-20">
+      {/* Services Section */}
+      <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold">Ekibimiz</h2>
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Hizmetlerimiz</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Alanında uzman, tutkulu ve deneyimli profesyonellerden oluşan
-              ekibimiz
+              İhtiyacınıza özel profesyonel drone çekim hizmetleri
             </p>
           </div>
-
+          
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {team.map((member, index) => (
-              <Card key={index} className="overflow-hidden">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="h-full w-full object-cover transition-transform hover:scale-110"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="mb-1 text-xl font-semibold text-gold">
-                    {member.name}
-                  </h3>
-                  <p className="mb-2 text-sm font-medium text-muted-foreground">
-                    {member.role}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {member.description}
-                  </p>
+            {services.map((service, index) => (
+              <Card key={index} className="gold-border-glow transition-transform hover:scale-105">
+                <CardHeader>
+                  <div className="mb-4">{service.icon}</div>
+                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
           </div>
+          
+          <div className="mt-12 text-center">
+            <Link href="/hizmetler">
+              <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold/10">
+                Tüm Hizmetleri Gör
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Değerlerimiz */}
+      {/* Why Choose Us Section */}
       <section className="border-t border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold">Değerlerimiz</h2>
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Neden Bizi Seçmelisiniz?</h2>
           </div>
-
+          
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {values.map((value, index) => (
+            {features.map((feature, index) => (
               <div key={index} className="text-center">
-                <div className="mb-4 flex justify-center">{value.icon}</div>
-                <h3 className="mb-2 text-xl font-semibold">{value.title}</h3>
-                <p className="text-muted-foreground">{value.description}</p>
+                <div className="mb-4 flex justify-center">{feature.icon}</div>
+                <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Misyon & Vizyon */}
+      {/* Workflow Timeline */}
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-gold">Misyonumuz</h2>
-              <p className="text-lg text-muted-foreground">
-                İstanbul&apos;un eşsiz güzelliğini ve müşterilerimizin özel
-                anlarını, en ileri teknoloji ve profesyonel bakış açısıyla
-                havadan yakalamak. Her projede mükemmelliği hedefleyerek,
-                sektörde öncü ve güvenilir bir isim olmak.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-gold">Vizyonumuz</h2>
-              <p className="text-lg text-muted-foreground">
-                Türkiye&apos;nin en büyük ve en profesyonel havadan görüntüleme
-                platformu olmak. Teknolojik gelişmeleri yakından takip ederek,
-                müşterilerimize her zaman en yeni ve en kaliteli hizmeti
-                sunmak. İstanbul&apos;dan dünyaya açılan bir marka yaratmak.
-              </p>
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Çalışma Sürecimiz</h2>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+              5 adımda profesyonel drone çekimi
+            </p>
+          </div>
+          
+          <div className="relative">
+            <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gold/30 max-lg:left-8" />
+            
+            <div className="space-y-12">
+              {workflow.map((item, index) => (
+                <div key={index} className="relative flex items-center gap-8 max-lg:flex-col max-lg:items-start">
+                  <div className="flex w-full items-center justify-end max-lg:justify-start lg:w-1/2">
+                    <div className={`text-right max-lg:ml-20 max-lg:text-left ${index % 2 === 0 ? 'lg:block' : 'lg:hidden'}`}>
+                      <h3 className="mb-2 text-2xl font-semibold text-gold">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.description}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute left-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full border-4 border-gold bg-background text-2xl font-bold text-gold max-lg:left-8">
+                    {item.step}
+                  </div>
+                  
+                  <div className="flex w-full items-center max-lg:hidden lg:w-1/2">
+                    <div className={index % 2 !== 0 ? 'block' : 'hidden'}>
+                      <h3 className="mb-2 text-2xl font-semibold text-gold">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-gold/20 bg-card py-20">
-        <div className="container mx-auto px-4 text-center lg:px-8">
-          <h2 className="mb-6 text-3xl font-bold text-gold">Birlikte Çalışalım</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-            Projenizi hayata geçirmek için sabırsızlanıyoruz. Hemen iletişime
-            geçin, sizin için neler yapabileceğimizi konuşalım.
-          </p>
-          <Link href="/rezervasyon">
-            <Button
-              size="lg"
-              className="bg-gold text-background hover:bg-gold-dark"
-            >
-              <Camera className="mr-2 h-5 w-5" />
-              Hemen Başlayalım
-            </Button>
-          </Link>
+      {/* Bosphorus Highlight */}
+      <section className="relative border-t border-gold/20 py-32">
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=2070')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        >
+          <div className="absolute inset-0 bg-background/80" />
+        </div>
+        
+        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
+          <div className="mx-auto max-w-3xl space-y-6">
+            <h2 className="text-4xl font-bold text-gold gold-glow md:text-5xl">
+              Boğaz'ın Büyüsünü Havadan Yaşayın
+            </h2>
+            <p className="text-xl text-foreground">
+              İstanbul Boğazı'nın eşsiz manzarasını profesyonel drone çekimleriyle keşfedin. 
+              Tarihi yarımada, modern silüet ve mavi suların muhteşem uyumunu yakalıyoruz.
+            </p>
+            <Link href="/rezervasyon">
+              <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
+                Boğaz Çekimi İçin İletişime Geçin
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
