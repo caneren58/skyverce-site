@@ -120,17 +120,18 @@ export default function AboutPage() {
 
             {/* Drone görseli */}
             <div className="relative w-full max-w-xl mx-auto">
-              <div className="aspect-square overflow-hidden rounded-lg">
-                <img
-                  src="https://images.unsplash.com/photo-1473986512647-3e477424a8f8?q=80&w=1200"
-                  alt="SkyVerce Drone Çekimi"
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-              <div className="pointer-events-none absolute inset-0 rounded-lg border-2 border-gold" />
-            </div>
-          </div>
-        </div>
+  <div className="aspect-square overflow-hidden rounded-lg">
+    <img
+      src="https://images.unsplash.com/photo-1473986512647-3e477424a8f8?q=80&w=1200&auto=format&fit=crop"
+      alt="SkyVerce Drone Çekimi"
+      className="h-full w-full object-cover"
+    />
+  </div>
+
+  {/* Köşedeki altın çerçeve */}
+  <div className="pointer-events-none absolute inset-4 rounded-lg border-2 border-gold" />
+</div>
+
       </section>
 
       {/* Rakamlarla SkyVerce */}
