@@ -9,58 +9,58 @@ import { Camera, Video, Building2, Heart, Landmark, Briefcase, CheckCircle, Cloc
 
 export default function Home() {
   const services = [
-    {
-      icon: <Landmark className="h-12 w-12 text-gold" />,
-      title: "Turizm Çekimleri",
-      description: "İstanbul'un tarihi ve turistik mekanlarını havadan çekerek tanıtım filmlerinizi oluşturuyoruz.",
-    },
-    {
-      icon: <Heart className="h-12 w-12 text-gold" />,
-      title: "Düğün & Nişan",
-      description: "Hayatınızın en özel günlerini sinematik drone görüntüleriyle ölümsüzleştiriyoruz.",
-    },
-    {
-      icon: <Building2 className="h-12 w-12 text-gold" />,
-      title: "Emlak Tanıtımı",
-      description: "Gayrimenkullerinizi profesyonel havadan çekimlerle en iyi şekilde tanıtıyoruz.",
-    },
-    {
-      icon: <Briefcase className="h-12 w-12 text-gold" />,
-      title: "Kurumsal Çekimler",
-      description: "İşletmenizi, projenizi veya etkinliğinizi profesyonel drone görüntüleriyle tanıtın.",
-    },
-  ];
+  {
+    icon: <Landmark className="h-12 w-12 text-gold" />,
+    title: "Turizm Çekimleri",
+    description: "İstanbul'un tarihi ve turistik mekanlarını havadan çekerek tanıtım filmlerinizi oluşturuyoruz."
+  },
+  {
+    icon: <Heart className="h-12 w-12 text-gold" />,
+    title: "Düğün & Nişan",
+    description: "Hayatınızın en özel günlerini sinematik drone görüntüleriyle ölümsüzleştiriyoruz."
+  },
+  {
+    icon: <Building2 className="h-12 w-12 text-gold" />,
+    title: "Emlak Tanıtımı",
+    description: "Gayrimenkullerinizi profesyonel havadan çekimlerle en iyi şekilde tanıtıyoruz."
+  },
+  {
+    icon: <Briefcase className="h-12 w-12 text-gold" />,
+    title: "Kurumsal Çekimler",
+    description: "İşletmenizi, projenizi veya etkinliğinizi profesyonel drone görüntüleriyle tanıtın."
+  }];
+
 
   const features = [
-    {
-      icon: <Award className="h-8 w-8 text-gold" />,
-      title: "Profesyonel Ekip",
-      description: "Alanında uzman, lisanslı pilotlar ve görüntü yönetmenleri",
-    },
-    {
-      icon: <Camera className="h-8 w-8 text-gold" />,
-      title: "Son Teknoloji Ekipman",
-      description: "4K ve 8K çekim yapabilen profesyonel drone'lar",
-    },
-    {
-      icon: <Shield className="h-8 w-8 text-gold" />,
-      title: "Sigortalı ve Yasal",
-      description: "Tüm izinler ve sigortalar bizden, güvenle çekim yapıyoruz",
-    },
-    {
-      icon: <Clock className="h-8 w-8 text-gold" />,
-      title: "Hızlı Teslimat",
-      description: "Çekim sonrası hızlı montaj ve teslimat süreci",
-    },
-  ];
+  {
+    icon: <Award className="h-8 w-8 text-gold" />,
+    title: "Profesyonel Ekip",
+    description: "Alanında uzman, lisanslı pilotlar ve görüntü yönetmenleri"
+  },
+  {
+    icon: <Camera className="h-8 w-8 text-gold" />,
+    title: "Son Teknoloji Ekipman",
+    description: "4K ve 8K çekim yapabilen profesyonel drone'lar"
+  },
+  {
+    icon: <Shield className="h-8 w-8 text-gold" />,
+    title: "Sigortalı ve Yasal",
+    description: "Tüm izinler ve sigortalar bizden, güvenle çekim yapıyoruz"
+  },
+  {
+    icon: <Clock className="h-8 w-8 text-gold" />,
+    title: "Hızlı Teslimat",
+    description: "Çekim sonrası hızlı montaj ve teslimat süreci"
+  }];
+
 
   const workflow = [
-    { step: "1", title: "İletişim", description: "Bize ulaşın ve projenizi anlatın" },
-    { step: "2", title: "Planlama", description: "Çekim planını birlikte oluşturalım" },
-    { step: "3", title: "Çekim", description: "Profesyonel ekibimizle çekim yapıyoruz" },
-    { step: "4", title: "Montaj", description: "Görüntüleri düzenleyip size sunuyoruz" },
-    { step: "5", title: "Teslimat", description: "Final dosyalarınızı teslim ediyoruz" },
-  ];
+  { step: "1", title: "İletişim", description: "Bize ulaşın ve projenizi anlatın" },
+  { step: "2", title: "Planlama", description: "Çekim planını birlikte oluşturalım" },
+  { step: "3", title: "Çekim", description: "Profesyonel ekibimizle çekim yapıyoruz" },
+  { step: "4", title: "Montaj", description: "Görüntüleri düzenleyip size sunuyoruz" },
+  { step: "5", title: "Teslimat", description: "Final dosyalarınızı teslim ediyoruz" }];
+
 
   return (
     <div className="min-h-screen">
@@ -68,14 +68,14 @@ export default function Home() {
       
       {/* Hero Section */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
-        <div 
+        <div
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?q=80&w=2070')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
+            backgroundPosition: "center"
+          }}>
+
           <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
         </div>
         
@@ -117,8 +117,8 @@ export default function Home() {
           </div>
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {services.map((service, index) => (
-              <Card key={index} className="gold-border-glow transition-transform hover:scale-105">
+            {services.map((service, index) =>
+            <Card key={index} className="gold-border-glow transition-transform hover:scale-105">
                 <CardHeader>
                   <div className="mb-4">{service.icon}</div>
                   <CardTitle className="text-xl">{service.title}</CardTitle>
@@ -127,7 +127,7 @@ export default function Home() {
                   <CardDescription className="text-base">{service.description}</CardDescription>
                 </CardContent>
               </Card>
-            ))}
+            )}
           </div>
           
           <div className="mt-12 text-center">
@@ -148,13 +148,13 @@ export default function Home() {
           </div>
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => (
-              <div key={index} className="text-center">
+            {features.map((feature, index) =>
+            <div key={index} className="text-center">
                 <div className="mb-4 flex justify-center">{feature.icon}</div>
                 <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -173,8 +173,8 @@ export default function Home() {
             <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-gold/30 max-lg:left-8" />
             
             <div className="space-y-12">
-              {workflow.map((item, index) => (
-                <div key={index} className="relative flex items-center gap-8 max-lg:flex-col max-lg:items-start">
+              {workflow.map((item, index) =>
+              <div key={index} className="relative flex items-center gap-8 max-lg:flex-col max-lg:items-start">
                   <div className="flex w-full items-center justify-end max-lg:justify-start lg:w-1/2">
                     <div className={`text-right max-lg:ml-20 max-lg:text-left ${index % 2 === 0 ? 'lg:block' : 'lg:hidden'}`}>
                       <h3 className="mb-2 text-2xl font-semibold text-gold">{item.title}</h3>
@@ -182,18 +182,18 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <div className="absolute left-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full border-4 border-gold bg-background text-2xl font-bold text-gold max-lg:left-8">
+                  <div className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border-4 border-gold bg-background text-2xl font-bold text-gold max-lg:left-8 !w-16 !h-full">
                     {item.step}
                   </div>
                   
                   <div className="flex w-full items-center max-lg:hidden lg:w-1/2">
                     <div className={index % 2 !== 0 ? 'block' : 'hidden'}>
-                      <h3 className="mb-2 text-2xl font-semibold text-gold">{item.title}</h3>
+                      <h3 className="mb-2 text-2xl font-semibold text-gold !w-full !h-3/6">{item.title}</h3>
                       <p className="text-muted-foreground">{item.description}</p>
                     </div>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -201,15 +201,15 @@ export default function Home() {
 
       {/* Bosphorus Highlight */}
       <section className="relative border-t border-gold/20 py-32">
-        <div 
+        <div
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=2070')",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-          }}
-        >
+            backgroundAttachment: "fixed"
+          }}>
+
           <div className="absolute inset-0 bg-background/80" />
         </div>
         
@@ -232,6 +232,6 @@ export default function Home() {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 }
