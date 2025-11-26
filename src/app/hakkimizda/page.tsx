@@ -81,7 +81,7 @@ export default function AboutPage() {
       </section>
 
       <section className="py-20">
-        <div className="container mx-auto px-4 lg:px-8 !w-[1280px] !h-full !max-w-screen-xl">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Sol Yazı Kısmı */}
             <div className="space-y-6">
@@ -105,16 +105,18 @@ export default function AboutPage() {
             </div>
 
             {/* Sağ — Düzeltilmiş Drone Görseli */}
-            <div className="relative mx-auto aspect-square max-w-xl">
-              <img
-                src="https://images.unsplash.com/photo-1473986512647-3e477424a8f8?q=80&w=2070"
-                alt="SkyVerce Drone Çekimi"
-                className="h-full w-full rounded-lg object-cover"
-              />
+            <div className="relative w-full max-w-lg mx-auto lg:mx-0">
+  <div className="aspect-square overflow-hidden rounded-lg">
+    <img
+      src="https://images.unsplash.com/photo-1520975922071-a121cfd95b1e?auto=format&fit=crop&w=1200&q=80"
+      alt="SkyVerce Drone Çekimi"
+      className="w-full h-full object-cover"
+    />
+  </div>
 
-              {/* Altın çerçeve — tam hizalı */}
-              <div className="pointer-events-none absolute inset-4 rounded-lg border-2 border-gold" />
-            </div>
+  {/* Altın çerçeve */}
+  <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-gold rounded-lg -z-10"></div>
+</div>
           </div>
         </div>
       </section>
