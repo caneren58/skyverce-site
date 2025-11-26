@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Play, Image as ImageIcon } from "lucide-react";
-import VideoModal from "@/components/VideoModal";
 
 export default function PortfolioPage() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
