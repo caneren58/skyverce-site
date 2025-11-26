@@ -1,28 +1,23 @@
 "use client";
 
-import { X } from "lucide-react";
-
-export default function VideoModal({ open, onClose, videoUrl }: any) {
-  if (!open) return null;
+export default function VideoModal({ url, onClose }) {
+  if (!url) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md">
-      <div className="relative w-full max-w-3xl px-4">
-
-        {/* Close Button */}
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+      <div className="relative w-[90%] max-w-3xl">
         <button
           onClick={onClose}
-          className="absolute -top-12 right-0 text-white hover:text-gold transition"
+          className="absolute -right-4 -top-4 h-10 w-10 rounded-full bg-gold text-black text-xl font-bold"
         >
-          <X size={40} />
+          ✕
         </button>
 
-        {/* Video Player */}
         <video
-          src={videoUrl}
+          src={url}
           controls
           autoPlay
-          className="w-full h-auto rounded-lg shadow-xl"
+          className="w-full rounded-xl border border-gold"
         />
       </div>
     </div>
