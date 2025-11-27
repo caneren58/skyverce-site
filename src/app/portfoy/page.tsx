@@ -21,7 +21,8 @@ export default function PortfolioPage() {
       description: "Ayasofya, Sultanahmet Camii ve Topkapı Sarayı'nın havadan görünümü",
       image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071",
       duration: "2:30",
-      videoUrl: "https://cdn.coverr.co/videos/coverr-aerial-view-of-the-bosphorus-bridge-9705/1080p.mp4",
+      videoUrl: https://player.vimeo.com/external/343189292.hd.mp4?s=211f589422e7b8ded7c5176bbd10b191cfd9b8f1&profile_id=175
+
     },
     {
       id: 2,
@@ -31,7 +32,8 @@ export default function PortfolioPage() {
       description: "Ortaköy'de gerçekleşen romantik düğün töreni",
       image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070",
       duration: "3:15",
-      videoUrl: "https://cdn.coverr.co/videos/coverr-wedding-couple-walking-on-a-pier-6624/1080p.mp4",
+      videoUrl: https://player.vimeo.com/external/208566699.hd.mp4?s=b7b2e2c932c0f9e5a0e28c52f4a1517972ed18e8&profile_id=174
+
     },
     {
       id: 3,
