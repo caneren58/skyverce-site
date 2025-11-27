@@ -21,7 +21,7 @@ export default function PortfolioPage() {
       description: "Ayasofya, Sultanahmet Camii ve Topkapı Sarayı'nın havadan görünümü",
       image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071",
       duration: "2:30",
-      videoUrl: "https://cdn.pixabay.com/video/2023/11/26/190885-888554424.mp4?download",
+      videoUrl: "https://raw.githubusercontent.com/caneren58/drone-videos/main/190885-888554424_small.mp4",
 
     },
     {
