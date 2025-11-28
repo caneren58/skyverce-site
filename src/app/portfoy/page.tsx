@@ -32,7 +32,7 @@ export default function PortfolioPage() {
       description: "Ortaköy'de gerçekleşen romantik düğün töreni",
       image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070",
       duration: "3:15",
-      videoUrl: "https://player.vimeo.com/external/208566699.hd.mp4?s=b7b2e2c932c0f9e5a0e28c52f4a1517972ed18e8&profile_id=174",
+      videoUrl: "https://raw.githubusercontent.com/caneren58/drone-videos/main/51915-467145012_medium.mp4",
 
     },
     {
@@ -62,7 +62,7 @@ export default function PortfolioPage() {
       description: "Maslak'ta modern ofis binası ve çalışma alanları",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070",
       duration: "2:00",
-      videoUrl: "https://cdn.coverr.co/videos/coverr-manhattan-buildings-1133/1080p.mp4",
+      videoUrl: "https://raw.githubusercontent.com/caneren58/drone-videos/main/267747_medium.mp4",
     },
     {
       id: 6,
