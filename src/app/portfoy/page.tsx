@@ -52,7 +52,7 @@ export default function PortfolioPage() {
       description: "İstanbul Boğazı'nın tüm güzelliklerini keşfedin",
       image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=2070",
       duration: "4:00",
-      videoUrl: "https://cdn.coverr.co/videos/coverr-a-city-aerial-view-5731/1080p.mp4",
+      videoUrl: "https://raw.githubusercontent.com/caneren58/drone-videos/main/19187231-uhd_3840_2160_25fps.mp4",
     },
     {
       id: 5,
@@ -81,7 +81,7 @@ export default function PortfolioPage() {
       description: "Marmara kıyısında lüks villa tanıtımı",
       image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071",
       duration: "1:45",
-      videoUrl: "https://cdn.coverr.co/videos/coverr-aerial-of-a-coastal-house-3460/1080p.mp4",
+      videoUrl: "https://raw.githubusercontent.com/caneren58/drone-videos/main/215610_tiny.mp4",
     },
     {
       id: 8,
@@ -100,7 +100,7 @@ export default function PortfolioPage() {
       description: "Harbiye'de gerçekleşen müzik festivali",
       image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070",
       duration: "3:30",
-      videoUrl: "https://cdn.coverr.co/videos/coverr-concert-crowd-during-a-show-4210/1080p.mp4",
+      videoUrl: "https://raw.githubusercontent.com/caneren58/drone-videos/main/Filmim.mp4",
     },
   ];
 
