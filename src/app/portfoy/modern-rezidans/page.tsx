@@ -8,7 +8,11 @@ export default function ModernRezidansGallery() {
     "/images/modern-rezidans/3.jpg",
     "/images/modern-rezidans/4.jpg",
     "/images/modern-rezidans/5.jpg",
+    "/images/modern-rezidans/6.jpg",
+    "/images/modern-rezidans/7.jpg",
+    "/images/modern-rezidans/8.jpg",
   ];
+
 
   return (
     <main className="min-h-screen bg-[#050816] text-white px-6 py-10">
