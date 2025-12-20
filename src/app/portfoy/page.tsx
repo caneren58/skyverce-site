@@ -27,6 +27,7 @@ type PortfolioItem =
       image: string;
       photos: number;
       photoUrls?: string[];
+      slug?: string;
     };
 
 export default function PortfolioPage() {
@@ -67,7 +68,7 @@ export default function PortfolioPage() {
       description: "Beşiktaş'ta lüks konut projesi tanıtımı",
       image:
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070",
-      photos: 45,
+      photos: 8,
       photoUrls: [
         "/images/modern-rezidans/1.jpg",
         "/images/modern-rezidans/2.jpg",
@@ -134,6 +135,7 @@ export default function PortfolioPage() {
       image:
         "https://images.unsplash.com/photo-1527838832700-5059252407fa?q=80&w=2080",
       photos: 35,
+      slug: "galata-kulesi-cevresi",
     },
     {
       id: 9,
