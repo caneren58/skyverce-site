@@ -49,14 +49,14 @@ export default function PortfolioPage() {
       photoUrls: [
         const modernRezidansImages = [
          "/images/modern-rezidans/1.jpg",
-        "/images/modern-rezidans/2.jpg",
-        "/images/modern-rezidans/3.jpg",
-        "/images/modern-rezidans/4.jpg",
-        "/images/modern-rezidans/5.jpg",
-        "/images/modern-rezidans/6.jpg",
-        "/images/modern-rezidans/7.jpg",
-       "/images/modern-rezidans/8.jpg",
-       ];
+         "/images/modern-rezidans/2.jpg",
+         "/images/modern-rezidans/3.jpg",
+         "/images/modern-rezidans/4.jpg",
+         "/images/modern-rezidans/5.jpg",
+         "/images/modern-rezidans/6.jpg",
+         "/images/modern-rezidans/7.jpg",
+         "/images/modern-rezidans/8.jpg",
+      ];
 
       ],
     },
