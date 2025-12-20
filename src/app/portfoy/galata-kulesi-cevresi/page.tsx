@@ -33,7 +33,6 @@ export default function GalataKulesiCevresiGallery() {
       <h1 className="text-3xl md:text-4xl font-bold mb-2">
         Galata Kulesi & Çevresi
       </h1>
-
       <p className="text-sm md:text-base text-gray-300 mb-8">
         Tarihi Galata bölgesinin havadan çekilmiş profesyonel fotoğrafları.
       </p>
