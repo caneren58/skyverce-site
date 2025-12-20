@@ -7,11 +7,33 @@ import { Badge } from "@/components/ui/badge";
 import { Play, Image as ImageIcon, X } from "lucide-react";
 import VideoModal from "@/components/VideoModal";
 
+type PortfolioItem =
+  | {
+      id: number;
+      category: string;
+      type: "video";
+      title: string;
+      description: string;
+      image: string;
+      duration: string;
+      videoUrl: string;
+    }
+  | {
+      id: number;
+      category: string;
+      type: "photo";
+      title: string;
+      description: string;
+      image: string;
+      photos: number;
+      photoUrls?: string[];
+    };
+
 export default function PortfolioPage() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [selectedPhotos, setSelectedPhotos] = useState<string[] | null>(null);
 
-  const portfolioItems = [
+  const portfolioItems: PortfolioItem[] = [
     {
       id: 1,
       category: "tourism",
@@ -45,7 +67,7 @@ export default function PortfolioPage() {
       description: "Beşiktaş'ta lüks konut projesi tanıtımı",
       image:
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070",
-      photos: 45, // kart üzerindeki yazı
+      photos: 45,
       photoUrls: [
         "/images/modern-rezidans/1.jpg",
         "/images/modern-rezidans/2.jpg",
@@ -140,7 +162,7 @@ export default function PortfolioPage() {
         </p>
       </section>
 
-      {/* ⭐ GRID - KARTLAR */}
+      {/* GRID - KARTLAR */}
       <section className="py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -150,7 +172,7 @@ export default function PortfolioPage() {
                 <div
                   key={item.id}
                   onClick={() => setSelectedVideo(item.videoUrl)}
-                  className="group relative overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105 cursor-pointer"
+                  className="group relative cursor-pointer overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105"
                 >
                   <div className="relative aspect-video overflow-hidden">
                     <img
@@ -189,10 +211,9 @@ export default function PortfolioPage() {
                 <div
                   key={item.id}
                   onClick={() =>
-                    (item as any).photoUrls &&
-                    setSelectedPhotos((item as any).photoUrls)
+                    item.photoUrls && setSelectedPhotos(item.photoUrls)
                   }
-                  className="group relative overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105 cursor-pointer"
+                  className="group relative cursor-pointer overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105"
                 >
                   <div className="relative aspect-video overflow-hidden">
                     <img
@@ -249,7 +270,7 @@ export default function PortfolioPage() {
               Fotoğraf Galerisi
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
               {selectedPhotos.map((src, i) => (
                 <div
                   key={i}
@@ -258,7 +279,7 @@ export default function PortfolioPage() {
                   <img
                     src={src}
                     alt={`Fotoğraf ${i + 1}`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                   />
                 </div>
               ))}
