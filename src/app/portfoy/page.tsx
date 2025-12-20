@@ -38,27 +38,25 @@ export default function PortfolioPage() {
         "https://raw.githubusercontent.com/caneren58/drone-videos/main/51915-467145012_medium.mp4",
     },
     {
-      id: 3,
-      category: "realestate",
-      type: "photo",
-      title: "Modern Rezidans Projesi",
-      description: "Beşiktaş'ta lüks konut projesi tanıtımı",
-      image:
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070",
-      photos: 45,
-      photoUrls: [
-        const modernRezidansImages = [
-         "/images/modern-rezidans/1.jpg",
-         "/images/modern-rezidans/2.jpg",
-         "/images/modern-rezidans/3.jpg",
-         "/images/modern-rezidans/4.jpg",
-         "/images/modern-rezidans/5.jpg",
-         "/images/modern-rezidans/6.jpg",
-         "/images/modern-rezidans/7.jpg",
-         "/images/modern-rezidans/8.jpg",
-      ];
+  id: 3,
+  category: "realestate",
+  type: "photo",
+  title: "Modern Rezidans Projesi",
+  description: "Beşiktaş'ta lüks konut projesi tanıtımı",
+  image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070",
+  photos: 45,
+  photoUrls: [
+    "/images/modern-rezidans/1.jpg",
+    "/images/modern-rezidans/2.jpg",
+    "/images/modern-rezidans/3.jpg",
+    "/images/modern-rezidans/4.jpg",
+    "/images/modern-rezidans/5.jpg",
+    "/images/modern-rezidans/6.jpg",
+    "/images/modern-rezidans/7.jpg",
+    "/images/modern-rezidans/8.jpg",
+  ],
+},
 
-      ],
     },
     {
       id: 4,
