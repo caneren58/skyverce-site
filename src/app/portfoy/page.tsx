@@ -162,13 +162,11 @@ export default function PortfolioPage() {
         </p>
       </section>
 
-      {/* GRID - KARTLAR */}
       <section className="py-12">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {portfolioItems.map((item) =>
               item.type === "video" ? (
-                // VİDEO → Video modal
                 <div
                   key={item.id}
                   onClick={() => setSelectedVideo(item.videoUrl)}
@@ -181,13 +179,11 @@ export default function PortfolioPage() {
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
-
                     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/90 backdrop-blur-sm transition-transform group-hover:scale-110">
                         <Play className="ml-1 h-8 w-8 text-background" />
                       </div>
                     </div>
-
                     {item.duration && (
                       <div className="absolute bottom-4 right-4">
                         <Badge className="bg-black/70 text-white">
@@ -196,7 +192,6 @@ export default function PortfolioPage() {
                       </div>
                     )}
                   </div>
-
                   <div className="p-4">
                     <h3 className="mb-2 text-xl font-semibold text-gold">
                       {item.title}
@@ -207,7 +202,6 @@ export default function PortfolioPage() {
                   </div>
                 </div>
               ) : (
-                // FOTOĞRAF → Foto galeri modal
                 <div
                   key={item.id}
                   onClick={() =>
@@ -222,7 +216,6 @@ export default function PortfolioPage() {
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
-
                     <div className="absolute right-4 top-4">
                       <Badge className="bg-gold/90 text-background">
                         <ImageIcon className="mr-1 h-3 w-3" />
@@ -230,7 +223,6 @@ export default function PortfolioPage() {
                       </Badge>
                     </div>
                   </div>
-
                   <div className="p-4">
                     <h3 className="mb-2 text-xl font-semibold text-gold">
                       {item.title}
@@ -246,7 +238,6 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* 🎬 VİDEO MODAL */}
       {selectedVideo && (
         <VideoModal
           videoUrl={selectedVideo}
@@ -254,11 +245,9 @@ export default function PortfolioPage() {
         />
       )}
 
-      {/* 🖼️ FOTO GALERİ MODAL */}
       {selectedPhotos && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
           <div className="relative max-h-[90vh] w-[95vw] max-w-5xl overflow-y-auto rounded-xl bg-[#050816] p-4">
-            {/* Kapat butonu */}
             <button
               onClick={() => setSelectedPhotos(null)}
               className="absolute right-4 top-4 rounded-full border border-white/20 bg-black/60 p-1.5 text-white hover:bg-black"
