@@ -47,11 +47,17 @@ export default function PortfolioPage() {
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070",
       photos: 45,
       photoUrls: [
-        "/images/modern-rezidans/1.jpg",
+        const modernRezidansImages = [
+         "/images/modern-rezidans/1.jpg",
         "/images/modern-rezidans/2.jpg",
         "/images/modern-rezidans/3.jpg",
         "/images/modern-rezidans/4.jpg",
         "/images/modern-rezidans/5.jpg",
+        "/images/modern-rezidans/6.jpg",
+        "/images/modern-rezidans/7.jpg",
+       "/images/modern-rezidans/8.jpg",
+       ];
+
       ],
     },
     {
