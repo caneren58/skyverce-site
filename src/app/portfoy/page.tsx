@@ -198,43 +198,47 @@ export default function PortfolioPage() {
                     <h3 className="mb-2 text-xl font-semibold text-gold">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <div
-                  key={item.id}
-                  onClick={() =>
-                    item.photoUrls && setSelectedPhotos(item.photoUrls)
-                  }
-                  className="group relative cursor-pointer overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105"
-                >
-                  <div className="relative aspect-video overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
-                    <div className="absolute right-4 top-4">
-                      <Badge className="bg-gold/90 text-background">
-                        <ImageIcon className="mr-1 h-3 w-3" />
-                        {item.photos} Fotoğraf
-                      </Badge>
+                      <p className="text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <h3 className="mb-2 text-xl font-semibold text-gold">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
+                ) : (
+                  <div
+                    key={item.id}
+                    onClick={() => {
+                      if (item.slug) {
+                        window.location.href = `/portfoy/${item.slug}`;
+                      } else if (item.photoUrls) {
+                        setSelectedPhotos(item.photoUrls);
+                      }
+                    }}
+                    className="group relative cursor-pointer overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105"
+                  >
+                    <div className="relative aspect-video overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
+                      <div className="absolute right-4 top-4">
+                        <Badge className="bg-gold/90 text-background">
+                          <ImageIcon className="mr-1 h-3 w-3" />
+                          {item.photos} Fotoğraf
+                        </Badge>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="mb-2 text-xl font-semibold text-gold">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )
+                )
             )}
           </div>
         </div>
