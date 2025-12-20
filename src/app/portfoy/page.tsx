@@ -69,6 +69,7 @@ export default function PortfolioPage() {
       image:
         "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070",
       photos: 8,
+      slug: "modern-rezidans",
       photoUrls: [
         "/images/modern-rezidans/1.jpg",
         "/images/modern-rezidans/2.jpg",
