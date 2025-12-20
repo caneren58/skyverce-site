@@ -38,25 +38,24 @@ export default function PortfolioPage() {
         "https://raw.githubusercontent.com/caneren58/drone-videos/main/51915-467145012_medium.mp4",
     },
     {
-  id: 3,
-  category: "realestate",
-  type: "photo",
-  title: "Modern Rezidans Projesi",
-  description: "Beşiktaş'ta lüks konut projesi tanıtımı",
-  image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070",
-  photos: 45,
-  photoUrls: [
-    "/images/modern-rezidans/1.jpg",
-    "/images/modern-rezidans/2.jpg",
-    "/images/modern-rezidans/3.jpg",
-    "/images/modern-rezidans/4.jpg",
-    "/images/modern-rezidans/5.jpg",
-    "/images/modern-rezidans/6.jpg",
-    "/images/modern-rezidans/7.jpg",
-    "/images/modern-rezidans/8.jpg",
-  ],
-},
-
+      id: 3,
+      category: "realestate",
+      type: "photo",
+      title: "Modern Rezidans Projesi",
+      description: "Beşiktaş'ta lüks konut projesi tanıtımı",
+      image:
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070",
+      photos: 45, // kart üzerindeki yazı
+      photoUrls: [
+        "/images/modern-rezidans/1.jpg",
+        "/images/modern-rezidans/2.jpg",
+        "/images/modern-rezidans/3.jpg",
+        "/images/modern-rezidans/4.jpg",
+        "/images/modern-rezidans/5.jpg",
+        "/images/modern-rezidans/6.jpg",
+        "/images/modern-rezidans/7.jpg",
+        "/images/modern-rezidans/8.jpg",
+      ],
     },
     {
       id: 4,
@@ -190,7 +189,8 @@ export default function PortfolioPage() {
                 <div
                   key={item.id}
                   onClick={() =>
-                    item.photoUrls && setSelectedPhotos(item.photoUrls)
+                    (item as any).photoUrls &&
+                    setSelectedPhotos((item as any).photoUrls)
                   }
                   className="group relative overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105 cursor-pointer"
                 >
@@ -200,7 +200,7 @@ export default function PortfolioPage() {
                       alt={item.title}
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
 
                     <div className="absolute right-4 top-4">
                       <Badge className="bg-gold/90 text-background">
