@@ -2,7 +2,7 @@
 
 export default function CamlicaNisanGallery() {
   const images = Array.from(
-    { length: 35 },               // 33–67 arası = 33 foto
+    { length: 35 },               // 33–67 arası = 35 foto
     (_, i) => `/images/camlica-nisan/${33 + i}.jpg`
   );
 
