@@ -108,7 +108,7 @@ export default function AboutPage() {
             <div className="relative w-full max-w-lg mx-auto lg:mx-0">
   <div className="aspect-square overflow-hidden rounded-lg">
     <img
-      src="https://images.unsplash.com/photo-1520975922071-a121cfd95b1e?auto=format&fit=crop&w=1200&q=80"
+      src="/images/hakkimizda/drone.jpg"
       alt="SkyVerce Drone Çekimi"
       className="w-full h-full object-cover"
     />
