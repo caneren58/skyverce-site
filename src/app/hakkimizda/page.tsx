@@ -69,59 +69,61 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <Header />
 
+      {/* Hero */}
       <section className="border-b border-gold/20 bg-card py-20 pt-32">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h1 className="mb-6 text-5xl font-bold text-gold gold-glow md:text-6xl">
             Hakkımızda
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-            İstanbul'un gökyüzünden en güzel anlarını yakalayan, profesyonel drone çekim stüdyosu
+            İstanbul&apos;un gökyüzünden en güzel anlarını yakalayan, profesyonel drone çekim stüdyosu
           </p>
         </div>
       </section>
 
+      {/* Hikayemiz + Görsel */}
       <section className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
             {/* Sol Yazı Kısmı */}
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-gold">Hikayemiz</h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p className="!whitespace-pre-line">
-                  SkyVerce by BC, 2016 yılında İstanbul'da kuruldu. Havacılık ve sinema
+                  SkyVerce by BC, 2016 yılında İstanbul&apos;da kuruldu. Havacılık ve sinema
                   sektörlerinden gelen deneyimli ekibimiz, drone teknolojisinin sunduğu
                   sınırsız yaratıcı olanakları keşfetmek için bir araya geldi.
                 </p>
                 <p>
-                  İlk yıllarımızda küçük projelerle başladık, ancak kalitemiz ve profesyonelliğimiz 
-                  sayesinde hızla büyüdük. Bugün İstanbul'un en güvenilir ve tercih edilen drone 
+                  İlk yıllarımızda küçük projelerle başladık, ancak kalitemiz ve profesyonelliğimiz
+                  sayesinde hızla büyüdük. Bugün İstanbul&apos;un en güvenilir ve tercih edilen drone
                   çekim stüdyolarından biriyiz.
                 </p>
                 <p>
-                  500'den fazla başarılı proje tamamladık; düğünlerden kurumsal tanıtımlara,
+                  500&apos;den fazla başarılı proje tamamladık; düğünlerden kurumsal tanıtımlara,
                   emlak projelerinden turizm filmlerine kadar geniş bir yelpazede hizmet verdik.
                 </p>
               </div>
             </div>
 
-            {/* Sağ — Düzeltilmiş Drone Görseli */}
-            <div className="relative w-full max-w-lg mx-auto lg:mx-0">
-  <div className="aspect-square overflow-hidden rounded-lg">
-    <img
-      src="/images/hakkimizda/drone.jpg"
-      alt="SkyVerce Drone Çekimi"
-      className="w-full h-full object-cover"
-    />
-  </div>
+            {/* Sağ — Drone Görseli */}
+            <div className="relative w-full max-w-xl mx-auto lg:mx-0">
+              <div className="aspect-[4/3] overflow-hidden rounded-xl">
+                <img
+                  src="/images/hakkimizda/drone.jpg"
+                  alt="SkyVerce Drone Çekimi"
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
 
-  {/* Altın çerçeve */}
-  <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-gold rounded-lg -z-10"></div>
-</div>
+              {/* Altın çerçeve */}
+              <div className="pointer-events-none absolute inset-0 translate-x-4 translate-y-4 rounded-xl border-2 border-gold -z-10" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ALT KISIM - Aynen bıraktım */}
+      {/* Rakamlar */}
       <section className="border-y border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
@@ -141,7 +143,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* EKİP — dokunulmadı */}
+      {/* Ekibimiz */}
       <section className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
@@ -172,7 +174,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* VALUES - unchanged */}
+      {/* Değerlerimiz */}
       <section className="border-t border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
@@ -191,27 +193,28 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ALT BÖLÜM — unchanged */}
+      {/* Misyon / Vizyon */}
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-gold">Misyonumuz</h2>
               <p className="text-lg text-muted-foreground">
-                İstanbul'un eşsiz güzelliğini ve müşterilerimizin özel anlarını havadan yakalamak.
+                İstanbul&apos;un eşsiz güzelliğini ve müşterilerimizin özel anlarını havadan yakalamak.
               </p>
             </div>
 
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-gold">Vizyonumuz</h2>
               <p className="text-lg text-muted-foreground">
-                Türkiye'nin en büyük ve en profesyonel havadan görüntüleme platformu olmak.
+                Türkiye&apos;nin en büyük ve en profesyonel havadan görüntüleme platformu olmak.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      {/* CTA */}
       <section className="border-t border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="mb-6 text-3xl font-bold text-gold">Birlikte Çalışalım</h2>
