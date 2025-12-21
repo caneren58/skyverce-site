@@ -1,7 +1,10 @@
 "use client";
 
 export default function CamlicaNisanGallery() {
-  const images = Array.from({ length: 60 }, (_, i) => `/images/camlica-nisan/${i + 1}.jpg`);
+  const images = Array.from(
+    { length: 35 },               // 33–67 arası = 35 foto
+    (_, i) => `/images/camlica-nisan/${33 + i}.jpg`
+  );
 
   return (
     <main className="min-h-screen bg-[#050816] text-white px-6 py-10">
@@ -18,7 +21,7 @@ export default function CamlicaNisanGallery() {
           >
             <img
               src={src}
-              alt={`Çamlıca fotoğraf ${index + 1}`}
+              alt={`Çamlıca fotoğraf ${33 + index}`}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>

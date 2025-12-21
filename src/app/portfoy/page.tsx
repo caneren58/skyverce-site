@@ -113,7 +113,7 @@ export default function PortfolioPage() {
       description: "Panoramik İstanbul manzaralı nişan çekimi",
       image:
         "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=2070",
-      photos: 60,
+      photos: 35,
       slug: "camlica-nisan"
     },
     {
