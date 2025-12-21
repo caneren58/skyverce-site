@@ -114,6 +114,7 @@ export default function PortfolioPage() {
       image:
         "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=2070",
       photos: 60,
+      slug: "camlica-nisan"
     },
     {
       id: 7,
