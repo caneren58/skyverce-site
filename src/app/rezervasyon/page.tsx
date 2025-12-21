@@ -7,11 +7,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useState } from "react";
-import { Calendar as CalendarIcon, Phone, Mail, MapPin, MessageCircle, CheckCircle2 } from "lucide-react";
+import {
+  Calendar as CalendarIcon,
+  Phone,
+  Mail,
+  MapPin,
+  MessageCircle,
+  CheckCircle2,
+} from "lucide-react";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
@@ -25,13 +38,12 @@ export default function ReservationPage() {
     service: "",
     location: "",
     budget: "",
-    message: ""
+    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setShowConfirmation(true);
-    // Scroll to top to show confirmation
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -42,21 +54,21 @@ export default function ReservationPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      
+
       <section className="border-b border-gold/20 bg-card py-20 pt-32">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h1 className="mb-6 text-5xl font-bold text-gold gold-glow md:text-6xl">
             Rezervasyon & İletişim
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-            Projenizi gerçeğe dönüştürmek için bize ulaşın. Formu doldurun veya 
-            doğrudan WhatsApp üzerinden iletişime geçin.
+            Projenizi gerçeğe dönüştürmek için bize ulaşın. Formu doldurun veya doğrudan WhatsApp
+            üzerinden iletişime geçin.
           </p>
         </div>
       </section>
 
-      {showConfirmation &&
-      <section className="border-b border-gold/20 bg-gold/10 py-8">
+      {showConfirmation && (
+        <section className="border-b border-gold/20 bg-gold/10 py-8">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mx-auto max-w-3xl">
               <Card className="border-gold">
@@ -68,26 +80,41 @@ export default function ReservationPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-lg">
-                    Sayın <span className="font-semibold text-gold">{formData.name}</span>, 
-                    rezervasyon talebiniz başarıyla alınmıştır.
+                    Sayın{" "}
+                    <span className="font-semibold text-gold">
+                      {formData.name || "Misafirimiz"}
+                    </span>
+                    , rezervasyon talebiniz başarıyla alınmıştır.
                   </p>
-                  <div className="rounded-lg bg-card p-4 space-y-2 text-sm">
-                    <p><span className="font-semibold">Hizmet:</span> {formData.service}</p>
-                    <p><span className="font-semibold">Tarih:</span> {date ? format(date, "dd MMMM yyyy", { locale: tr }) : "Belirtilmedi"}</p>
-                    <p><span className="font-semibold">Lokasyon:</span> {formData.location}</p>
-                    <p><span className="font-semibold">E-posta:</span> {formData.email}</p>
-                    <p><span className="font-semibold">Telefon:</span> {formData.phone}</p>
+                  <div className="space-y-2 rounded-lg bg-card p-4 text-sm">
+                    <p>
+                      <span className="font-semibold">Hizmet:</span> {formData.service || "-"}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Tarih:</span>{" "}
+                      {date ? format(date, "dd MMMM yyyy", { locale: tr }) : "Belirtilmedi"}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Lokasyon:</span>{" "}
+                      {formData.location || "Belirtilmedi"}
+                    </p>
+                    <p>
+                      <span className="font-semibold">E-posta:</span> {formData.email || "-"}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Telefon:</span> {formData.phone || "-"}
+                    </p>
                   </div>
                   <p className="text-muted-foreground">
-                    Ekibimiz en kısa sürede sizinle iletişime geçecektir. Acil durumlar için 
-                    WhatsApp hattımızdan bize ulaşabilirsiniz.
+                    Ekibimiz en kısa sürede sizinle iletişime geçecektir. Acil durumlar için WhatsApp
+                    hattımızdan bize ulaşabilirsiniz.
                   </p>
                 </CardContent>
               </Card>
             </div>
           </div>
         </section>
-      }
+      )}
 
       <section className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
@@ -101,14 +128,18 @@ export default function ReservationPage() {
                     <Phone className="mt-1 h-5 w-5 text-gold" />
                     <div>
                       <p className="font-semibold">Telefon</p>
-                      <p className="text-muted-foreground !whitespace-pre-line">+90 505 946 7166</p>
+                      <p className="text-muted-foreground !whitespace-pre-line">
+                        +90 505 946 71 66
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Mail className="mt-1 h-5 w-5 text-gold" />
                     <div>
                       <p className="font-semibold">E-posta</p>
-                      <p className="text-muted-foreground !whitespace-pre-line">info@skyvercebybc.com</p>
+                      <p className="text-muted-foreground !whitespace-pre-line">
+                        info@skyvercebybc.com
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -116,14 +147,16 @@ export default function ReservationPage() {
                     <div>
                       <p className="font-semibold">Adres</p>
                       <p className="text-muted-foreground">
-                        Beşiktaş, İstanbul<br />Türkiye
+                        Beşiktaş, İstanbul
+                        <br />
+                        Türkiye
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <Card className="border-gold gold-border-glow bg-gradient-to-br from-gold/10 to-transparent">
+              <Card className="gold-border-glow border-gold bg-gradient-to-br from-gold/10 to-transparent">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-gold">
                     <MessageCircle className="h-6 w-6" />
@@ -132,14 +165,14 @@ export default function ReservationPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <p className="text-sm text-muted-foreground">
-                    Hızlı iletişim için WhatsApp hattımızdan bize ulaşın. 
-                    Anında cevap alın ve projенizi hemen planlayalım.
+                    Hızlı iletişim için WhatsApp hattımızdan bize ulaşın. Anında cevap alın ve
+                    projenizi hemen planlayalım.
                   </p>
                   <a
-                    href="https://wa.me/905551234567?text=Merhaba, drone çekim hizmetiniz hakkında bilgi almak istiyorum."
+                    href="https://wa.me/905059467166?text=Merhaba,%20SkyVerce%20by%20BC%20drone%20çekim%20hizmetiniz%20hakkında%20bilgi%20almak%20istiyorum."
                     target="_blank"
-                    rel="noopener noreferrer">
-
+                    rel="noopener noreferrer"
+                  >
                     <Button className="w-full bg-[#25D366] hover:bg-[#128C7E]">
                       <MessageCircle className="mr-2 h-5 w-5" />
                       WhatsApp'tan Yaz
@@ -176,7 +209,7 @@ export default function ReservationPage() {
                 <CardHeader>
                   <CardTitle className="text-2xl text-gold">Rezervasyon Formu</CardTitle>
                   <p className="text-muted-foreground">
-                    Formu doldurun, size en kısa sürede dönüş yapalım
+                    Formu doldurun, size en kısa sürede dönüş yapalım.
                   </p>
                 </CardHeader>
                 <CardContent>
@@ -189,8 +222,8 @@ export default function ReservationPage() {
                           placeholder="Adınız ve soyadınız"
                           required
                           value={formData.name}
-                          onChange={(e) => handleInputChange("name", e.target.value)} />
-
+                          onChange={(e) => handleInputChange("name", e.target.value)}
+                        />
                       </div>
 
                       <div className="space-y-2">
@@ -201,8 +234,8 @@ export default function ReservationPage() {
                           placeholder="ornek@email.com"
                           required
                           value={formData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)} />
-
+                          onChange={(e) => handleInputChange("email", e.target.value)}
+                        />
                       </div>
 
                       <div className="space-y-2">
@@ -213,8 +246,8 @@ export default function ReservationPage() {
                           placeholder="0555 123 4567"
                           required
                           value={formData.phone}
-                          onChange={(e) => handleInputChange("phone", e.target.value)} />
-
+                          onChange={(e) => handleInputChange("phone", e.target.value)}
+                        />
                       </div>
 
                       <div className="space-y-2">
@@ -222,8 +255,8 @@ export default function ReservationPage() {
                         <Select
                           required
                           value={formData.service}
-                          onValueChange={(value) => handleInputChange("service", value)}>
-
+                          onValueChange={(value) => handleInputChange("service", value)}
+                        >
                           <SelectTrigger id="service">
                             <SelectValue placeholder="Seçiniz" />
                           </SelectTrigger>
@@ -243,10 +276,12 @@ export default function ReservationPage() {
                           <PopoverTrigger asChild>
                             <Button
                               variant="outline"
-                              className="w-full justify-start text-left font-normal">
-
+                              className="w-full justify-start text-left font-normal"
+                            >
                               <CalendarIcon className="mr-2 h-4 w-4" />
-                              {date ? format(date, "dd MMMM yyyy", { locale: tr }) : "Tarih seçiniz"}
+                              {date
+                                ? format(date, "dd MMMM yyyy", { locale: tr })
+                                : "Tarih seçiniz"}
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
@@ -255,8 +290,8 @@ export default function ReservationPage() {
                               selected={date}
                               onSelect={setDate}
                               locale={tr}
-                              disabled={(date) => date < new Date()} />
-
+                              disabled={(d) => d < new Date()}
+                            />
                           </PopoverContent>
                         </Popover>
                       </div>
@@ -265,8 +300,8 @@ export default function ReservationPage() {
                         <Label htmlFor="budget">Bütçe Aralığı</Label>
                         <Select
                           value={formData.budget}
-                          onValueChange={(value) => handleInputChange("budget", value)}>
-
+                          onValueChange={(value) => handleInputChange("budget", value)}
+                        >
                           <SelectTrigger id="budget">
                             <SelectValue placeholder="Seçiniz" />
                           </SelectTrigger>
@@ -287,8 +322,8 @@ export default function ReservationPage() {
                         placeholder="Örn: Sultanahmet, Ortaköy, Beşiktaş..."
                         required
                         value={formData.location}
-                        onChange={(e) => handleInputChange("location", e.target.value)} />
-
+                        onChange={(e) => handleInputChange("location", e.target.value)}
+                      />
                     </div>
 
                     <div className="space-y-2">
@@ -298,30 +333,30 @@ export default function ReservationPage() {
                         placeholder="Projeniz hakkında detaylı bilgi verin..."
                         rows={5}
                         value={formData.message}
-                        onChange={(e) => handleInputChange("message", e.target.value)} />
-
+                        onChange={(e) => handleInputChange("message", e.target.value)}
+                      />
                     </div>
 
                     <div className="flex flex-col gap-4 sm:flex-row">
                       <Button
                         type="submit"
                         size="lg"
-                        className="flex-1 bg-gold text-background hover:bg-gold-dark">
-
+                        className="flex-1 bg-gold text-background hover:bg-gold-dark"
+                      >
                         Rezervasyon Talebi Gönder
                       </Button>
                       <a
-                        href="https://wa.me/905551234567"
+                        href="https://wa.me/905059467166"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1">
-
+                        className="flex-1"
+                      >
                         <Button
                           type="button"
                           size="lg"
                           variant="outline"
-                          className="w-full border-gold text-gold hover:bg-gold/10">
-
+                          className="w-full border-gold text-gold hover:bg-gold/10"
+                        >
                           <MessageCircle className="mr-2 h-5 w-5" />
                           WhatsApp ile İletin
                         </Button>
@@ -329,8 +364,8 @@ export default function ReservationPage() {
                     </div>
 
                     <p className="text-xs text-muted-foreground">
-                      * İşaretli alanlar zorunludur. Kişisel bilgileriniz güvenle saklanır ve 
-                      üçüncü kişilerle paylaşılmaz.
+                      * İşaretli alanlar zorunludur. Kişisel bilgileriniz güvenle saklanır ve üçüncü
+                      kişilerle paylaşılmaz.
                     </p>
                   </form>
                 </CardContent>
@@ -348,7 +383,11 @@ export default function ReservationPage() {
               Rezervasyon ve çekim süreci hakkında sorularınız mı var?
             </p>
             <a href="/sss">
-              <Button variant="outline" size="lg" className="border-gold text-gold hover:bg-gold/10">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-gold text-gold hover:bg-gold/10"
+              >
                 SSS Sayfasını İnceleyin
               </Button>
             </a>
@@ -357,6 +396,6 @@ export default function ReservationPage() {
       </section>
 
       <Footer />
-    </div>);
-
+    </div>
+  );
 }
