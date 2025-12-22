@@ -52,7 +52,7 @@ export default function PortfolioPage() {
       id: 2,
       category: "wedding",
       type: "video",
-      title: "Boğaz Kıyısında Düğün",
+      title: "Romantik Düğün töreni",
       description: "Ortaköy'de gerçekleşen romantik düğün töreni",
       image:
         "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070",
