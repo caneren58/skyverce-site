@@ -2,44 +2,16 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Users, Award, Target, Heart, Camera, Shield } from "lucide-react";
+import { Users, Target, Heart, Camera, Shield } from "lucide-react";
 
 export default function AboutPage() {
   const stats = [
-    { number: "500+", label: "Tamamlanan Proje" },
+    { number: "250+", label: "Tamamlanan Proje (2021–2025)" }, // güncellendi
     { number: "50+", label: "Kurumsal Müşteri" },
-    { number: "8", label: "Yıllık Deneyim" },
-    { number: "15", label: "Profesyonel Ekip" },
-  ];
-
-  const team = [
-    {
-      name: "Mehmet Yılmaz",
-      role: "Kurucu & Baş Pilot",
-      description: "10 yıllık havacılık deneyimi, 500+ başarılı çekim",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070",
-    },
-    {
-      name: "Ayşe Demir",
-      role: "Görüntü Yönetmeni",
-      description: "Sinema ve TV prodüksiyonlarında 8 yıl",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070",
-    },
-    {
-      name: "Can Öztürk",
-      role: "Montaj Uzmanı",
-      description: "Ödüllü video editor, uluslararası projeler",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2070",
-    },
-    {
-      name: "Zeynep Kaya",
-      role: "Proje Koordinatörü",
-      description: "Müşteri ilişkileri ve proje yönetimi uzmanı",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2070",
-    },
+    { number: "4", label: "Yıllık Deneyim" },
+    { number: "4.9/5", label: "Müşteri Memnuniyeti" },
   ];
 
   const values = [
@@ -85,23 +57,24 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
-            {/* Sol Yazı Kısmı */}
+            {/* Sol Yazı */}
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-gold">Hikayemiz</h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p className="!whitespace-pre-line">
-                  SkyVerce by BC, 2016 yılında İstanbul&apos;da kuruldu. Havacılık ve sinema
-                  sektörlerinden gelen deneyimli ekibimiz, drone teknolojisinin sunduğu
-                  sınırsız yaratıcı olanakları keşfetmek için bir araya geldi.
+                  SkyVerce by BC, 2021 yılında İstanbul&apos;da kuruldu. Drone teknolojisini
+                  yaratıcı prodüksiyon anlayışıyla birleştirerek, kısa sürede güçlü bir
+                  referans portföyü oluşturduk.
                 </p>
                 <p>
-                  İlk yıllarımızda küçük projelerle başladık, ancak kalitemiz ve profesyonelliğimiz
-                  sayesinde hızla büyüdük. Bugün İstanbul&apos;un en güvenilir ve tercih edilen drone
-                  çekim stüdyolarından biriyiz.
+                  2021–2025 yılları arasında, düğün çekimleri, kurumsal tanıtımlar,
+                  emlak projeleri ve turizm filmleri dahil olmak üzere
+                  <strong> 250&apos;den fazla projeyi </strong>
+                  başarıyla tamamladık.
                 </p>
                 <p>
-                  500&apos;den fazla başarılı proje tamamladık; düğünlerden kurumsal tanıtımlara,
-                  emlak projelerinden turizm filmlerine kadar geniş bir yelpazede hizmet verdik.
+                  Her yıl artan proje hacmimizle, sürdürülebilir büyümeyi ve
+                  uzun vadeli müşteri memnuniyetini odağımıza aldık.
                 </p>
               </div>
             </div>
@@ -115,9 +88,6 @@ export default function AboutPage() {
                   className="h-full w-full object-cover object-[50%_35%]"
                 />
               </div>
-
-              {/* Altın çerçeve */}
-              <div className="pointer-events-none absolute inset-0 translate-x-4 translate-y-4 rounded-xl border-2 border-gold -z-10" />
             </div>
           </div>
         </div>
@@ -127,7 +97,7 @@ export default function AboutPage() {
       <section className="border-y border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold !whitespace-pre-line">
+            <h2 className="mb-4 text-4xl font-bold text-gold">
               Rakamlarla SkyVerce by BC
             </h2>
           </div>
@@ -138,37 +108,6 @@ export default function AboutPage() {
                 <div className="mb-2 text-5xl font-bold text-gold">{stat.number}</div>
                 <div className="text-lg text-muted-foreground">{stat.label}</div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Ekibimiz */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold">Ekibimiz</h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Alanında uzman, tutkulu ve deneyimli profesyonellerden oluşan ekibimiz
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {team.map((member, index) => (
-              <Card key={index} className="overflow-hidden">
-                <div className="aspect-square overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="h-full w-full object-cover transition-transform hover:scale-110"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="mb-1 text-xl font-semibold text-gold">{member.name}</h3>
-                  <p className="mb-2 text-sm font-medium text-muted-foreground">{member.role}</p>
-                  <p className="text-sm text-muted-foreground">{member.description}</p>
-                </CardContent>
-              </Card>
             ))}
           </div>
         </div>
@@ -190,43 +129,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Misyon / Vizyon */}
-      <section className="border-t border-gold/20 py-20">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-gold">Misyonumuz</h2>
-              <p className="text-lg text-muted-foreground">
-                İstanbul&apos;un eşsiz güzelliğini ve müşterilerimizin özel anlarını havadan yakalamak.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-gold">Vizyonumuz</h2>
-              <p className="text-lg text-muted-foreground">
-                Türkiye&apos;nin en büyük ve en profesyonel havadan görüntüleme platformu olmak.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="border-t border-gold/20 bg-card py-20">
-        <div className="container mx-auto px-4 text-center lg:px-8">
-          <h2 className="mb-6 text-3xl font-bold text-gold">Birlikte Çalışalım</h2>
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-            Projenizi hayata geçirmek için sabırsızlanıyoruz.
-          </p>
-          <Link href="/rezervasyon">
-            <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
-              <Camera className="mr-2 h-5 w-5" />
-              Hemen Başlayalım
-            </Button>
-          </Link>
         </div>
       </section>
 
