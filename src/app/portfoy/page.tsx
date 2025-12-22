@@ -103,7 +103,7 @@ export default function PortfolioPage() {
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070",
       duration: "2:00",
       videoUrl:
-        "https://raw.githubusercontent.com/caneren58/drone-videos/main/267747_medium.mp4",
+        "https://raw.githubusercontent.com/caneren58/skyverce-site/main/239974_tiny.mp4",
     },
     {
       id: 6,
