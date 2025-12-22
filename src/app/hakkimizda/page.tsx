@@ -112,7 +112,7 @@ export default function AboutPage() {
                 <img
                   src="/images/hakkimizda/drone1.jpg"
                   alt="SkyVerce Drone Çekimi"
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-cover object-[50%_35%]"
                 />
               </div>
 
