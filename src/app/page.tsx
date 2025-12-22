@@ -12,7 +12,6 @@ import {
   Heart,
   Landmark,
   Briefcase,
-  CheckCircle,
   Clock,
   Shield,
   Award,
@@ -49,18 +48,18 @@ export default function Home() {
   const features = [
     {
       icon: <Award className="h-8 w-8 text-gold" />,
-      title: "Profesyonel Ekip",
-      description: "Alanında uzman, lisanslı pilotlar ve görüntü yönetmenleri",
+      title: "Profesyonel Hizmet",
+      description: "Lisanslı pilotlar ve güvenli operasyon süreçleri",
     },
     {
       icon: <Camera className="h-8 w-8 text-gold" />,
       title: "Son Teknoloji Ekipman",
-      description: "4K ve 8K çekim yapabilen profesyonel drone'lar",
+      description: "4K ve 8K çekim yapabilen profesyonel drone sistemleri",
     },
     {
       icon: <Shield className="h-8 w-8 text-gold" />,
       title: "Sigortalı ve Yasal",
-      description: "Tüm izinler ve sigortalar bizden, güvenle çekim yapıyoruz",
+      description: "Tüm izinler ve sigortalar eksiksiz şekilde sağlanır",
     },
     {
       icon: <Clock className="h-8 w-8 text-gold" />,
@@ -72,7 +71,11 @@ export default function Home() {
   const workflow = [
     { step: "1", title: "İletişim", description: "Bize ulaşın ve projenizi anlatın" },
     { step: "2", title: "Planlama", description: "Çekim planını birlikte oluşturalım" },
-    { step: "3", title: "Çekim", description: "Profesyonel ekibimizle çekim yapıyoruz" },
+    {
+      step: "3",
+      title: "Çekim",
+      description: "Planlanan çekimi profesyonel ekipmanlarla gerçekleştiriyoruz",
+    },
     { step: "4", title: "Montaj", description: "Görüntüleri düzenleyip size sunuyoruz" },
     { step: "5", title: "Teslimat", description: "Final dosyalarınızı teslim ediyoruz" },
   ];
@@ -101,8 +104,8 @@ export default function Home() {
               İstanbul'u Havadan Keşfedin
             </h1>
             <p className="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl">
-              Profesyonel drone video ve fotoğraf çekimi ile işletmenizi, etkinliğinizi veya özel
-              anlarınızı en etkileyici şekilde görselleştiriyoruz.
+              2021’den bu yana profesyonel drone video ve fotoğraf çekimiyle,
+              markalar ve bireyler için etkileyici görsel prodüksiyonlar üretiyoruz.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/rezervasyon">
@@ -126,7 +129,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services */}
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
@@ -138,10 +141,7 @@ export default function Home() {
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service, index) => (
-              <Card
-                key={index}
-                className="gold-border-glow transition-transform hover:scale-105"
-              >
+              <Card key={index} className="gold-border-glow transition-transform hover:scale-105">
                 <CardHeader>
                   <div className="mb-4">{service.icon}</div>
                   <CardTitle className="text-xl">{service.title}</CardTitle>
@@ -154,22 +154,10 @@ export default function Home() {
               </Card>
             ))}
           </div>
-
-          <div className="mt-12 text-center">
-            <Link href="/hizmetler">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-gold text-gold hover:bg-gold/10"
-              >
-                Tüm Hizmetleri Gör
-              </Button>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Why Choose Us */}
       <section className="border-t border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
@@ -190,79 +178,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Workflow Timeline – DÜZELTİLMİŞ */}
+      {/* Workflow */}
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Çalışma Sürecimiz</h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              5 adımda profesyonel drone çekimi
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Dikey çizgi */}
-            <div className="absolute left-8 top-0 h-full w-px bg-gold/30 md:left-1/2" />
-
-            <div className="space-y-10 md:space-y-14">
-              {workflow.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative md:flex md:items-start md:gap-10"
-                >
-                  {/* Numara dairesi */}
-                  <div className="absolute left-8 -translate-x-1/2 md:left-1/2 md:-translate-x-1/2">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gold bg-background text-lg font-semibold text-gold">
-                      {item.step}
-                    </div>
-                  </div>
-
-                  {/* Metin bloğu */}
-                  <div
-                    className={`
-                      mt-6 md:mt-0 md:w-1/2
-                      ${index % 2 === 0 ? "md:pr-10 md:text-right md:ml-0" : "md:pl-10 md:ml-auto"}
-                    `}
-                  >
-                    <h3 className="mb-2 text-2xl font-semibold text-gold">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Bosphorus Highlight */}
-      <section className="relative border-t border-gold/20 py-32">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=2070')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-          }}
-        >
-          <div className="absolute inset-0 bg-background/80" />
-        </div>
-
-        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
-          <div className="mx-auto max-w-3xl space-y-6">
-            <h2 className="text-4xl font-bold text-gold gold-glow md:text-5xl">
-              Boğaz'ın Büyüsünü Havadan Yaşayın
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">
+              Çalışma Sürecimiz
             </h2>
-            <p className="text-xl text-foreground">
-              İstanbul Boğazı'nın eşsiz manzarasını profesyonel drone çekimleriyle keşfedin.
-              Tarihi yarımada, modern silüet ve mavi suların muhteşem uyumunu yakalıyoruz.
-            </p>
-            <Link href="/rezervasyon">
-              <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
-                Boğaz Çekimi İçin İletişime Geçin
-              </Button>
-            </Link>
+          </div>
+
+          <div className="space-y-10">
+            {workflow.map((item, index) => (
+              <div key={index} className="text-center">
+                <h3 className="text-2xl font-semibold text-gold">
+                  {item.step}. {item.title}
+                </h3>
+                <p className="text-muted-foreground">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
