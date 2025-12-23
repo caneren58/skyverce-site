@@ -1,7 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Camera, Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
+import {
+  Camera,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Instagram,
+  Youtube,
+  Linkedin,
+} from "lucide-react";
 
 export default function Footer() {
   return (
@@ -12,11 +21,13 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Camera className="h-6 w-6 text-gold" />
-              <span className="text-xl font-bold text-gold !whitespace-pre-line">SkyVerce by BC</span>
+              <span className="text-xl font-bold text-gold !whitespace-pre-line">
+                SkyVerce by BC
+              </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              İstanbul'un en profesyonel drone video ve fotoğraf stüdyosu. 
-              Havadan çekim hizmetlerinde uzman ekibimizle yanınızdayız.
+              İstanbul'un profesyonel drone video ve fotoğraf stüdyosu.
+              Havadan çekim hizmetlerinde yaratıcı ve güvenilir çözümler sunar.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground transition-colors hover:text-gold">
@@ -58,23 +69,34 @@ export default function Footer() {
                   Sıkça Sorulan Sorular
                 </Link>
               </li>
-              <li>
-                <Link href="/guvenlik" className="text-muted-foreground transition-colors hover:text-gold">
-                  Güvenlik & Yasal
-                </Link>
-              </li>
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Legal */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold text-gold">Hizmetler</h3>
+            <h3 className="mb-4 text-sm font-semibold text-gold">Yasal</h3>
             <ul className="space-y-2 text-sm">
-              <li className="text-muted-foreground">Turizm Çekimleri</li>
-              <li className="text-muted-foreground">Düğün & Nişan</li>
-              <li className="text-muted-foreground">Emlak Tanıtımı</li>
-              <li className="text-muted-foreground">Kurumsal Çekimler</li>
-              <li className="text-muted-foreground">Boğaz Turu</li>
+              <li>
+                <Link href="/kvkk" className="text-muted-foreground transition-colors hover:text-gold">
+                  KVKK Aydınlatma Metni
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/gizlilik-politikasi"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
+                  Gizlilik Politikası
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cerez-politikasi"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
+                  Çerez Politikası
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -92,16 +114,16 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4 text-gold" />
-                <span className="!whitespace-pre-line">info@skyvercebybc.com</span>
+                <span className="!whitespace-pre-line">skyverce@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 border-t border-gold/20 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} SkyView Istanbul. Tüm hakları saklıdır.</p>
+          <p>&copy; {new Date().getFullYear()} SkyVerce by BC. Tüm hakları saklıdır.</p>
         </div>
       </div>
-    </footer>);
-
+    </footer>
+  );
 }
