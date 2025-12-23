@@ -69,7 +69,7 @@ export default function Home() {
   ];
 
   const workflow = [
-    { step: "1", title: "İletişim", description: "Bize ulaşın ve projenizi anlatın" },
+    { step: "1", title: "İletişim", description: "Bize WhatsApp üzerinden ulaşın" },
     { step: "2", title: "Planlama", description: "Çekim planını birlikte oluşturalım" },
     {
       step: "3",
@@ -107,13 +107,19 @@ export default function Home() {
               2021’den bu yana profesyonel drone video ve fotoğraf çekimiyle,
               markalar ve bireyler için etkileyici görsel prodüksiyonlar üretiyoruz.
             </p>
+
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link href="/rezervasyon">
+              <a
+                href="https://wa.me/905059467166"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
                   <Camera className="mr-2 h-5 w-5" />
-                  Hemen Rezervasyon Yapın
+                  İletişime Geçin
                 </Button>
-              </Link>
+              </a>
+
               <Link href="/portfoy">
                 <Button
                   size="lg"
@@ -125,6 +131,14 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
+
+            <p className="mt-4 text-xs text-muted-foreground">
+              İletişime geçerek{" "}
+              <Link href="/kvkk" className="underline hover:text-gold">
+                KVKK Aydınlatma Metni
+              </Link>
+              ’ni kabul etmiş sayılırsınız.
+            </p>
           </div>
         </div>
       </section>
@@ -133,7 +147,9 @@ export default function Home() {
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Hizmetlerimiz</h2>
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">
+              Hizmetlerimiz
+            </h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               İhtiyacınıza özel profesyonel drone çekim hizmetleri
             </p>
