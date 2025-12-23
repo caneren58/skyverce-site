@@ -4,66 +4,42 @@ import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://skyverce-site-l5ln.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://skyverce-site-2j942fwkw-elvis-projects-4e6b42dd.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "SkyVerce by BC Istanbul - Profesyonel Drone Video & Fotoğraf Çekimi",
     template: "%s | SkyVerce by BC",
   },
   description:
-    "İstanbul'un profesyonel drone video ve fotoğraf stüdyosu. Düğün, emlak, turizm ve kurumsal çekimler.",
+    "İstanbul'un en profesyonel drone video ve fotoğraf stüdyosu. Düğün, emlak, turizm ve kurumsal çekimler.",
   applicationName: "SkyVerce by BC",
-  keywords: [
-    "drone çekimi",
-    "drone video",
-    "drone fotoğraf",
-    "İstanbul drone",
-    "düğün çekimi",
-    "emlak çekimi",
-    "turizm çekimi",
-    "kurumsal tanıtım",
-    "hava çekimi",
-  ],
-  alternates: {
-    canonical: "/",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
+  icons: {
+    icon: "/favicon.ico",
   },
   openGraph: {
     type: "website",
-    locale: "tr_TR",
-    url: "/",
-    siteName: "SkyVerce by BC",
+    url: siteUrl,
     title: "SkyVerce by BC Istanbul - Profesyonel Drone Video & Fotoğraf Çekimi",
     description:
-      "İstanbul'un profesyonel drone video ve fotoğraf stüdyosu. Düğün, emlak, turizm ve kurumsal çekimler.",
+      "İstanbul'un en profesyonel drone video ve fotoğraf stüdyosu. Düğün, emlak, turizm ve kurumsal çekimler.",
     images: [
       {
         url: "/og.jpg",
         width: 1200,
         height: 630,
-        alt: "SkyVerce by BC - Drone Video & Fotoğraf",
+        alt: "SkyVerce by BC",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SkyVerce by BC Istanbul - Profesyonel Drone Video & Fotoğraf Çekimi",
+    title: "SkyVerce by BC Istanbul",
     description:
-      "İstanbul'un profesyonel drone video ve fotoğraf stüdyosu. Düğün, emlak, turizm ve kurumsal çekimler.",
+      "İstanbul'da profesyonel drone video ve fotoğraf çekimi. Düğün, emlak, turizm ve kurumsal.",
     images: ["/og.jpg"],
-  },
-  icons: {
-    icon: "/favicon.ico",
   },
 };
 
@@ -92,23 +68,3 @@ export default function RootLayout({
     </html>
   );
 }
-export const metadata: Metadata = {
-  title: "SkyVerce by BC Istanbul - Profesyonel Drone Video & Fotoğraf Çekimi",
-  description:
-    "İstanbul'un en profesyonel drone video ve fotoğraf stüdyosu. Düğün, emlak, turizm ve kurumsal çekimler.",
-  openGraph: {
-    title: "SkyVerce by BC Istanbul",
-    description:
-      "Profesyonel drone video ve fotoğraf çekimi. İstanbul merkezli premium prodüksiyon.",
-    images: [
-      {
-        url: "/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "SkyVerce by BC",
-      },
-    ],
-    locale: "tr_TR",
-    type: "website",
-  },
-};
