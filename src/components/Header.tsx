@@ -14,6 +14,7 @@ export default function Header() {
     { name: "Portföy", href: "/portfoy" },
     { name: "Hakkımızda", href: "/hakkimizda" },
     { name: "SSS", href: "/sss" },
+    { name: "Güvenlik", href: "/guvenlik" },
     { name: "Yasal", href: "/kvkk" },
   ];
 
