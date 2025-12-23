@@ -20,6 +20,19 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+  // WhatsApp Conversion (single source of truth)
+  const WHATSAPP_NUMBER = "905059467166";
+  const waText = encodeURIComponent(
+    "Merhaba, SkyVerce by BC web sitesinden yazıyorum.\n\n" +
+      "Teklif almak istiyorum:\n" +
+      "1) Hizmet: (Düğün / Emlak / Turizm / Kurumsal)\n" +
+      "2) Tarih/Saat:\n" +
+      "3) Lokasyon:\n" +
+      "4) İstenen çıktı: (Video / Fotoğraf / İkisi)\n" +
+      "5) Kısa not:\n"
+  );
+  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
+
   const services = [
     {
       icon: <Landmark className="h-12 w-12 text-gold" />,
@@ -102,36 +115,34 @@ export default function Home() {
         <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
           <div className="mx-auto max-w-4xl space-y-8">
             <h1 className="text-5xl font-bold leading-tight text-gold gold-glow md:text-6xl lg:text-7xl">
-              İstanbul'u Havadan Keşfedin
+              İstanbul’da Profesyonel Drone Çekimi
             </h1>
+
             <p className="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl">
-              2021’den bu yana profesyonel drone video ve fotoğraf çekimiyle,
-              markalar ve bireyler için etkileyici görsel prodüksiyonlar üretiyoruz.
+              2021’den bu yana drone video ve fotoğraf çekimiyle, markalar ve bireyler için etkileyici görsel
+              prodüksiyonlar üretiyoruz. WhatsApp’tan yazın, size en doğru paketi ben yönlendireyim.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href="https://wa.me/905059467166"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={waLink} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp’tan teklif al">
                 <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
                   <Camera className="mr-2 h-5 w-5" />
-                  İletişime Geçin
+                  WhatsApp’tan Teklif Al
                 </Button>
               </a>
 
-              <Link href="/portfoy">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-gold text-gold hover:bg-gold/10"
-                >
+              <Link href="/portfoy" aria-label="Portföyümüzü inceleyin">
+                <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold/10">
                   <Play className="mr-2 h-5 w-5" />
                   Portföyümüzü İnceleyin
                 </Button>
               </Link>
             </div>
+
+            <p className="mt-2 text-xs text-muted-foreground">
+              Ortalama dönüş süresi: <span className="font-medium text-foreground">5–15 dakika</span> · Teklif ve
+              planlama WhatsApp üzerinden
+            </p>
 
             <p className="mt-4 text-xs text-muted-foreground">
               İletişime geçerek{" "}
@@ -148,9 +159,7 @@ export default function Home() {
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">
-              Hizmetlerimiz
-            </h2>
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Hizmetlerimiz</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               İhtiyacınıza özel profesyonel drone çekim hizmetleri
             </p>
@@ -164,9 +173,7 @@ export default function Home() {
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-base">
-                    {service.description}
-                  </CardDescription>
+                  <CardDescription className="text-base">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -178,9 +185,7 @@ export default function Home() {
       <section className="border-t border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">
-              Neden Bizi Seçmelisiniz?
-            </h2>
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Neden Bizi Seçmelisiniz?</h2>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -199,9 +204,7 @@ export default function Home() {
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">
-              Çalışma Sürecimiz
-            </h2>
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Çalışma Sürecimiz</h2>
           </div>
 
           <div className="space-y-10">
