@@ -4,8 +4,10 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Play, Image as ImageIcon, X } from "lucide-react";
 import VideoModal from "@/components/VideoModal";
+import Link from "next/link";
 
 type PortfolioItem =
   | {
@@ -114,7 +116,7 @@ export default function PortfolioPage() {
       image:
         "https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=2070",
       photos: 35,
-      slug: "camlica-nisan"
+      slug: "camlica-nisan",
     },
     {
       id: 7,
@@ -200,50 +202,78 @@ export default function PortfolioPage() {
                     <h3 className="mb-2 text-xl font-semibold text-gold">
                       {item.title}
                     </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
+                    <p className="text-sm text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  key={item.id}
+                  onClick={() => {
+                    if (item.slug) {
+                      window.location.href = `/portfoy/${item.slug}`;
+                    } else if (item.photoUrls) {
+                      setSelectedPhotos(item.photoUrls);
+                    }
+                  }}
+                  className="group relative cursor-pointer overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105"
+                >
+                  <div className="relative aspect-video overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
+                    <div className="absolute right-4 top-4">
+                      <Badge className="bg-gold/90 text-background">
+                        <ImageIcon className="mr-1 h-3 w-3" />
+                        {item.photos} Fotoğraf
+                      </Badge>
                     </div>
                   </div>
-                ) : (
-                  <div
-                    key={item.id}
-                    onClick={() => {
-                      if (item.slug) {
-                        window.location.href = `/portfoy/${item.slug}`;
-                      } else if (item.photoUrls) {
-                        setSelectedPhotos(item.photoUrls);
-                      }
-                    }}
-                    className="group relative cursor-pointer overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105"
-                  >
-                    <div className="relative aspect-video overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
-                      <div className="absolute right-4 top-4">
-                        <Badge className="bg-gold/90 text-background">
-                          <ImageIcon className="mr-1 h-3 w-3" />
-                          {item.photos} Fotoğraf
-                        </Badge>
-                      </div>
-                    </div>
-                    <div className="p-4">
-                      <h3 className="mb-2 text-xl font-semibold text-gold">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
+                  <div className="p-4">
+                    <h3 className="mb-2 text-xl font-semibold text-gold">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {item.description}
+                    </p>
                   </div>
-                )
+                </div>
+              )
             )}
           </div>
         </div>
+      </section>
+
+      {/* CTA – Güvenli */}
+      <section className="border-t border-gold/20 bg-card py-20 text-center">
+        <h2 className="mb-6 text-3xl font-bold text-gold">
+          Benzer Bir Proje Mi Düşünüyorsunuz?
+        </h2>
+        <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
+          Projeniz için en uygun drone çekim çözümünü birlikte belirleyelim.
+        </p>
+
+        <a
+          href="https://wa.me/905059467166"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
+            İletişime Geçin
+          </Button>
+        </a>
+
+        <p className="mt-4 text-xs text-muted-foreground">
+          İletişime geçerek{" "}
+          <Link href="/kvkk" className="underline hover:text-gold">
+            KVKK Aydınlatma Metni
+          </Link>
+          ’ni kabul etmiş sayılırsınız.
+        </p>
       </section>
 
       {selectedVideo && (
