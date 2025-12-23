@@ -5,7 +5,7 @@ import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "SkyView Istanbul - Profesyonel Drone Video & Fotoğraf Çekimi",
+  title: "SkyVerce by BC Istanbul - Profesyonel Drone Video & Fotoğraf Çekimi",
   description: "İstanbul'un en profesyonel drone video ve fotoğraf stüdyosu. Düğün, emlak, turizm ve kurumsal çekimler.",
 };
 

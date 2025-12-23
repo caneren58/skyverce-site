@@ -179,7 +179,7 @@ export default function AdminPage() {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-4xl font-bold text-gold gold-glow">Admin Panel</h1>
-            <p className="text-muted-foreground">SkyView Istanbul - Rezervasyon Yönetimi</p>
+            <p className="text-muted-foreground">SkyVerce by BC - Rezervasyon Yönetimi</p>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" className="border-gold text-gold hover:bg-gold/10">
