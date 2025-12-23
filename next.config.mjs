@@ -1,24 +1,19 @@
-/** @type {import("next").NextConfig} */
-
 const nextConfig = {
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "**" },
-      { protocol: "http", hostname: "**" },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
   },
 
-  // Vercel için doğru ayarlar:
+  // Vercel için güvenli ayarlar
   typescript: {
     ignoreBuildErrors: true,
   },
   eslint: {
     ignoreDuringBuilds: true,
-  },
-
-  // ❗ Orchids'in custom loader'ını kaldırıyoruz
-  webpack(config) {
-    return config;
   },
 };
 
