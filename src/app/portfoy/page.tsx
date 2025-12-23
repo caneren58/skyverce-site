@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Image as ImageIcon, X } from "lucide-react";
 import VideoModal from "@/components/VideoModal";
 import Link from "next/link";
+import Image from "next/image";
 
 type PortfolioItem =
   | {
@@ -179,10 +180,13 @@ export default function PortfolioPage() {
                   className="group relative cursor-pointer overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105"
                 >
                   <div className="relative aspect-video overflow-hidden">
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.title}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      priority={item.id === 1}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
                     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -220,10 +224,12 @@ export default function PortfolioPage() {
                   className="group relative cursor-pointer overflow-hidden rounded-lg border border-gold/20 bg-card transition-transform hover:scale-105"
                 >
                   <div className="relative aspect-video overflow-hidden">
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.title}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
                     <div className="absolute right-4 top-4">
