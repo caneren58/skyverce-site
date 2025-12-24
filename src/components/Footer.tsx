@@ -12,25 +12,19 @@ import {
   Linkedin,
 } from "lucide-react";
 
-const WHATSAPP_NUMBER = "+905059467166";
-const EMAIL = "skyverce@gmail.com";
+const WHATSAPP_NUMBER = "905059467166";
 
-// Şimdilik placeholder: hesapların yoksa linkler WhatsApp'a yönlendirir.
-// Sonra gerçek linkleri buraya yazarsın.
-const SOCIAL_LINKS = {
-  instagram: `https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}?text=${encodeURIComponent(
-    "Merhaba! Instagram hesabınızı öğrenebilir miyim?"
-  )}`,
-  facebook: `https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}?text=${encodeURIComponent(
-    "Merhaba! Facebook sayfanızın linkini alabilir miyim?"
-  )}`,
-  youtube: `https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}?text=${encodeURIComponent(
-    "Merhaba! YouTube kanal linkinizi paylaşır mısınız?"
-  )}`,
-  linkedin: `https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}?text=${encodeURIComponent(
-    "Merhaba! LinkedIn profilinizi/sayfanızı paylaşır mısınız?"
-  )}`,
-};
+const WHATSAPP_PREFILL = encodeURIComponent(
+  `Merhaba, SkyVerce by BC web sitesinden yazıyorum.\n\n` +
+  `Teklif almak istiyorum:\n` +
+  `1) Hizmet: (Düğün / Emlak / Turizm / Kurumsal)\n` +
+  `2) Tarih/Saat: (Belirli / Esnek)\n` +
+  `3) Lokasyon: (İlçe / Semt)\n` +
+  `4) İstenen çıktı: (Video / Fotoğraf / İkisi)\n` +
+  `5) Kısa not:`
+);
+
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_PREFILL}`;
 
 export default function Footer() {
   return (
@@ -40,99 +34,80 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <Camera className="h-6 w-6 text-gold" aria-hidden="true" />
+              <Camera className="h-6 w-6 text-gold" />
               <span className="text-xl font-bold text-gold !whitespace-pre-line">
                 SkyVerce by BC
               </span>
             </div>
-
             <p className="text-sm text-muted-foreground">
               İstanbul&apos;un profesyonel drone video ve fotoğraf stüdyosu.
               Havadan çekim hizmetlerinde yaratıcı ve güvenilir çözümler sunar.
             </p>
 
-            <div className="flex gap-4" aria-label="Sosyal medya bağlantıları">
+            <div className="flex gap-4">
               <a
-                href={SOCIAL_LINKS.instagram}
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram (geçici: WhatsApp üzerinden iste)"
-                title="Instagram"
+                aria-label="Instagram (şimdilik WhatsApp ile iletişim)"
                 className="text-muted-foreground transition-colors hover:text-gold"
               >
-                <Instagram className="h-5 w-5" aria-hidden="true" />
+                <Instagram className="h-5 w-5" />
               </a>
 
               <a
-                href={SOCIAL_LINKS.facebook}
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Facebook (geçici: WhatsApp üzerinden iste)"
-                title="Facebook"
+                aria-label="Facebook (şimdilik WhatsApp ile iletişim)"
                 className="text-muted-foreground transition-colors hover:text-gold"
               >
-                <Facebook className="h-5 w-5" aria-hidden="true" />
+                <Facebook className="h-5 w-5" />
               </a>
 
               <a
-                href={SOCIAL_LINKS.youtube}
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="YouTube (geçici: WhatsApp üzerinden iste)"
-                title="YouTube"
+                aria-label="YouTube (şimdilik WhatsApp ile iletişim)"
                 className="text-muted-foreground transition-colors hover:text-gold"
               >
-                <Youtube className="h-5 w-5" aria-hidden="true" />
+                <Youtube className="h-5 w-5" />
               </a>
 
               <a
-                href={SOCIAL_LINKS.linkedin}
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn (geçici: WhatsApp üzerinden iste)"
-                title="LinkedIn"
+                aria-label="LinkedIn (şimdilik WhatsApp ile iletişim)"
                 className="text-muted-foreground transition-colors hover:text-gold"
               >
-                <Linkedin className="h-5 w-5" aria-hidden="true" />
+                <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold text-gold">
-              Hızlı Bağlantılar
-            </h3>
+            <h3 className="mb-4 text-sm font-semibold text-gold">Hızlı Bağlantılar</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  href="/hizmetler"
-                  className="text-muted-foreground transition-colors hover:text-gold"
-                >
+                <Link href="/hizmetler" className="text-muted-foreground transition-colors hover:text-gold">
                   Hizmetlerimiz
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/portfoy"
-                  className="text-muted-foreground transition-colors hover:text-gold"
-                >
+                <Link href="/portfoy" className="text-muted-foreground transition-colors hover:text-gold">
                   Portföy
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/hakkimizda"
-                  className="text-muted-foreground transition-colors hover:text-gold"
-                >
+                <Link href="/hakkimizda" className="text-muted-foreground transition-colors hover:text-gold">
                   Hakkımızda
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/sss"
-                  className="text-muted-foreground transition-colors hover:text-gold"
-                >
+                <Link href="/sss" className="text-muted-foreground transition-colors hover:text-gold">
                   Sıkça Sorulan Sorular
                 </Link>
               </li>
@@ -144,26 +119,17 @@ export default function Footer() {
             <h3 className="mb-4 text-sm font-semibold text-gold">Yasal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  href="/kvkk"
-                  className="text-muted-foreground transition-colors hover:text-gold"
-                >
+                <Link href="/kvkk" className="text-muted-foreground transition-colors hover:text-gold">
                   KVKK Aydınlatma Metni
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/gizlilik-politikasi"
-                  className="text-muted-foreground transition-colors hover:text-gold"
-                >
+                <Link href="/gizlilik-politikasi" className="text-muted-foreground transition-colors hover:text-gold">
                   Gizlilik Politikası
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/cerez-politikasi"
-                  className="text-muted-foreground transition-colors hover:text-gold"
-                >
+                <Link href="/cerez-politikasi" className="text-muted-foreground transition-colors hover:text-gold">
                   Çerez Politikası
                 </Link>
               </li>
@@ -175,33 +141,44 @@ export default function Footer() {
             <h3 className="mb-4 text-sm font-semibold text-gold">İletişim</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold" />
                 <span>Beşiktaş, İstanbul, Türkiye</span>
               </li>
 
+              {/* Telefon tıklanınca arama */}
               <li className="flex items-center gap-2 text-muted-foreground">
-                <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
+                <Phone className="h-4 w-4 text-gold" />
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}?text=${encodeURIComponent(
-                    "Merhaba! SkyVerce by BC için bilgi almak istiyorum."
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="!whitespace-pre-line hover:text-gold transition-colors"
-                  aria-label="WhatsApp ile iletişime geç"
+                  href="tel:+905059467166"
+                  className="transition-colors hover:text-gold !whitespace-pre-line"
+                  aria-label="Telefonla ara: +90 505 946 71 66"
                 >
-                  {WHATSAPP_NUMBER}
+                  +90 505 946 71 66
                 </a>
               </li>
 
+              {/* Mail tıklanınca mail */}
               <li className="flex items-center gap-2 text-muted-foreground">
-                <Mail className="h-4 w-4 text-gold" aria-hidden="true" />
+                <Mail className="h-4 w-4 text-gold" />
                 <a
-                  href={`mailto:${EMAIL}`}
-                  className="!whitespace-pre-line hover:text-gold transition-colors"
-                  aria-label="E-posta gönder"
+                  href="mailto:skyverce@gmail.com"
+                  className="transition-colors hover:text-gold !whitespace-pre-line"
+                  aria-label="E-posta gönder: skyverce@gmail.com"
                 >
-                  {EMAIL}
+                  skyverce@gmail.com
+                </a>
+              </li>
+
+              {/* Ek: WhatsApp hızlı erişim (metinli, kirlilik yapmaz) */}
+              <li className="pt-2">
+                <a
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-md border border-gold/30 px-3 py-2 text-sm text-gold transition-colors hover:bg-gold/10"
+                  aria-label="WhatsApp ile teklif iste"
+                >
+                  WhatsApp ile Teklif İste
                 </a>
               </li>
             </ul>
@@ -209,9 +186,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-gold/20 pt-8 text-center text-sm text-muted-foreground">
-          <p>
-            &copy; {new Date().getFullYear()} SkyVerce by BC. Tüm hakları saklıdır.
-          </p>
+          <p>&copy; {new Date().getFullYear()} SkyVerce by BC. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>
