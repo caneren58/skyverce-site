@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import {
   Camera,
   Video,
@@ -20,7 +19,7 @@ import {
 } from "lucide-react";
 
 export default function Home() {
-  // WhatsApp Conversion (single source of truth)
+  // WhatsApp Conversion
   const WHATSAPP_NUMBER = "905059467166";
   const waText = encodeURIComponent(
     "Merhaba, SkyVerce by BC web sitesinden yazıyorum.\n\n" +
@@ -37,25 +36,22 @@ export default function Home() {
     {
       icon: <Landmark className="h-12 w-12 text-gold" />,
       title: "Turizm Çekimleri",
-      description:
-        "İstanbul'un tarihi ve turistik mekanlarını havadan çekerek tanıtım filmlerinizi oluşturuyoruz.",
+      description: "İstanbul’un tarihi ve turistik mekanlarını havadan profesyonel şekilde tanıtıyoruz.",
     },
     {
       icon: <Heart className="h-12 w-12 text-gold" />,
       title: "Düğün & Nişan",
-      description: "Hayatınızın en özel günlerini sinematik drone görüntüleriyle ölümsüzleştiriyoruz.",
+      description: "En özel günlerinizi sinematik drone çekimleriyle ölümsüzleştiriyoruz.",
     },
     {
       icon: <Building2 className="h-12 w-12 text-gold" />,
       title: "Emlak Tanıtımı",
-      description:
-        "Gayrimenkullerinizi profesyonel havadan çekimlerle en iyi şekilde tanıtıyoruz.",
+      description: "Gayrimenkullerinizi etkileyici havadan görüntülerle öne çıkarıyoruz.",
     },
     {
       icon: <Briefcase className="h-12 w-12 text-gold" />,
       title: "Kurumsal Çekimler",
-      description:
-        "İşletmenizi, projenizi veya etkinliğinizi profesyonel drone görüntüleriyle tanıtın.",
+      description: "Markanız için profesyonel drone video ve fotoğraf çözümleri sunuyoruz.",
     },
   ];
 
@@ -63,42 +59,30 @@ export default function Home() {
     {
       icon: <Award className="h-8 w-8 text-gold" />,
       title: "Profesyonel Hizmet",
-      description: "Lisanslı pilotlar ve güvenli operasyon süreçleri",
+      description: "Lisanslı pilotlar ve güvenli uçuş planları",
     },
     {
       icon: <Camera className="h-8 w-8 text-gold" />,
-      title: "Son Teknoloji Ekipman",
-      description: "4K ve 8K çekim yapabilen profesyonel drone sistemleri",
+      title: "Üst Düzey Ekipman",
+      description: "4K & 8K çözünürlüklü profesyonel çekimler",
     },
     {
       icon: <Shield className="h-8 w-8 text-gold" />,
-      title: "Sigortalı ve Yasal",
-      description: "Tüm izinler ve sigortalar eksiksiz şekilde sağlanır",
+      title: "Yasal & Sigortalı",
+      description: "Tüm uçuşlar yasal izinler kapsamında yapılır",
     },
     {
       icon: <Clock className="h-8 w-8 text-gold" />,
       title: "Hızlı Teslimat",
-      description: "Çekim sonrası hızlı montaj ve teslimat süreci",
+      description: "Çekim sonrası hızlı montaj ve teslim",
     },
-  ];
-
-  const workflow = [
-    { step: "1", title: "İletişim", description: "Bize WhatsApp üzerinden ulaşın" },
-    { step: "2", title: "Planlama", description: "Çekim planını birlikte oluşturalım" },
-    {
-      step: "3",
-      title: "Çekim",
-      description: "Planlanan çekimi profesyonel ekipmanlarla gerçekleştiriyoruz",
-    },
-    { step: "4", title: "Montaj", description: "Görüntüleri düzenleyip size sunuyoruz" },
-    { step: "5", title: "Teslimat", description: "Final dosyalarınızı teslim ediyoruz" },
   ];
 
   return (
     <div className="min-h-screen">
       <Header />
 
-      {/* Hero Section */}
+      {/* HERO */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
         <div className="absolute inset-0 z-0">
           <Image
@@ -119,32 +103,40 @@ export default function Home() {
             </h1>
 
             <p className="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl">
-              2021’den bu yana drone video ve fotoğraf çekimiyle, markalar ve bireyler için etkileyici görsel
-              prodüksiyonlar üretiyoruz. WhatsApp’tan yazın, size en doğru paketi ben yönlendireyim.
+              Düğün, emlak, turizm ve kurumsal projeler için premium drone video & fotoğraf.
+              WhatsApp’tan yazın, size en doğru paketi ben yönlendireyim.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a href={waLink} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp’tan teklif al">
+              <a
+                href={waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp’tan teklif al"
+              >
                 <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
                   <Camera className="mr-2 h-5 w-5" />
                   WhatsApp’tan Teklif Al
                 </Button>
               </a>
 
-              <Link href="/portfoy" aria-label="Portföyümüzü inceleyin">
-                <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold/10">
+              <Link href="/portfoy">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-gold text-gold hover:bg-gold/10"
+                >
                   <Play className="mr-2 h-5 w-5" />
-                  Portföyümüzü İnceleyin
+                  Portföyü İncele
                 </Button>
               </Link>
             </div>
 
-            <p className="mt-2 text-xs text-muted-foreground">
-              Ortalama dönüş süresi: <span className="font-medium text-foreground">5–15 dakika</span> · Teklif ve
-              planlama WhatsApp üzerinden
+            <p className="text-xs text-muted-foreground">
+              Ortalama dönüş süresi: <span className="font-medium text-foreground">5–15 dakika</span>
             </p>
 
-            <p className="mt-4 text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               İletişime geçerek{" "}
               <Link href="/kvkk" className="underline hover:text-gold">
                 KVKK Aydınlatma Metni
@@ -155,65 +147,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services */}
+      {/* SERVICES */}
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Hizmetlerimiz</h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              İhtiyacınıza özel profesyonel drone çekim hizmetleri
-            </p>
+            <h2 className="text-4xl font-bold text-gold md:text-5xl">Hizmetlerimiz</h2>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {services.map((service, index) => (
-              <Card key={index} className="gold-border-glow transition-transform hover:scale-105">
-                <CardHeader>
-                  <div className="mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{service.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="border-t border-gold/20 bg-card py-20">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Neden Bizi Seçmelisiniz?</h2>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="mb-4 flex justify-center">{feature.icon}</div>
-                <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+            {services.map((service, i) => (
+              <div
+                key={i}
+                className="rounded-xl border border-gold/20 bg-card p-6 text-center transition hover:scale-105"
+              >
+                <div className="mb-4 flex justify-center">{service.icon}</div>
+                <h3 className="mb-2 text-xl font-semibold">{service.title}</h3>
+                <p className="text-muted-foreground">{service.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Workflow */}
-      <section className="border-t border-gold/20 py-20">
+      {/* FEATURES */}
+      <section className="border-t border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Çalışma Sürecimiz</h2>
-          </div>
-
-          <div className="space-y-10">
-            {workflow.map((item, index) => (
-              <div key={index} className="text-center">
-                <h3 className="text-2xl font-semibold text-gold">
-                  {item.step}. {item.title}
-                </h3>
-                <p className="text-muted-foreground">{item.description}</p>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, i) => (
+              <div key={i} className="text-center">
+                <div className="mb-4 flex justify-center">{feature.icon}</div>
+                <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
             ))}
           </div>
