@@ -8,120 +8,137 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Landmark, Heart, Building2, Briefcase, CheckCircle } from "lucide-react";
 
+/**
+ * WhatsApp CTA: Paket bazlı hazır mesaj ile dönüşümü artırır.
+ * Not: +90... formatını wa.me için sadece rakam olacak şekilde kullanıyoruz.
+ */
+const WA_NUMBER = "905059467166";
+
+function buildWhatsAppLink(message: string) {
+  const encoded = encodeURIComponent(message);
+  return `https://wa.me/${WA_NUMBER}?text=${encoded}`;
+}
+
 export default function ServicesPage() {
   const serviceCategories = [
     {
       icon: <Landmark className="h-16 w-16 text-gold" />,
       category: "Turizm Çekimleri",
-      description: "İstanbul'un tarihi ve turistik yerlerini havadan tanıtın",
+      description: "İstanbul'un ikonik noktalarını havadan, sinematik bir dille anlatın.",
       packages: [
         {
           name: "Temel Paket",
-          price: "₺2.500",
-          duration: "1 saat çekim",
+          price: "₺3.750’den başlayan",
+          duration: "45 dk planlı çekim · 1 lokasyon",
           features: [
-            "1 lokasyon çekimi",
-            "4K video çekim",
-            "15 adet düzenlenmiş fotoğraf",
-            "30 saniyelik tanıtım videosu",
-            "Temel renk düzeltme",
+            "4K sinematik hava görüntüleri",
+            "Seçilmiş karelerden 15 düzenlenmiş fotoğraf",
+            "Sosyal medya uyumlu 30 sn tanıtım videosu",
+            "Temel renk düzenleme ve optimizasyon",
+            "Teslim: WhatsApp / Drive (uygun format)",
           ],
+          ctaMessage:
+            "Merhaba, SkyVerse by BC Turizm Çekimleri · Temel Paket (₺3.750’den başlayan) için teklif almak istiyorum. Lokasyon(lar) ve tarih bilgisi paylaşacağım.",
         },
         {
           name: "Premium Paket",
-          price: "₺5.000",
-          duration: "3 saat çekim",
+          price: "₺7.900’den başlayan",
+          duration: "90 dk planlı çekim · 2–3 lokasyon",
           features: [
-            "3 lokasyon çekimi",
-            "4K/6K video çekim",
-            "40 adet profesyonel fotoğraf",
-            "1-2 dakikalık sinematik video",
-            "Profesyonel montaj ve müzik",
-            "360° panoramik görüntüler",
-            "Temel renk düzenleme",
-            "Sosyal medya içerik",
+            "4K/6K sinematik drone çekimi",
+            "40 profesyonel fotoğraf (seçili kareler)",
+            "1–2 dk sinematik video (storytelling kurgu)",
+            "Profesyonel montaj + müzik (uygun kullanım)",
+            "360° panoramik görüntü seçenekleri",
+            "Sosyal medya içerik seti (Reels/Shorts uyumlu)",
           ],
           popular: true,
+          ctaMessage:
+            "Merhaba, SkyVerse by BC Turizm Çekimleri · Premium Paket (₺7.900’den başlayan) için teklif almak istiyorum. Lokasyon(lar), tarih ve teslim beklentimi paylaşacağım.",
         },
       ],
     },
     {
       icon: <Heart className="h-16 w-16 text-gold" />,
       category: "Düğün & Nişan",
-      description: "Hayatınızın en özel gününü havadan ölümsüzleştirin",
+      description: "Özel gününüzü estetik, güvenli ve sinematik bir dille ölümsüzleştirin.",
       packages: [
         {
           name: "Masallar Paketi",
-          price: "₺6.000",
-          duration: "3 saat çekim",
+          price: "₺9.900’den başlayan",
+          duration: "2 saat aktif çekim · gün içine stratejik planlama",
           features: [
-            "Tüm gün havadan görüntüleme",
-            "Konvoy çekimi",
-            "50+ profesyonel fotoğraf",
-            "2-3 dakikalık sinematik film",
-            "Gün batımı özel çekimi",
-            "Havai fişek gösterisi çekimi",
-            "Premium montaj ve efektler",
-            "Özel albüm hazırlama",
-            "Gelin-damat portre çekimi",
+            "Konsept planlama + çekim akışı (ön görüşme)",
+            "Konvoy ve giriş–çıkış anları (seçili sahneler)",
+            "50+ profesyonel fotoğraf (seçili kareler)",
+            "2–3 dk sinematik film (hikâye kurgusu)",
+            "Gün batımı / ışık planına uygun özel sahneler",
+            "Premium montaj ve estetik efektler",
+            "Gelin–damat portre sahneleri",
+            "Özel albüm opsiyonu (isteğe bağlı)",
           ],
           popular: true,
+          ctaMessage:
+            "Merhaba, SkyVerse by BC Düğün & Nişan · Masallar Paketi (₺9.900’den başlayan) için teklif almak istiyorum. Tarih, mekan ve isteklerimi paylaşacağım.",
         },
       ],
     },
     {
       icon: <Building2 className="h-16 w-16 text-gold" />,
       category: "Emlak Tanıtımı",
-      description: "Gayrimenkullerinizi en iyi açıdan tanıtın",
+      description: "Gayrimenkulünüzü doğru açı, doğru ışık ve doğru kurgu ile öne çıkarın.",
       packages: [
         {
           name: "Profesyonel Paket",
-          price: "₺3.500",
-          duration: "1 saat çekim",
+          price: "₺5.500’den başlayan",
+          duration: "45–60 dk planlı çekim · mekan keşfi dahil",
           features: [
-            "Tam bina/site görüntüleme",
-            "Gün-gece çekimleri",
-            "40+ profesyonel fotoğraf",
-            "1-2 dakikalık tanıtım filmi",
-            "360° interaktif tur",
-            "Sosyal mekan çekimleri",
-            "İç mekan sanal turu",
-            "Çevre ve konum görüntüleri",
+            "Bina/site + çevre & konum perspektifleri",
+            "Gün / altın saat planlaması (mümkünse)",
+            "40+ profesyonel fotoğraf (ilan uyumlu)",
+            "1–2 dk tanıtım filmi (ilan + web uyumlu)",
+            "360° içerik opsiyonu (projeye göre)",
+            "İç/dış mekan akış kurgusu (satış odaklı)",
           ],
           popular: true,
+          ctaMessage:
+            "Merhaba, SkyVerse by BC Emlak Tanıtımı · Profesyonel Paket (₺5.500’den başlayan) için teklif almak istiyorum. Konum, metrekare ve teslim beklentimi paylaşacağım.",
         },
       ],
     },
     {
       icon: <Briefcase className="h-16 w-16 text-gold" />,
       category: "Kurumsal Çekimler",
-      description: "İşletmenizi, etkinliğinizi profesyonelce tanıtın",
+      description: "Markanızı güçlü bir görsel anlatımla, premium bir sunumla konumlandırın.",
       packages: [
         {
           name: "Kurumsal Temel",
-          price: "₺2.500",
-          duration: "2 saat çekim",
+          price: "₺3.750’den başlayan",
+          duration: "60 dk planlı çekim · tek lokasyon",
           features: [
-            "İşyeri/fabrika genel çekim",
-            "Ekip ve çalışma alanları",
-            "25 adet fotoğraf",
-            "1 dakikalık tanıtım videosu",
+            "İşyeri/fabrika genel plan çekimleri",
+            "Ekip & çalışma alanları (kurumsal dil)",
+            "25 düzenlenmiş fotoğraf (seçili kareler)",
+            "60 sn tanıtım videosu (web + sosyal uyumlu)",
           ],
+          ctaMessage:
+            "Merhaba, SkyVerse by BC Kurumsal · Kurumsal Temel (₺3.750’den başlayan) için teklif almak istiyorum. Sektör, lokasyon ve hedef kullanım alanını paylaşacağım.",
         },
         {
           name: "Etkinlik Paketi",
-          price: "₺4.500",
-          duration: "4 saat çekim",
+          price: "₺6.900’den başlayan",
+          duration: "2 saat aktif çekim · opsiyonel ek süre",
           features: [
-            "Festival/konser/fuar çekimi",
-            "Kalabalık görüntüleme",
-            "50+ profesyonel fotoğraf",
-            "2 dakikalık highlight video",
+            "Etkinlik akışı: giriş–sahne–kalabalık–detay",
+            "50+ profesyonel fotoğraf (seçili kareler)",
+            "2 dk highlight video (tempo kurgusu)",
+            "Sosyal medya içerik seti (Reels/Shorts)",
             "Canlı yayın desteği (opsiyonel)",
-            "Sosyal medya içerik paketi",
-            "Özel etkinlik çekimleri",
+            "Etkinlik özel anları (konuşma/performans)",
           ],
           popular: true,
+          ctaMessage:
+            "Merhaba, SkyVerse by BC Kurumsal · Etkinlik Paketi (₺6.900’den başlayan) için teklif almak istiyorum. Etkinlik türü, tarih, lokasyon ve teslim ihtiyacımı paylaşacağım.",
         },
       ],
     },
@@ -137,8 +154,8 @@ export default function ServicesPage() {
             Hizmetlerimiz
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-            Aşağıda yer alan paketler bilgilendirme amaçlıdır. Projenize en uygun çözüm
-            için bizimle iletişime geçebilirsiniz.
+            Paketlerimiz “başlangıç” kapsamını temsil eder. Lokasyon, teslim formatı ve proje ihtiyaçlarına göre
+            en doğru teklifi birlikte netleştiriyoruz.
           </p>
         </div>
       </section>
@@ -181,8 +198,10 @@ export default function ServicesPage() {
                     <CardDescription>{pkg.duration}</CardDescription>
                     <div className="mt-4">
                       <span className="text-4xl font-bold text-gold">{pkg.price}</span>
-                      <span className="text-muted-foreground"> / proje</span>
                     </div>
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      *Fiyatlar başlangıç seviyesidir. Lokasyon, izin/rota ve teslim detaylarına göre netleştirilir.
+                    </p>
                   </CardHeader>
 
                   <CardContent className="flex-1">
@@ -198,7 +217,7 @@ export default function ServicesPage() {
 
                   <div className="p-6 pt-0">
                     <a
-                      href="https://wa.me/905059467166"
+                      href={buildWhatsAppLink((pkg as any).ctaMessage || "Merhaba, SkyVerse by BC için teklif almak istiyorum.")}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -208,7 +227,7 @@ export default function ServicesPage() {
                         }`}
                         variant={pkg.popular ? "default" : "outline"}
                       >
-                        Teklif Al / İletişime Geçin
+                        Özel Projeniz İçin Teklif Al
                       </Button>
                     </a>
                   </div>
@@ -233,19 +252,23 @@ export default function ServicesPage() {
             Özel Paket mi İstiyorsunuz?
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-            Projenize özel bir paket oluşturabiliriz. Detayları konuşmak için bizimle
-            iletişime geçin.
+            Projenizin hedefi, lokasyonu ve teslim ihtiyacına göre en doğru kapsamı birlikte belirleyelim.
+            Size özel net bir teklif hazırlayalım.
           </p>
 
           <a
-            href="https://wa.me/905059467166"
+            href={buildWhatsAppLink("Merhaba, SkyVerse by BC için özel paket teklifi almak istiyorum. Proje detaylarımı paylaşacağım.")}
             target="_blank"
             rel="noopener noreferrer"
           >
             <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
-              Teklif Al / İletişime Geçin
+              Özel Teklif Al
             </Button>
           </a>
+
+          <p className="mx-auto mt-4 max-w-2xl text-xs text-muted-foreground">
+            *Başlangıç fiyatları bilgilendirme amaçlıdır. Net fiyat; lokasyon, çekim izni/rota, içerik kapsamı ve teslim formatına göre belirlenir.
+          </p>
         </div>
       </section>
 
