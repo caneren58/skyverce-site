@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -24,11 +25,16 @@ type Props = {
 };
 
 export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
+  const [mounted, setMounted] = useState(false);
+
   const [serviceType, setServiceType] = useState(prefill?.category || "");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [usage, setUsage] = useState("");
   const [note, setNote] = useState("");
+
+  // Portal için mount kontrolü
+  useEffect(() => setMounted(true), []);
 
   // Açılınca formu resetle / prefill uygula
   useEffect(() => {
@@ -40,7 +46,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
     setNote("");
   }, [open, prefill?.category]);
 
-  // Modal açıkken arka plan scroll kilidi + ESC ile kapatma
+  // Modal açıkken: arka plan scroll kilidi + ESC ile kapatma
   useEffect(() => {
     if (!open) return;
 
@@ -63,9 +69,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
     return prefill?.category ? `${prefill.category}${p}` : "Hızlı Teklif";
   }, [prefill?.category, prefill?.packageName]);
 
-  const priceLine = prefill?.priceLabel
-    ? `• Başlangıç Fiyatı: ${prefill.priceLabel}`
-    : "";
+  const priceLine = prefill?.priceLabel ? `• Başlangıç Fiyatı: ${prefill.priceLabel}` : "";
 
   const canSubmit =
     (serviceType || prefill?.category) &&
@@ -91,28 +95,17 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
     ].filter(Boolean);
 
     return lines.join("\n");
-  }, [
-    serviceType,
-    prefill?.category,
-    prefill?.packageName,
-    priceLine,
-    date,
-    location,
-    usage,
-    note,
-  ]);
+  }, [serviceType, prefill?.category, prefill?.packageName, priceLine, date, location, usage, note]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  const modalUI = (
     <div
-      className="fixed inset-0 z-[100] overflow-y-auto bg-black/70 px-4 py-6"
+      className="fixed inset-0 z-[9999] overflow-y-auto bg-black/70 px-4 py-6"
       onMouseDown={(e) => {
-        // Dışarı tıklayınca kapat
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      {/* Bu wrapper modalı dikeyde ortalar ama taşarsa dış katman scroll alır */}
       <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-xl items-center justify-center">
         <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-gold/20 bg-card shadow-2xl max-h-[calc(100vh-3rem)]">
           {/* Header */}
@@ -136,9 +129,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
           <div className="space-y-4 p-5 overflow-y-auto max-h-[calc(100vh-3rem-140px)]">
             <div className="grid gap-3 md:grid-cols-2">
               <div className="space-y-1">
-                <label className="text-sm text-muted-foreground">
-                  Hizmet Türü
-                </label>
+                <label className="text-sm text-muted-foreground">Hizmet Türü</label>
                 <select
                   className="h-11 w-full rounded-md border border-gold/20 bg-background px-3 text-sm outline-none focus:border-gold"
                   value={serviceType || prefill?.category || ""}
@@ -176,9 +167,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
             </div>
 
             <div className="space-y-1">
-              <label className="text-sm text-muted-foreground">
-                Kullanım Amacı
-              </label>
+              <label className="text-sm text-muted-foreground">Kullanım Amacı</label>
               <select
                 className="h-11 w-full rounded-md border border-gold/20 bg-background px-3 text-sm outline-none focus:border-gold"
                 value={usage}
@@ -187,9 +176,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
                 <option value="" disabled>
                   Seçin
                 </option>
-                <option value="Sosyal Medya (Reels/Shorts)">
-                  Sosyal Medya (Reels/Shorts)
-                </option>
+                <option value="Sosyal Medya (Reels/Shorts)">Sosyal Medya (Reels/Shorts)</option>
                 <option value="Web Sitesi">Web Sitesi</option>
                 <option value="Emlak İlanı">Emlak İlanı</option>
                 <option value="Reklam / Tanıtım">Reklam / Tanıtım</option>
@@ -197,9 +184,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
             </div>
 
             <div className="space-y-1">
-              <label className="text-sm text-muted-foreground">
-                Not (opsiyonel)
-              </label>
+              <label className="text-sm text-muted-foreground">Not (opsiyonel)</label>
               <textarea
                 placeholder="Örn: Gün batımı çekimi, 2 lokasyon, hızlı teslim vb."
                 className="min-h-[90px] w-full rounded-md border border-gold/20 bg-background px-3 py-2 text-sm outline-none focus:border-gold"
@@ -209,9 +194,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
             </div>
 
             <div className="rounded-xl border border-gold/20 bg-background/40 p-3 text-xs text-muted-foreground">
-              <div className="font-medium text-foreground/90">
-                WhatsApp’a gidecek mesaj:
-              </div>
+              <div className="font-medium text-foreground/90">WhatsApp’a gidecek mesaj:</div>
               <pre className="mt-2 whitespace-pre-wrap">{message}</pre>
             </div>
           </div>
@@ -226,9 +209,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
               href={buildWhatsAppLink(message)}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => {
-                setTimeout(onClose, 150);
-              }}
+              onClick={() => setTimeout(onClose, 150)}
             >
               <Button
                 className="w-full bg-gold text-background hover:bg-gold-dark md:w-auto"
@@ -242,4 +223,6 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
       </div>
     </div>
   );
+
+  return createPortal(modalUI, document.body);
 }
