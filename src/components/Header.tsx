@@ -2,8 +2,19 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Camera } from "lucide-react";
+import { Menu, X, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+// lucide-react sürümüne göre Drone ikonu olmayabilir.
+// Varsa otomatik kullan, yoksa Plane ile devam et.
+let DroneIcon: any = Plane;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const lucide = require("lucide-react");
+  if (lucide?.Drone) DroneIcon = lucide.Drone;
+} catch {
+  // ignore, fallback Plane
+}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -22,7 +33,8 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <nav className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <Camera className="h-8 w-8 text-gold" />
+          {/* Drone ikon */}
+          <DroneIcon className="h-7 w-7 text-gold" />
           <span className="text-2xl font-bold text-gold gold-glow !whitespace-pre-line">
             SkyVerce by BC
           </span>
@@ -40,7 +52,11 @@ export default function Header() {
             </Link>
           ))}
 
-          <a href="https://wa.me/905059467166" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://wa.me/905059467166"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button className="bg-gold text-background hover:bg-gold-dark">
               İletişime Geçin
             </Button>
@@ -48,8 +64,16 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X className="h-6 w-6 text-gold" /> : <Menu className="h-6 w-6 text-gold" />}
+        <button
+          className="lg:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? "Menüyü kapat" : "Menüyü aç"}
+        >
+          {mobileMenuOpen ? (
+            <X className="h-6 w-6 text-gold" />
+          ) : (
+            <Menu className="h-6 w-6 text-gold" />
+          )}
         </button>
       </nav>
 
