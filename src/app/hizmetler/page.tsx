@@ -1,25 +1,27 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import QuickQuoteModal, { type QuickQuotePrefill } from "@/components/QuickQuoteModal";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
+
 import { Landmark, Heart, Building2, Briefcase, CheckCircle } from "lucide-react";
 
-/**
- * WhatsApp CTA: Paket bazlı hazır mesaj ile dönüşümü artırır.
- * Not: +90... formatını wa.me için sadece rakam olacak şekilde kullanıyoruz.
- */
-const WA_NUMBER = "905059467166";
-
-function buildWhatsAppLink(message: string) {
-  const encoded = encodeURIComponent(message);
-  return `https://wa.me/${WA_NUMBER}?text=${encoded}`;
-}
-
 export default function ServicesPage() {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const [quotePrefill, setQuotePrefill] = useState<QuickQuotePrefill>({});
+
+  function openQuote(prefill: QuickQuotePrefill) {
+    setQuotePrefill(prefill);
+    setQuoteOpen(true);
+  }
+
   const serviceCategories = [
     {
       icon: <Landmark className="h-16 w-16 text-gold" />,
@@ -37,8 +39,6 @@ export default function ServicesPage() {
             "Temel renk düzenleme ve optimizasyon",
             "Teslim: WhatsApp / Drive (uygun format)",
           ],
-          ctaMessage:
-            "Merhaba, SkyVerse by BC Turizm Çekimleri · Temel Paket (₺3.750’den başlayan) için teklif almak istiyorum. Lokasyon(lar) ve tarih bilgisi paylaşacağım.",
         },
         {
           name: "Premium Paket",
@@ -53,8 +53,6 @@ export default function ServicesPage() {
             "Sosyal medya içerik seti (Reels/Shorts uyumlu)",
           ],
           popular: true,
-          ctaMessage:
-            "Merhaba, SkyVerse by BC Turizm Çekimleri · Premium Paket (₺7.900’den başlayan) için teklif almak istiyorum. Lokasyon(lar), tarih ve teslim beklentimi paylaşacağım.",
         },
       ],
     },
@@ -78,8 +76,6 @@ export default function ServicesPage() {
             "Özel albüm opsiyonu (isteğe bağlı)",
           ],
           popular: true,
-          ctaMessage:
-            "Merhaba, SkyVerse by BC Düğün & Nişan · Masallar Paketi (₺9.900’den başlayan) için teklif almak istiyorum. Tarih, mekan ve isteklerimi paylaşacağım.",
         },
       ],
     },
@@ -101,8 +97,6 @@ export default function ServicesPage() {
             "İç/dış mekan akış kurgusu (satış odaklı)",
           ],
           popular: true,
-          ctaMessage:
-            "Merhaba, SkyVerse by BC Emlak Tanıtımı · Profesyonel Paket (₺5.500’den başlayan) için teklif almak istiyorum. Konum, metrekare ve teslim beklentimi paylaşacağım.",
         },
       ],
     },
@@ -121,8 +115,6 @@ export default function ServicesPage() {
             "25 düzenlenmiş fotoğraf (seçili kareler)",
             "60 sn tanıtım videosu (web + sosyal uyumlu)",
           ],
-          ctaMessage:
-            "Merhaba, SkyVerse by BC Kurumsal · Kurumsal Temel (₺3.750’den başlayan) için teklif almak istiyorum. Sektör, lokasyon ve hedef kullanım alanını paylaşacağım.",
         },
         {
           name: "Etkinlik Paketi",
@@ -137,8 +129,6 @@ export default function ServicesPage() {
             "Etkinlik özel anları (konuşma/performans)",
           ],
           popular: true,
-          ctaMessage:
-            "Merhaba, SkyVerse by BC Kurumsal · Etkinlik Paketi (₺6.900’den başlayan) için teklif almak istiyorum. Etkinlik türü, tarih, lokasyon ve teslim ihtiyacımı paylaşacağım.",
         },
       ],
     },
@@ -148,6 +138,7 @@ export default function ServicesPage() {
     <div className="min-h-screen">
       <Header />
 
+      {/* Hero */}
       <section className="border-b border-gold/20 bg-card py-20 pt-32">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h1 className="mb-6 text-5xl font-bold text-gold gold-glow md:text-6xl">
@@ -160,6 +151,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Categories */}
       {serviceCategories.map((category, categoryIndex) => (
         <section key={categoryIndex} className="border-b border-gold/20 py-20">
           <div className="container mx-auto px-4 lg:px-8">
@@ -196,9 +188,11 @@ export default function ServicesPage() {
                   <CardHeader>
                     <CardTitle className="text-2xl">{pkg.name}</CardTitle>
                     <CardDescription>{pkg.duration}</CardDescription>
+
                     <div className="mt-4">
                       <span className="text-4xl font-bold text-gold">{pkg.price}</span>
                     </div>
+
                     <p className="mt-2 text-xs text-muted-foreground">
                       *Fiyatlar başlangıç seviyesidir. Lokasyon, izin/rota ve teslim detaylarına göre netleştirilir.
                     </p>
@@ -215,21 +209,23 @@ export default function ServicesPage() {
                     </ul>
                   </CardContent>
 
+                  {/* CTA -> Modal */}
                   <div className="p-6 pt-0">
-                    <a
-                      href={buildWhatsAppLink((pkg as any).ctaMessage || "Merhaba, SkyVerse by BC için teklif almak istiyorum.")}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Button
+                      className={`w-full ${
+                        pkg.popular ? "bg-gold text-background hover:bg-gold-dark" : ""
+                      }`}
+                      variant={pkg.popular ? "default" : "outline"}
+                      onClick={() =>
+                        openQuote({
+                          category: category.category,
+                          packageName: pkg.name,
+                          priceLabel: pkg.price,
+                        })
+                      }
                     >
-                      <Button
-                        className={`w-full ${
-                          pkg.popular ? "bg-gold text-background hover:bg-gold-dark" : ""
-                        }`}
-                        variant={pkg.popular ? "default" : "outline"}
-                      >
-                        Özel Projeniz İçin Teklif Al
-                      </Button>
-                    </a>
+                      Özel Projeniz İçin Teklif Al
+                    </Button>
                   </div>
                 </Card>
               ))}
@@ -246,6 +242,7 @@ export default function ServicesPage() {
         </section>
       ))}
 
+      {/* Special offer */}
       <section className="border-b border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="mb-6 text-3xl font-bold text-gold">
@@ -256,21 +253,26 @@ export default function ServicesPage() {
             Size özel net bir teklif hazırlayalım.
           </p>
 
-          <a
-            href={buildWhatsAppLink("Merhaba, SkyVerse by BC için özel paket teklifi almak istiyorum. Proje detaylarımı paylaşacağım.")}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Button
+            size="lg"
+            className="bg-gold text-background hover:bg-gold-dark"
+            onClick={() => openQuote({})}
           >
-            <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
-              Özel Teklif Al
-            </Button>
-          </a>
+            Özel Teklif Al
+          </Button>
 
           <p className="mx-auto mt-4 max-w-2xl text-xs text-muted-foreground">
             *Başlangıç fiyatları bilgilendirme amaçlıdır. Net fiyat; lokasyon, çekim izni/rota, içerik kapsamı ve teslim formatına göre belirlenir.
           </p>
         </div>
       </section>
+
+      {/* Modal (global) */}
+      <QuickQuoteModal
+        open={quoteOpen}
+        onClose={() => setQuoteOpen(false)}
+        prefill={quotePrefill}
+      />
 
       <Footer />
     </div>
