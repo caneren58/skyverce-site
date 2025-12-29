@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import QuickQuoteModal, { type QuickQuotePrefill } from "@/components/QuickQuoteModal";
 
 // lucide-react sürümüne göre Drone ikonu olmayabilir.
 // Varsa otomatik kullan, yoksa Plane ile devam et.
@@ -19,6 +20,15 @@ try {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // QuickQuote modal state
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const [quotePrefill, setQuotePrefill] = useState<QuickQuotePrefill>({});
+
+  function openQuote(prefill: QuickQuotePrefill = {}) {
+    setQuotePrefill(prefill);
+    setQuoteOpen(true);
+  }
+
   const navigation = [
     { name: "Ana Sayfa", href: "/" },
     { name: "Hizmetler", href: "/hizmetler" },
@@ -33,7 +43,6 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <nav className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          {/* Drone ikon */}
           <DroneIcon className="h-7 w-7 text-gold" />
           <span className="text-2xl font-bold text-gold gold-glow !whitespace-pre-line">
             SkyVerce by BC
@@ -52,15 +61,13 @@ export default function Header() {
             </Link>
           ))}
 
-          <a
-            href="https://wa.me/905059467166"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Header CTA -> Modal */}
+          <Button
+            className="bg-gold text-background hover:bg-gold-dark"
+            onClick={() => openQuote({})}
           >
-            <Button className="bg-gold text-background hover:bg-gold-dark">
-              İletişime Geçin
-            </Button>
-          </a>
+            İletişime Geçin
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -92,19 +99,26 @@ export default function Header() {
               </Link>
             ))}
 
-            <a
-              href="https://wa.me/905059467166"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
+            {/* Mobile CTA -> Modal */}
+            <Button
+              className="mt-4 w-full bg-gold text-background hover:bg-gold-dark"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openQuote({});
+              }}
             >
-              <Button className="mt-4 w-full bg-gold text-background hover:bg-gold-dark">
-                İletişime Geçin
-              </Button>
-            </a>
+              İletişime Geçin
+            </Button>
           </div>
         </div>
       )}
+
+      {/* Modal (Header scope) */}
+      <QuickQuoteModal
+        open={quoteOpen}
+        onClose={() => setQuoteOpen(false)}
+        prefill={quotePrefill}
+      />
     </header>
   );
 }
