@@ -1,234 +1,194 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import {
-  Camera,
-  Building2,
-  Heart,
-  Landmark,
-  Briefcase,
-  Clock,
-  Shield,
-  Award,
-  Play,
-} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import QuickQuoteModal, { type QuickQuotePrefill } from "@/components/QuickQuoteModal";
+import { Landmark, Heart, Building2, Briefcase, Award, Camera, Shield, Clock, Play } from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
+  // HERO background (görsel yolu sende farklıysa bunu değiştir)
+  const HERO_BG = "/images/hero.jpg"; // örn: "/images/home-hero.jpg" veya "/images/istanbul-map.jpg"
+
+  // QuickQuote modal state (ana sayfa CTA için)
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const [quotePrefill, setQuotePrefill] = useState<QuickQuotePrefill>({});
+
+  function openQuote(prefill: QuickQuotePrefill = {}) {
+    setQuotePrefill(prefill);
+    setQuoteOpen(true);
+  }
+
   const services = [
     {
-      icon: <Landmark className="h-12 w-12 text-gold" />,
       title: "Turizm Çekimleri",
-      description:
-        "İstanbul'un tarihi ve turistik mekanlarını havadan çekerek tanıtım filmlerinizi oluşturuyoruz.",
+      desc: "İstanbul’un tarihi ve turistik mekanlarını havadan profesyonel şekilde tanıtıyoruz.",
+      icon: Landmark,
+      prefill: { service: "Turizm" },
     },
     {
-      icon: <Heart className="h-12 w-12 text-gold" />,
       title: "Düğün & Nişan",
-      description:
-        "Hayatınızın en özel günlerini sinematik drone görüntüleriyle ölümsüzleştiriyoruz.",
+      desc: "En özel günlerinizi sinematik drone çekimleriyle ölümsüzleştiriyoruz.",
+      icon: Heart,
+      prefill: { service: "Düğün" },
     },
     {
-      icon: <Building2 className="h-12 w-12 text-gold" />,
       title: "Emlak Tanıtımı",
-      description:
-        "Gayrimenkullerinizi profesyonel havadan çekimlerle en iyi şekilde tanıtıyoruz.",
+      desc: "Gayrimenkullerinizi etkileyici havadan görüntülerle öne çıkarıyoruz.",
+      icon: Building2,
+      prefill: { service: "Emlak" },
     },
     {
-      icon: <Briefcase className="h-12 w-12 text-gold" />,
       title: "Kurumsal Çekimler",
-      description:
-        "İşletmenizi, projenizi veya etkinliğinizi profesyonel drone görüntüleriyle tanıtın.",
+      desc: "Markanız için profesyonel drone video ve fotoğraf çözümleri sunuyoruz.",
+      icon: Briefcase,
+      prefill: { service: "Kurumsal" },
     },
   ];
 
-  const features = [
+  const highlights = [
     {
-      icon: <Award className="h-8 w-8 text-gold" />,
       title: "Profesyonel Hizmet",
-      description: "Lisanslı pilotlar ve güvenli operasyon süreçleri",
+      desc: "Lisanslı pilotlar ve güvenli uçuş planları",
+      icon: Award,
     },
     {
-      icon: <Camera className="h-8 w-8 text-gold" />,
-      title: "Son Teknoloji Ekipman",
-      description: "4K ve 8K çekim yapabilen profesyonel drone sistemleri",
+      title: "Üst Düzey Ekipman",
+      desc: "4K & 8K çözünürlüklü profesyonel çekimler",
+      icon: Camera,
     },
     {
-      icon: <Shield className="h-8 w-8 text-gold" />,
-      title: "Sigortalı ve Yasal",
-      description: "Tüm izinler ve sigortalar eksiksiz şekilde sağlanır",
+      title: "Yasal & Sigortalı",
+      desc: "Tüm uçuşlar yasal izinler kapsamında yapılır",
+      icon: Shield,
     },
     {
-      icon: <Clock className="h-8 w-8 text-gold" />,
       title: "Hızlı Teslimat",
-      description: "Çekim sonrası hızlı montaj ve teslimat süreci",
+      desc: "Çekim sonrası hızlı montaj ve teslim",
+      icon: Clock,
     },
   ];
-
-  const workflow = [
-    { step: "1", title: "İletişim", description: "Bize WhatsApp üzerinden ulaşın" },
-    { step: "2", title: "Planlama", description: "Çekim planını birlikte oluşturalım" },
-    {
-      step: "3",
-      title: "Çekim",
-      description: "Planlanan çekimi profesyonel ekipmanlarla gerçekleştiriyoruz",
-    },
-    { step: "4", title: "Montaj", description: "Görüntüleri düzenleyip size sunuyoruz" },
-    { step: "5", title: "Teslimat", description: "Final dosyalarınızı teslim ediyoruz" },
-  ];
-
-  // ✅ Tek yerden modal açma (senin mevcut sistemin zaten tüm sayfalarda çalışıyor)
-  const openQuote = () => {
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("skyverce:open-quote", {
-          detail: { source: "home_hero" },
-        })
-      );
-    }
-  };
 
   return (
-    <div className="min-h-screen">
+    <>
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?q=80&w=2070"
-            alt="İstanbul drone çekimi"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
-        </div>
+      <main className="bg-[#050816] text-white">
+        {/* HERO */}
+        <section className="relative pt-24">
+          <div
+            className="relative min-h-[70vh] w-full overflow-hidden"
+            style={{
+              backgroundImage: `url('${HERO_BG}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            {/* overlay */}
+            <div className="absolute inset-0 bg-[#050816]/75" />
 
-        <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
-          <div className="mx-auto max-w-4xl space-y-8">
-            <h1 className="text-5xl font-bold leading-tight text-gold gold-glow md:text-6xl lg:text-7xl">
-              İstanbul’da Profesyonel Drone Çekimi
-            </h1>
+            <div className="relative z-10 container mx-auto px-4 py-16 lg:px-8">
+              <div className="mx-auto max-w-4xl text-center">
+                <h1 className="text-4xl font-bold tracking-tight text-gold md:text-6xl">
+                  İstanbul’da Profesyonel
+                  <br />
+                  Drone Çekimi
+                </h1>
 
-            <p className="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl">
-              2021’den bu yana drone video ve fotoğraf çekimiyle, markalar ve bireyler için etkileyici görsel
-              prodüksiyonlar üretiyoruz. WhatsApp’tan yazın, size en doğru paketi ben yönlendireyim.
-            </p>
+                <p className="mt-6 text-base text-gray-200 md:text-lg">
+                  2021’den bu yana drone video ve fotoğraf çekimiyle; markalar ve bireyler için
+                  etkileyici görsel prodüksiyonlar üretiyoruz. WhatsApp’tan yazın, size en doğru
+                  paketi ben yönlendireyim.
+                </p>
 
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              {/* ✅ ESKİ: a href={waLink} -> YENİ: modal aç */}
-              <Button
-                size="lg"
-                className="bg-gold text-background hover:bg-gold-dark"
-                onClick={openQuote}
-                aria-label="WhatsApp’tan teklif al"
-              >
-                <Camera className="mr-2 h-5 w-5" />
-                WhatsApp’tan Teklif Al
-              </Button>
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  {/* ANA SAYFA CTA: artık MODAL açıyor */}
+                  <Button
+                    className="bg-gold text-background hover:bg-gold-dark"
+                    onClick={() => openQuote({})}
+                  >
+                    WhatsApp’tan Teklif Al
+                  </Button>
 
-              <Link href="/portfoy" aria-label="Portföyümüzü inceleyin">
-                <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold/10">
-                  <Play className="mr-2 h-5 w-5" />
-                  Portföyümüzü İnceleyin
-                </Button>
-              </Link>
+                  <Link href="/portfoy">
+                    <Button
+                      variant="outline"
+                      className="border-gold/30 text-white hover:bg-white/5"
+                    >
+                      <Play className="mr-2 h-4 w-4" />
+                      Portföyümüzü İnceleyin
+                    </Button>
+                  </Link>
+                </div>
+
+                <p className="mt-6 text-sm text-gray-300">
+                  Ortalama dönüş süresi: <span className="font-semibold text-white">5–15 dakika</span>
+                  <span className="mx-2 text-gray-500">•</span>
+                  Teklif ve planlama WhatsApp üzerinden
+                </p>
+
+                <p className="mt-4 text-xs text-gray-400">
+                  İletişime geçerek <Link className="underline hover:text-white" href="/kvkk">KVKK Aydınlatma Metni</Link>’ni kabul etmiş sayılırsınız.
+                </p>
+              </div>
             </div>
-
-            <p className="mt-2 text-xs text-muted-foreground">
-              Ortalama dönüş süresi: <span className="font-medium text-foreground">5–15 dakika</span> · Teklif ve
-              planlama WhatsApp üzerinden
-            </p>
-
-            <p className="mt-4 text-xs text-muted-foreground">
-              İletişime geçerek{" "}
-              <Link href="/kvkk" className="underline hover:text-gold">
-                KVKK Aydınlatma Metni
-              </Link>
-              ’ni kabul etmiş sayılırsınız.
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Services */}
-      <section className="border-t border-gold/20 py-20">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Hizmetlerimiz</h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              İhtiyacınıza özel profesyonel drone çekim hizmetleri
-            </p>
-          </div>
+        {/* HİZMETLER */}
+        <section className="container mx-auto px-4 py-16 lg:px-8">
+          <h2 className="text-center text-4xl font-bold text-gold md:text-5xl">Hizmetlerimiz</h2>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {services.map((service, index) => (
-              <Card key={index} className="gold-border-glow transition-transform hover:scale-105">
-                <CardHeader>
-                  <div className="mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{service.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {services.map((s) => {
+              const Icon = s.icon;
+              return (
+                <button
+                  key={s.title}
+                  onClick={() => openQuote(s.prefill)}
+                  className="group rounded-2xl border border-white/10 bg-white/5 p-8 text-left shadow-sm transition hover:border-gold/30 hover:bg-white/[0.07]"
+                >
+                  <div className="mb-5 flex items-center justify-center">
+                    <Icon className="h-10 w-10 text-gold opacity-90 transition group-hover:opacity-100" />
+                  </div>
 
-      {/* Why Choose Us */}
-      <section className="border-t border-gold/20 bg-card py-20">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Neden Bizi Seçmelisiniz?</h2>
+                  <h3 className="text-center text-xl font-semibold">{s.title}</h3>
+                  <p className="mt-3 text-center text-sm text-gray-300">{s.desc}</p>
+                </button>
+              );
+            })}
           </div>
+        </section>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="mb-4 flex justify-center">{feature.icon}</div>
-                <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
+        {/* ÖNE ÇIKANLAR */}
+        <section className="border-t border-gold/10 bg-white/[0.02]">
+          <div className="container mx-auto px-4 py-12 lg:px-8">
+            <div className="grid gap-10 md:grid-cols-4">
+              {highlights.map((h) => {
+                const Icon = h.icon;
+                return (
+                  <div key={h.title} className="text-center">
+                    <Icon className="mx-auto h-8 w-8 text-gold" />
+                    <h4 className="mt-4 text-lg font-semibold">{h.title}</h4>
+                    <p className="mt-2 text-sm text-gray-300">{h.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Workflow */}
-      <section className="border-t border-gold/20 py-20">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Çalışma Sürecimiz</h2>
-          </div>
-
-          <div className="space-y-10">
-            {workflow.map((item, index) => (
-              <div key={index} className="text-center">
-                <h3 className="text-2xl font-semibold text-gold">
-                  {item.step}. {item.title}
-                </h3>
-                <p className="text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer />
-    </div>
+
+      {/* ANA SAYFA MODAL */}
+      <QuickQuoteModal
+        open={quoteOpen}
+        onClose={() => setQuoteOpen(false)}
+        prefill={quotePrefill}
+      />
+    </>
   );
 }
