@@ -9,6 +9,7 @@ import { Play, Image as ImageIcon, X } from "lucide-react";
 import VideoModal from "@/components/VideoModal";
 import Link from "next/link";
 import Image from "next/image";
+import QuickQuoteModal, { type QuickQuotePrefill } from "@/components/QuickQuoteModal";
 
 type PortfolioItem =
   | {
@@ -36,6 +37,15 @@ type PortfolioItem =
 export default function PortfolioPage() {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [selectedPhotos, setSelectedPhotos] = useState<string[] | null>(null);
+
+  // ✅ CTA -> Modal state
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const [quotePrefill, setQuotePrefill] = useState<QuickQuotePrefill>({});
+
+  function openQuote(prefill: QuickQuotePrefill = {}) {
+    setQuotePrefill(prefill);
+    setQuoteOpen(true);
+  }
 
   const portfolioItems: PortfolioItem[] = [
     {
@@ -254,7 +264,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* CTA – Güvenli */}
+      {/* ✅ CTA – artık modal açıyor (WhatsApp’ta hazır mesaj garanti) */}
       <section className="border-t border-gold/20 bg-card py-20 text-center">
         <h2 className="mb-6 text-3xl font-bold text-gold">
           Benzer Bir Proje Mi Düşünüyorsunuz?
@@ -263,15 +273,13 @@ export default function PortfolioPage() {
           Projeniz için en uygun drone çekim çözümünü birlikte belirleyelim.
         </p>
 
-        <a
-          href="https://wa.me/905059467166"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Button
+          size="lg"
+          className="bg-gold text-background hover:bg-gold-dark"
+          onClick={() => openQuote({})}
         >
-          <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
-            İletişime Geçin
-          </Button>
-        </a>
+          İletişime Geçin
+        </Button>
 
         <p className="mt-4 text-xs text-muted-foreground">
           İletişime geçerek{" "}
@@ -281,6 +289,13 @@ export default function PortfolioPage() {
           ’ni kabul etmiş sayılırsınız.
         </p>
       </section>
+
+      {/* ✅ Modal */}
+      <QuickQuoteModal
+        open={quoteOpen}
+        onClose={() => setQuoteOpen(false)}
+        prefill={quotePrefill}
+      />
 
       {selectedVideo && (
         <VideoModal
