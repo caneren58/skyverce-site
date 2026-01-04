@@ -280,7 +280,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
+      <section className="<section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16"> ">
         {/* Background katmanı: modal açılınca bozulmasın */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
@@ -295,18 +295,21 @@ export default function Home() {
         </div>
 
         <div className="container relative z-10 mx-auto px-4 text-center lg:px-8">
-          <div className="mx-auto max-w-4xl space-y-8">
-            <h1 className="text-5xl font-bold leading-tight text-gold gold-glow md:text-6xl lg:text-7xl">
+          <div className="mx-auto max-w-4xl space-y-6 sm:space-y-8">
+            <h1 className="text-4xl font-bold leading-tight text-gold gold-glow sm:text-5xl md:text-6xl lg:text-7xl">
               İstanbul’da Profesyonel Drone Çekimi
             </h1>
 
-            <p className="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
               2021’den bu yana drone video ve fotoğraf çekimiyle, markalar ve bireyler
               için etkileyici görsel prodüksiyonlar üretiyoruz. WhatsApp’tan yazın, size
               en doğru paketi ben yönlendireyim.
             </p>
 
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row pt-4 pb-6"
+               style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1.5rem)" }}
+            >
+
               {/* ✅ Modal açar */}
               <Button
                 size="lg"
