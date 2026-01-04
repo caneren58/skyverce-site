@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
 export default function GalataKulesiCevresiGallery() {
   const images = [
     "/images/galata-kulesi-cevresi/9.jpg",
@@ -30,8 +33,19 @@ export default function GalataKulesiCevresiGallery() {
 
   return (
     <main className="min-h-screen bg-[#050816] text-white px-6 py-10">
+      {/* ✅ Back button */}
+      <div className="mb-6">
+        <Link
+          href="/portfoy"
+          className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-[#D4AF37] transition-colors"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Portföye Dön
+        </Link>
+      </div>
+
       <h1 className="text-3xl md:text-4xl font-bold mb-2">
-        Galata Kulesi & Çevresi
+        Galata Kulesi &amp; Çevresi
       </h1>
       <p className="text-sm md:text-base text-gray-300 mb-8">
         Tarihi Galata bölgesinin havadan çekilmiş profesyonel fotoğrafları.
@@ -47,6 +61,7 @@ export default function GalataKulesiCevresiGallery() {
               src={src}
               alt={`Galata fotoğraf ${index + 9}`}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="lazy"
             />
           </div>
         ))}
