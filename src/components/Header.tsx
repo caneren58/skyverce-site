@@ -2,9 +2,39 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Plane } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuote } from "@/components/QuoteProvider";
+
+function DroneIcon({ className = "h-7 w-7 text-gold" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {/* body */}
+      <rect x="9" y="10" width="6" height="6" rx="2" />
+      <path d="M9 13h6" />
+      <path d="M10 15h4" />
+      {/* arms */}
+      <path d="M9 11L5 9" />
+      <path d="M15 11l4-2" />
+      <path d="M9 15l-4 2" />
+      <path d="M15 15l4 2" />
+      {/* props */}
+      <circle cx="4.5" cy="9" r="1.5" />
+      <circle cx="19.5" cy="9" r="1.5" />
+      <circle cx="4.5" cy="17" r="1.5" />
+      <circle cx="19.5" cy="17" r="1.5" />
+    </svg>
+  );
+}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,7 +54,8 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <nav className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <Plane className="h-7 w-7 text-gold" />
+          {/* ✅ Plane yerine Drone */}
+          <DroneIcon className="h-7 w-7 text-gold" />
           <span className="text-2xl font-bold text-gold gold-glow !whitespace-pre-line">
             SkyVerce by BC
           </span>
@@ -42,9 +73,10 @@ export default function Header() {
             </Link>
           ))}
 
+          {/* ✅ İletişim butonu modala bağlı (doğru) */}
           <Button
             className="bg-gold text-background hover:bg-gold-dark"
-            onClick={() => openQuote({})}
+            onClick={() => openQuote({ source: "header" })}
           >
             İletişime Geçin
           </Button>
@@ -83,7 +115,7 @@ export default function Header() {
               className="mt-4 w-full bg-gold text-background hover:bg-gold-dark"
               onClick={() => {
                 setMobileMenuOpen(false);
-                openQuote({});
+                openQuote({ source: "header" });
               }}
             >
               İletişime Geçin
