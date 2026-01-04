@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
@@ -10,8 +11,11 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
+import QuickQuoteModal from "@/components/QuickQuoteModal";
 
 export default function FAQPage() {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+
   const faqCategories = [
     {
       category: "Genel Sorular",
@@ -59,7 +63,7 @@ export default function FAQPage() {
         {
           question: "Özel paket oluşturabilir miyim?",
           answer:
-            "Kesinlikle! Web sitemizdeki paketler standart çözümlerimizdir. İhtiyacınıza özel, bütçenize uygun paketler oluşturabiliriz. Bize iletişim formundan veya WhatsApp'tan ulaşın, size özel teklif hazırlayalım.",
+            "Kesinlikle! Web sitemizdeki paketler standart çözümlerimizdir. İhtiyacınıza özel, bütçenize uygun paketler oluşturabiliriz. Hızlı teklif formunu doldurun; WhatsApp’a hazır mesajla anında iletelim.",
         },
       ],
     },
@@ -140,19 +144,6 @@ export default function FAQPage() {
     },
   ];
 
-  const waNumber = "905059467166";
-  const waText = encodeURIComponent(
-    `Merhaba, SkyVerce by BC’nin SSS sayfasından yazıyorum.\n\n` +
-      `Kısa bilgi paylaşacağım:\n` +
-      `• Hizmet: (Emlak / Düğün-Nişan / Turizm / Kurumsal)\n` +
-      `• Tarih: \n` +
-      `• Lokasyon: \n` +
-      `• Kullanım: (Sosyal medya / Reklam / Web)\n\n` +
-      `Uygunluk ve net fiyat için yönlendirebilir misiniz?`
-  );
-
-  const waHref = `https://wa.me/${waNumber}?text=${waText}`;
-
   return (
     <div className="min-h-screen">
       <Header />
@@ -164,7 +155,7 @@ export default function FAQPage() {
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
             Drone video ve fotoğraf çekimi hakkında merak ettiğiniz her şey burada.
-            Cevabını bulamadığınız sorular için bize ulaşın.
+            Cevabını bulamadığınız sorular için WhatsApp’tan hızlı teklif isteyin.
           </p>
         </div>
       </section>
@@ -199,37 +190,30 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Fixed CTA: remove /rezervasyon, make both buttons go to same WhatsApp */}
       <section className="border-t border-gold/20 bg-card py-20">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="mb-6 text-3xl font-bold text-gold">
             Sorunuza Cevap Bulamadınız mı?
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-            Başka sorularınız varsa çekinmeden bize ulaşın. Ekibimiz size yardımcı olmaktan
-            mutluluk duyacaktır.
+            İsterseniz 15 saniyede bilgileri girin; WhatsApp’a hazır teklif mesajı
+            otomatik oluşsun.
           </p>
 
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a href={waHref} target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-gold text-background hover:bg-gold-dark">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Bize Ulaşın
-              </Button>
-            </a>
-
-            <a href={waHref} target="_blank" rel="noopener noreferrer">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-gold text-gold hover:bg-gold/10"
-              >
-                WhatsApp ile İletin
-              </Button>
-            </a>
+          <div className="flex items-center justify-center">
+            <Button
+              size="lg"
+              className="bg-gold text-background hover:bg-gold-dark"
+              onClick={() => setQuoteOpen(true)}
+            >
+              <MessageCircle className="mr-2 h-5 w-5" />
+              WhatsApp’tan Teklif Al
+            </Button>
           </div>
         </div>
       </section>
+
+      <QuickQuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
 
       <Footer />
     </div>
