@@ -87,14 +87,15 @@ export default function Home() {
     { step: "5", title: "Teslimat", description: "Final dosyalarınızı teslim ediyoruz" },
   ];
 
-  // ✅ Tek yerden modal açma (senin mevcut sistemin zaten tüm sayfalarda çalışıyor)
-  const openQuote = () => {
+  // ✅ WhatsApp yönlendirme (direkt gider)
+  const openWhatsAppQuote = () => {
+    const phone = "905059467166";
+    const text =
+      "Merhaba, SkyVerce by BC için teklif almak istiyorum. Çekim türü: (Turizm/Düğün/Emlak/Kurumsal). Tarih ve konum: ";
+    const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
     if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("skyverce:open-quote", {
-          detail: { source: "home_hero" },
-        })
-      );
+      window.open(waLink, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -123,16 +124,17 @@ export default function Home() {
             </h1>
 
             <p className="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl">
-              2021’den bu yana drone video ve fotoğraf çekimiyle, markalar ve bireyler için etkileyici görsel
-              prodüksiyonlar üretiyoruz. WhatsApp’tan yazın, size en doğru paketi ben yönlendireyim.
+              2021’den bu yana drone video ve fotoğraf çekimiyle, markalar ve bireyler
+              için etkileyici görsel prodüksiyonlar üretiyoruz. WhatsApp’tan yazın, size
+              en doğru paketi ben yönlendireyim.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              {/* ✅ ESKİ: a href={waLink} -> YENİ: modal aç */}
+              {/* ✅ Direkt WhatsApp */}
               <Button
                 size="lg"
                 className="bg-gold text-background hover:bg-gold-dark"
-                onClick={openQuote}
+                onClick={openWhatsAppQuote}
                 aria-label="WhatsApp’tan teklif al"
               >
                 <Camera className="mr-2 h-5 w-5" />
@@ -140,7 +142,11 @@ export default function Home() {
               </Button>
 
               <Link href="/portfoy" aria-label="Portföyümüzü inceleyin">
-                <Button size="lg" variant="outline" className="border-gold text-gold hover:bg-gold/10">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-gold text-gold hover:bg-gold/10"
+                >
                   <Play className="mr-2 h-5 w-5" />
                   Portföyümüzü İnceleyin
                 </Button>
@@ -148,7 +154,8 @@ export default function Home() {
             </div>
 
             <p className="mt-2 text-xs text-muted-foreground">
-              Ortalama dönüş süresi: <span className="font-medium text-foreground">5–15 dakika</span> · Teklif ve
+              Ortalama dönüş süresi:{" "}
+              <span className="font-medium text-foreground">5–15 dakika</span> · Teklif ve
               planlama WhatsApp üzerinden
             </p>
 
