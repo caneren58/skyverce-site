@@ -81,7 +81,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
     const lines = [
       "Merhaba,",
       "",
-      "SkyVerse by BC’den teklif almak istiyorum.",
+      "SkyVerce by BC’den teklif almak istiyorum.",
       "",
       `• Hizmet: ${serviceType || prefill?.category || "-"}`,
       prefill?.packageName ? `• Paket: ${prefill.packageName}` : "",

@@ -4,30 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import QuickQuoteModal, { type QuickQuotePrefill } from "@/components/QuickQuoteModal";
-
-// lucide-react sürümüne göre Drone ikonu olmayabilir.
-// Varsa otomatik kullan, yoksa Plane ile devam et.
-let DroneIcon: any = Plane;
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const lucide = require("lucide-react");
-  if (lucide?.Drone) DroneIcon = lucide.Drone;
-} catch {
-  // ignore, fallback Plane
-}
+import { useQuote } from "@/components/QuoteProvider";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // QuickQuote modal state
-  const [quoteOpen, setQuoteOpen] = useState(false);
-  const [quotePrefill, setQuotePrefill] = useState<QuickQuotePrefill>({});
-
-  function openQuote(prefill: QuickQuotePrefill = {}) {
-    setQuotePrefill(prefill);
-    setQuoteOpen(true);
-  }
+  const { openQuote } = useQuote();
 
   const navigation = [
     { name: "Ana Sayfa", href: "/" },
@@ -43,7 +24,7 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <nav className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <DroneIcon className="h-7 w-7 text-gold" />
+          <Plane className="h-7 w-7 text-gold" />
           <span className="text-2xl font-bold text-gold gold-glow !whitespace-pre-line">
             SkyVerce by BC
           </span>
@@ -61,7 +42,6 @@ export default function Header() {
             </Link>
           ))}
 
-          {/* Header CTA -> Modal */}
           <Button
             className="bg-gold text-background hover:bg-gold-dark"
             onClick={() => openQuote({})}
@@ -99,7 +79,6 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Mobile CTA -> Modal */}
             <Button
               className="mt-4 w-full bg-gold text-background hover:bg-gold-dark"
               onClick={() => {
@@ -112,13 +91,6 @@ export default function Header() {
           </div>
         </div>
       )}
-
-      {/* Modal (Header scope) */}
-      <QuickQuoteModal
-        open={quoteOpen}
-        onClose={() => setQuoteOpen(false)}
-        prefill={quotePrefill}
-      />
     </header>
   );
 }

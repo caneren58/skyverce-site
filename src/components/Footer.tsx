@@ -11,22 +11,11 @@ import {
   Youtube,
   Linkedin,
 } from "lucide-react";
-
-const WHATSAPP_NUMBER = "905059467166";
-
-const WHATSAPP_PREFILL = encodeURIComponent(
-  `Merhaba, SkyVerce by BC web sitesinden yazıyorum.\n\n` +
-  `Teklif almak istiyorum:\n` +
-  `1) Hizmet: (Düğün / Emlak / Turizm / Kurumsal)\n` +
-  `2) Tarih/Saat: (Belirli / Esnek)\n` +
-  `3) Lokasyon: (İlçe / Semt)\n` +
-  `4) İstenen çıktı: (Video / Fotoğraf / İkisi)\n` +
-  `5) Kısa not:`
-);
-
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_PREFILL}`;
+import { useQuote } from "@/components/QuoteProvider";
 
 export default function Footer() {
+  const { openQuote } = useQuote();
+
   return (
     <footer className="border-t border-gold/20 bg-card">
       <div className="container mx-auto px-4 py-12 lg:px-8">
@@ -44,46 +33,43 @@ export default function Footer() {
               Havadan çekim hizmetlerinde yaratıcı ve güvenilir çözümler sunar.
             </p>
 
+            {/* Sosyal ikonlar şimdilik modal açsın (placeholder). Sonra gerçek link verirsin. */}
             <div className="flex gap-4">
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram (şimdilik WhatsApp ile iletişim)"
+              <button
+                onClick={() => openQuote({})}
+                aria-label="Instagram"
                 className="text-muted-foreground transition-colors hover:text-gold"
+                type="button"
               >
                 <Instagram className="h-5 w-5" />
-              </a>
+              </button>
 
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook (şimdilik WhatsApp ile iletişim)"
+              <button
+                onClick={() => openQuote({})}
+                aria-label="Facebook"
                 className="text-muted-foreground transition-colors hover:text-gold"
+                type="button"
               >
                 <Facebook className="h-5 w-5" />
-              </a>
+              </button>
 
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube (şimdilik WhatsApp ile iletişim)"
+              <button
+                onClick={() => openQuote({})}
+                aria-label="YouTube"
                 className="text-muted-foreground transition-colors hover:text-gold"
+                type="button"
               >
                 <Youtube className="h-5 w-5" />
-              </a>
+              </button>
 
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn (şimdilik WhatsApp ile iletişim)"
+              <button
+                onClick={() => openQuote({})}
+                aria-label="LinkedIn"
                 className="text-muted-foreground transition-colors hover:text-gold"
+                type="button"
               >
                 <Linkedin className="h-5 w-5" />
-              </a>
+              </button>
             </div>
           </div>
 
@@ -145,7 +131,6 @@ export default function Footer() {
                 <span>Beşiktaş, İstanbul, Türkiye</span>
               </li>
 
-              {/* Telefon tıklanınca arama */}
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="h-4 w-4 text-gold" />
                 <a
@@ -157,7 +142,6 @@ export default function Footer() {
                 </a>
               </li>
 
-              {/* Mail tıklanınca mail */}
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4 text-gold" />
                 <a
@@ -169,17 +153,16 @@ export default function Footer() {
                 </a>
               </li>
 
-              {/* Ek: WhatsApp hızlı erişim (metinli, kirlilik yapmaz) */}
+              {/* ✅ Footer CTA -> Modal */}
               <li className="pt-2">
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => openQuote({})}
                   className="inline-flex items-center justify-center rounded-md border border-gold/30 px-3 py-2 text-sm text-gold transition-colors hover:bg-gold/10"
-                  aria-label="WhatsApp ile teklif iste"
+                  aria-label="WhatsApp’tan teklif iste"
                 >
-                  WhatsApp ile Teklif İste
-                </a>
+                  WhatsApp’tan Teklif Al
+                </button>
               </li>
             </ul>
           </div>
