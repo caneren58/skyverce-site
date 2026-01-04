@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,14 @@ import {
   X,
 } from "lucide-react";
 
+function formatDateTR(iso: string) {
+  // input: YYYY-MM-DD  -> output: DD.MM.YYYY
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  if (!y || !m || !d) return iso;
+  return `${d}.${m}.${y}`;
+}
+
 function QuoteModal({
   open,
   onClose,
@@ -33,25 +41,40 @@ function QuoteModal({
   open: boolean;
   onClose: () => void;
 }) {
-  const [service, setService] = useState("");
-  const [dateTime, setDateTime] = useState("");
+  const [serviceType, setServiceType] = useState("");
+  const [date, setDate] = useState(""); // YYYY-MM-DD
   const [location, setLocation] = useState("");
-  const [output, setOutput] = useState("");
+  const [purpose, setPurpose] = useState("");
   const [note, setNote] = useState("");
+
+  // Modal açılınca body scroll kilitle (isteğe bağlı ama UX iyi)
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  const previewMessage = useMemo(() => {
+    const dateTR = formatDateTR(date);
+    return (
+      "Merhaba,\n" +
+      "SkyVerce by BC’den teklif almak istiyorum.\n\n" +
+      `• Hizmet: ${serviceType || "-"}\n` +
+      `• Tarih: ${dateTR || "-"}\n` +
+      `• Lokasyon: ${location || "-"}\n` +
+      `• Kullanım: ${purpose || "-"}\n` +
+      (note ? `• Not: ${note}\n` : "") +
+      "\nUygunluk ve net fiyat bilgisini paylaşabilir misiniz?"
+    );
+  }, [serviceType, date, location, purpose, note]);
 
   const waLink = useMemo(() => {
     const phone = "905059467166";
-    const text =
-      `Merhaba, SkyVerce by BC web sitesinden yazıyorum.\n\n` +
-      `Teklif almak istiyorum:\n` +
-      `1) Hizmet: ${service || "(Düğün / Emlak / Turizm / Kurumsal)"}\n` +
-      `2) Tarih/Saat: ${dateTime || "(Belirli / Esnek)"}\n` +
-      `3) Lokasyon: ${location || "(İlçe / Semt)"}\n` +
-      `4) İstenen çıktı: ${output || "(Video / Fotoğraf / İkisi)"}\n` +
-      `5) Kısa not: ${note || ""}\n`;
-
-    return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-  }, [service, dateTime, location, output, note]);
+    return `https://wa.me/${phone}?text=${encodeURIComponent(previewMessage)}`;
+  }, [previewMessage]);
 
   if (!open) return null;
 
@@ -60,15 +83,24 @@ function QuoteModal({
       className="fixed inset-0 z-[9999] flex items-center justify-center"
       role="dialog"
       aria-modal="true"
-      aria-label="WhatsApp teklif formu"
+      aria-label="Hızlı Teklif"
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70" onClick={onClose} />
+      <div
+        className="absolute inset-0 bg-black/70"
+        onClick={onClose}
+      />
 
       {/* Modal */}
-      <div className="relative z-10 w-[92%] max-w-lg rounded-2xl border border-gold/20 bg-background p-5 shadow-2xl">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-gold">WhatsApp’tan Teklif Al</h3>
+      <div className="relative z-10 w-[92%] max-w-2xl rounded-2xl border border-gold/20 bg-background shadow-2xl">
+        <div className="flex items-center justify-between border-b border-gold/10 px-6 py-4">
+          <div>
+            <h3 className="text-xl font-semibold text-gold">Hızlı Teklif</h3>
+            <p className="text-sm text-muted-foreground">
+              15 saniyede bilgileri gir, WhatsApp’a hazır teklif mesajı gitsin.
+            </p>
+          </div>
+
           <button
             onClick={onClose}
             className="rounded-md p-2 text-muted-foreground hover:text-gold"
@@ -78,46 +110,86 @@ function QuoteModal({
           </button>
         </div>
 
-        <div className="mt-4 space-y-3">
-          <input
-            value={service}
-            onChange={(e) => setService(e.target.value)}
-            placeholder="Hizmet (Düğün / Emlak / Turizm / Kurumsal)"
-            className="w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
-          />
-          <input
-            value={dateTime}
-            onChange={(e) => setDateTime(e.target.value)}
-            placeholder="Tarih/Saat (örn. 12 Ocak 21:00)"
-            className="w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
-          />
-          <input
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            placeholder="Lokasyon (İlçe / Semt)"
-            className="w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
-          />
-          <input
-            value={output}
-            onChange={(e) => setOutput(e.target.value)}
-            placeholder="İstenen çıktı (Video / Fotoğraf / İkisi)"
-            className="w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
-          />
-          <textarea
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            placeholder="Kısa not (opsiyonel)"
-            className="min-h-[90px] w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
-          />
+        <div className="grid gap-6 px-6 py-5 md:grid-cols-2">
+          {/* Hizmet Türü */}
+          <div className="space-y-2">
+            <label className="text-sm text-muted-foreground">Hizmet Türü</label>
+            <select
+              value={serviceType}
+              onChange={(e) => setServiceType(e.target.value)}
+              className="w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
+            >
+              <option value="">Seçin</option>
+              <option value="Düğün / Nişan">Düğün / Nişan</option>
+              <option value="Emlak Tanıtımı">Emlak Tanıtımı</option>
+              <option value="Turizm Çekimi">Turizm Çekimi</option>
+              <option value="Kurumsal Çekim">Kurumsal Çekim</option>
+              <option value="Etkinlik">Etkinlik</option>
+            </select>
+          </div>
+
+          {/* Tarih */}
+          <div className="space-y-2">
+            <label className="text-sm text-muted-foreground">Tarih</label>
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
+            />
+          </div>
+
+          {/* Lokasyon */}
+          <div className="space-y-2 md:col-span-2">
+            <label className="text-sm text-muted-foreground">Lokasyon</label>
+            <input
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              placeholder="Örn: Beşiktaş / İstanbul"
+              className="w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
+            />
+          </div>
+
+          {/* Kullanım Amacı */}
+          <div className="space-y-2 md:col-span-2">
+            <label className="text-sm text-muted-foreground">Kullanım Amacı</label>
+            <select
+              value={purpose}
+              onChange={(e) => setPurpose(e.target.value)}
+              className="w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
+            >
+              <option value="">Seçin</option>
+              <option value="Sosyal Medya">Sosyal Medya</option>
+              <option value="Reklam / Tanıtım">Reklam / Tanıtım</option>
+              <option value="Kişisel Hatıra">Kişisel Hatıra</option>
+              <option value="Web Sitesi">Web Sitesi</option>
+              <option value="Etkinlik Arşivi">Etkinlik Arşivi</option>
+            </select>
+          </div>
+
+          {/* Not */}
+          <div className="space-y-2 md:col-span-2">
+            <label className="text-sm text-muted-foreground">Not (opsiyonel)</label>
+            <textarea
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder="Örn: Gün batımı çekimi, 2 lokasyon, hızlı teslim vb."
+              className="min-h-[90px] w-full rounded-md border border-gold/20 bg-card px-3 py-2 text-sm outline-none focus:border-gold"
+            />
+          </div>
+
+          {/* Preview */}
+          <div className="space-y-2 md:col-span-2">
+            <label className="text-sm text-muted-foreground">
+              WhatsApp’a gidecek mesaj:
+            </label>
+            <pre className="whitespace-pre-wrap rounded-md border border-gold/10 bg-card p-3 text-xs text-muted-foreground">
+{previewMessage}
+            </pre>
+          </div>
         </div>
 
-        <div className="mt-5 flex gap-3">
-          <Button
-            className="flex-1 bg-gold text-background hover:bg-gold-dark"
-            onClick={() => window.open(waLink, "_blank", "noopener,noreferrer")}
-          >
-            WhatsApp’a Gönder
-          </Button>
+        <div className="flex items-center justify-end gap-3 border-t border-gold/10 px-6 py-4">
           <Button
             variant="outline"
             className="border-gold/40 text-gold hover:bg-gold/10"
@@ -125,11 +197,14 @@ function QuoteModal({
           >
             Vazgeç
           </Button>
-        </div>
 
-        <p className="mt-3 text-xs text-muted-foreground">
-          Gönder dediğinizde WhatsApp açılır ve mesaj otomatik hazırlanır.
-        </p>
+          <Button
+            className="bg-gold text-background hover:bg-gold-dark"
+            onClick={() => window.open(waLink, "_blank", "noopener,noreferrer")}
+          >
+            WhatsApp’tan Teklif Al
+          </Button>
+        </div>
       </div>
     </div>
   );
@@ -206,7 +281,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
-        {/* 🔒 Background katmanı: modal açılınca bozulmasın */}
+        {/* Background katmanı: modal açılınca bozulmasın */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
             src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?q=80&w=2070"
@@ -290,7 +365,9 @@ export default function Home() {
                   <CardTitle className="text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-base">{service.description}</CardDescription>
+                  <CardDescription className="text-base">
+                    {service.description}
+                  </CardDescription>
                 </CardContent>
               </Card>
             ))}
@@ -323,7 +400,9 @@ export default function Home() {
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Çalışma Sürecimiz</h2>
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">
+              Çalışma Sürecimiz
+            </h2>
           </div>
 
           <div className="space-y-10">
