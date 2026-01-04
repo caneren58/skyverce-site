@@ -14,8 +14,9 @@ function buildWhatsAppLink(message: string) {
 
 export type QuickQuotePrefill = {
   category?: string;
-  packageName?: string;
-  priceLabel?: string;
+  purpose?: string;
+  location?: string;
+  note?: string;
 };
 
 type Props = {
@@ -27,181 +28,184 @@ type Props = {
 export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
   const [mounted, setMounted] = useState(false);
 
-  const [serviceType, setServiceType] = useState(prefill?.category || "");
+  const [category, setCategory] = useState(prefill?.category ?? "");
   const [date, setDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [usage, setUsage] = useState("");
-  const [note, setNote] = useState("");
+  const [location, setLocation] = useState(prefill?.location ?? "");
+  const [purpose, setPurpose] = useState(prefill?.purpose ?? "");
+  const [note, setNote] = useState(prefill?.note ?? "");
 
-  // Portal için mount kontrolü
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  // Açılınca formu resetle / prefill uygula
+  // Modal açılınca body scroll kilidi (mobil UX)
   useEffect(() => {
     if (!open) return;
-    setServiceType(prefill?.category || "");
-    setDate("");
-    setLocation("");
-    setUsage("");
-    setNote("");
-  }, [open, prefill?.category]);
-
-  // Modal açıkken: arka plan scroll kilidi + ESC ile kapatma
-  useEffect(() => {
-    if (!open) return;
-
-    const prevOverflow = document.body.style.overflow;
+    const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKeyDown);
-
     return () => {
-      document.body.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prev;
     };
-  }, [open, onClose]);
+  }, [open]);
 
-  const title = useMemo(() => {
-    const p = prefill?.packageName ? ` · ${prefill.packageName}` : "";
-    return prefill?.category ? `${prefill.category}${p}` : "Hızlı Teklif";
-  }, [prefill?.category, prefill?.packageName]);
-
-  const priceLine = prefill?.priceLabel ? `• Başlangıç Fiyatı: ${prefill.priceLabel}` : "";
-
-  const canSubmit =
-    (serviceType || prefill?.category) &&
-    date.trim().length > 0 &&
-    location.trim().length > 0 &&
-    usage.trim().length > 0;
+  // Prefill değişirse senkronla
+  useEffect(() => {
+    if (!prefill) return;
+    if (prefill.category !== undefined) setCategory(prefill.category);
+    if (prefill.location !== undefined) setLocation(prefill.location);
+    if (prefill.purpose !== undefined) setPurpose(prefill.purpose);
+    if (prefill.note !== undefined) setNote(prefill.note);
+  }, [prefill]);
 
   const message = useMemo(() => {
-    const lines = [
-      "Merhaba,",
-      "",
-      "SkyVerce by BC’den teklif almak istiyorum.",
-      "",
-      `• Hizmet: ${serviceType || prefill?.category || "-"}`,
-      prefill?.packageName ? `• Paket: ${prefill.packageName}` : "",
-      priceLine,
-      `• Tarih: ${date || "-"}`,
-      `• Lokasyon: ${location || "-"}`,
-      `• Kullanım: ${usage || "-"}`,
-      note.trim() ? `• Not: ${note.trim()}` : "",
-      "",
-      "Uygunluk ve net fiyat bilgisini paylaşabilir misiniz?",
-    ].filter(Boolean);
+    const dateTR = date
+      ? (() => {
+          const [y, m, d] = date.split("-");
+          return y && m && d ? `${d}.${m}.${y}` : date;
+        })()
+      : "";
 
-    return lines.join("\n");
-  }, [serviceType, prefill?.category, prefill?.packageName, priceLine, date, location, usage, note]);
+    return (
+      "Merhaba,\n" +
+      "SkyVerce by BC’den teklif almak istiyorum.\n\n" +
+      `• Hizmet: ${category || "-"}\n` +
+      `• Tarih: ${dateTR || "-"}\n` +
+      `• Lokasyon: ${location || "-"}\n` +
+      `• Kullanım: ${purpose || "-"}\n` +
+      (note ? `• Not: ${note}\n` : "") +
+      "\nUygunluk ve net fiyat bilgisini paylaşabilir misiniz?"
+    );
+  }, [category, date, location, purpose, note]);
+
+  const canSubmit = useMemo(() => {
+    // Minimum bilgi: kategori + lokasyon olsun (sen istersen gevşetebiliriz)
+    return Boolean(category) && Boolean(location);
+  }, [category, location]);
 
   if (!open || !mounted) return null;
 
   const modalUI = (
     <div
-      className="fixed inset-0 z-[9999] overflow-y-auto bg-black/70 px-4 py-6"
-      onMouseDown={(e) => {
+      className="fixed inset-0 z-[9999] overflow-y-auto bg-black/70 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Hızlı Teklif"
+      onClick={(e) => {
+        // overlay tıkı: kapat
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="mx-auto flex min-h-[calc(100vh-3rem)] max-w-xl items-center justify-center">
-        <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-gold/20 bg-card shadow-2xl max-h-[calc(100vh-3rem)]">
+      <div className="mx-auto max-w-xl">
+        {/* Modal Card */}
+        <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-gold/20 bg-card shadow-2xl max-h-[calc(100dvh-3rem)]">
           {/* Header */}
-          <div className="flex items-start justify-between border-b border-gold/20 p-5">
+          <div className="flex items-start justify-between gap-4 border-b border-gold/20 p-5">
             <div>
-              <h3 className="text-xl font-semibold text-gold">{title}</h3>
+              <h3 className="text-xl font-semibold text-gold">Hızlı Teklif</h3>
               <p className="mt-1 text-sm text-muted-foreground">
                 15 saniyede bilgileri gir, WhatsApp’a hazır teklif mesajı gitsin.
               </p>
             </div>
+
             <button
-              className="rounded-md p-2 text-muted-foreground hover:text-gold"
               onClick={onClose}
+              className="rounded-md p-2 text-muted-foreground hover:text-gold"
               aria-label="Kapat"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
 
-          {/* Scrollable content */}
-          <div className="space-y-4 p-5 overflow-y-auto max-h-[calc(100vh-3rem-140px)]">
-            <div className="grid gap-3 md:grid-cols-2">
-              <div className="space-y-1">
-                <label className="text-sm text-muted-foreground">Hizmet Türü</label>
-                <select
-                  className="h-11 w-full rounded-md border border-gold/20 bg-background px-3 text-sm outline-none focus:border-gold"
-                  value={serviceType || prefill?.category || ""}
-                  onChange={(e) => setServiceType(e.target.value)}
-                >
-                  <option value="" disabled>
-                    Seçin
-                  </option>
-                  <option value="Turizm Çekimleri">Turizm Çekimleri</option>
-                  <option value="Düğün & Nişan">Düğün & Nişan</option>
-                  <option value="Emlak Tanıtımı">Emlak Tanıtımı</option>
-                  <option value="Kurumsal Çekimler">Kurumsal Çekimler</option>
-                </select>
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-sm text-muted-foreground">Tarih</label>
-                <input
-                  type="date"
-                  className="h-11 w-full rounded-md border border-gold/20 bg-background px-3 text-sm outline-none focus:border-gold"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-sm text-muted-foreground">Lokasyon</label>
-              <input
-                placeholder="Örn: Beşiktaş / İstanbul"
-                className="h-11 w-full rounded-md border border-gold/20 bg-background px-3 text-sm outline-none focus:border-gold"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-              />
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-sm text-muted-foreground">Kullanım Amacı</label>
+          {/* CONTENT (tek scroll alanı) */}
+          <div className="space-y-4 p-5 overflow-y-auto max-h-[calc(100dvh-3rem-180px)]">
+            {/* Hizmet Türü */}
+            <div className="space-y-2">
+              <label className="text-sm text-muted-foreground">Hizmet Türü</label>
               <select
-                className="h-11 w-full rounded-md border border-gold/20 bg-background px-3 text-sm outline-none focus:border-gold"
-                value={usage}
-                onChange={(e) => setUsage(e.target.value)}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="w-full rounded-md border border-gold/20 bg-background px-3 py-2 text-sm outline-none focus:border-gold"
               >
-                <option value="" disabled>
-                  Seçin
-                </option>
-                <option value="Sosyal Medya (Reels/Shorts)">Sosyal Medya (Reels/Shorts)</option>
-                <option value="Web Sitesi">Web Sitesi</option>
-                <option value="Emlak İlanı">Emlak İlanı</option>
-                <option value="Reklam / Tanıtım">Reklam / Tanıtım</option>
+                <option value="">Seçin</option>
+                <option value="Düğün / Nişan">Düğün / Nişan</option>
+                <option value="Emlak Tanıtımı">Emlak Tanıtımı</option>
+                <option value="Turizm Çekimi">Turizm Çekimi</option>
+                <option value="Kurumsal Çekim">Kurumsal Çekim</option>
+                <option value="Etkinlik">Etkinlik</option>
               </select>
             </div>
 
-            <div className="space-y-1">
-              <label className="text-sm text-muted-foreground">Not (opsiyonel)</label>
-              <textarea
-                placeholder="Örn: Gün batımı çekimi, 2 lokasyon, hızlı teslim vb."
-                className="min-h-[90px] w-full rounded-md border border-gold/20 bg-background px-3 py-2 text-sm outline-none focus:border-gold"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
+            {/* Tarih */}
+            <div className="space-y-2">
+              <label className="text-sm text-muted-foreground">Tarih</label>
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="w-full rounded-md border border-gold/20 bg-background px-3 py-2 text-sm outline-none focus:border-gold"
               />
             </div>
 
-            <div className="rounded-xl border border-gold/20 bg-background/40 p-3 text-xs text-muted-foreground">
-              <div className="font-medium text-foreground/90">WhatsApp’a gidecek mesaj:</div>
-              <pre className="mt-2 whitespace-pre-wrap">{message}</pre>
+            {/* Lokasyon */}
+            <div className="space-y-2">
+              <label className="text-sm text-muted-foreground">Lokasyon</label>
+              <input
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="Örn: Beşiktaş / İstanbul"
+                className="w-full rounded-md border border-gold/20 bg-background px-3 py-2 text-sm outline-none focus:border-gold"
+              />
+            </div>
+
+            {/* Kullanım Amacı */}
+            <div className="space-y-2">
+              <label className="text-sm text-muted-foreground">Kullanım Amacı</label>
+              <select
+                value={purpose}
+                onChange={(e) => setPurpose(e.target.value)}
+                className="w-full rounded-md border border-gold/20 bg-background px-3 py-2 text-sm outline-none focus:border-gold"
+              >
+                <option value="">Seçin</option>
+                <option value="Sosyal Medya">Sosyal Medya</option>
+                <option value="Reklam / Tanıtım">Reklam / Tanıtım</option>
+                <option value="Kişisel Hatıra">Kişisel Hatıra</option>
+                <option value="Web Sitesi">Web Sitesi</option>
+                <option value="Etkinlik Arşivi">Etkinlik Arşivi</option>
+              </select>
+            </div>
+
+            {/* Not */}
+            <div className="space-y-2">
+              <label className="text-sm text-muted-foreground">Not (opsiyonel)</label>
+              <textarea
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                placeholder="Örn: Gün batımı çekimi, 2 lokasyon, hızlı teslim vb."
+                className="min-h-[90px] w-full rounded-md border border-gold/20 bg-background px-3 py-2 text-sm outline-none focus:border-gold"
+              />
+            </div>
+
+            {/* Preview */}
+            <div className="space-y-2">
+              <label className="text-sm text-muted-foreground">
+                WhatsApp’a gidecek mesaj:
+              </label>
+              <pre className="whitespace-pre-wrap rounded-md border border-gold/10 bg-background p-3 text-xs text-muted-foreground">
+{message}
+              </pre>
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="flex flex-col gap-3 border-t border-gold/20 p-5 md:flex-row md:justify-end">
-            <Button variant="outline" onClick={onClose}>
+          {/* FOOTER (sticky) */}
+          <div
+            className="sticky bottom-0 flex flex-col gap-3 border-t border-gold/20 bg-card p-5 md:flex-row md:justify-end"
+            style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1rem)" }}
+          >
+            <Button
+              variant="outline"
+              className="border-gold/40 text-gold hover:bg-gold/10"
+              onClick={onClose}
+            >
               Vazgeç
             </Button>
 
@@ -209,7 +213,10 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
               href={buildWhatsAppLink(message)}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => setTimeout(onClose, 150)}
+              className="w-full md:w-auto"
+              onClick={(e) => {
+                if (!canSubmit) e.preventDefault();
+              }}
             >
               <Button
                 className="w-full bg-gold text-background hover:bg-gold-dark md:w-auto"
