@@ -277,7 +277,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative flex min-h-[100dvh] items-start justify-center overflow-hidden pt-24 sm:pt-16">
+      <section className="relative flex min-h-[100dvh] items-start justify-center overflow-hidden pt-24 sm:pt-16 pb-28 sm:pb-0">
         {/* Background katmanı: modal açılınca bozulmasın */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
@@ -304,7 +304,7 @@ export default function Home() {
             </p>
 
             <div
-              className="flex flex-col items-center justify-center gap-4 sm:flex-row pt-4 pb-6"
+              className="hidden sm:flex flex-col items-center justify-center gap-4 sm:flex-row pt-4 pb-6"
               style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1.5rem)" }}
             >
               {/* ✅ Modal açar */}
@@ -422,6 +422,33 @@ export default function Home() {
       </section>
 
       <Footer />
+         {/* ✅ Mobile Sticky CTA Bar (sadece mobil) */}
+<div className="fixed inset-x-0 bottom-0 z-[9998] sm:hidden">
+  <div
+    className="border-t border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+    style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 0.75rem)" }}
+  >
+    <div className="mx-auto flex max-w-2xl gap-3 px-4 pt-3">
+      <Button
+        className="flex-1 bg-gold text-background hover:bg-gold-dark"
+        onClick={() => setQuoteOpen(true)}
+      >
+        <Camera className="mr-2 h-5 w-5" />
+        WhatsApp’tan Teklif Al
+      </Button>
+
+      <Link href="/portfoy" className="flex-1">
+        <Button
+          variant="outline"
+          className="w-full border-gold text-gold hover:bg-gold/10"
+        >
+          <Play className="mr-2 h-5 w-5" />
+          Portföy
+        </Button>
+      </Link>
+    </div>
+  </div>
+</div>
 
       {/* ✅ Modal en dış katmanda: background kaybolmaz */}
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
