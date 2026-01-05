@@ -421,41 +421,45 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
-         {/* ✅ Mobile Sticky CTA Bar (sadece mobil) */}
-         {!quoteOpen && (
-            <div className="fixed inset-x-0 bottom-0 z-40 sm:hidden">
-              ...
+            <Footer />
+
+      {/* ✅ Mobile Sticky CTA Bar (sadece mobil) */}
+      {!quoteOpen && (
+        <div className="fixed inset-x-0 bottom-0 z-40 sm:hidden">
+          <div
+            className="border-t border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+            style={{
+              paddingBottom: "calc(env(safe-area-inset-bottom) + 0.75rem)",
+            }}
+          >
+            <div className="mx-auto flex max-w-2xl gap-3 px-4 pt-3">
+              <Button
+                className="flex-1 bg-gold text-background hover:bg-gold-dark"
+                onClick={() => setQuoteOpen(true)}
+              >
+                <Camera className="mr-2 h-5 w-5" />
+                WhatsApp’tan Teklif Al
+              </Button>
+
+              <Link href="/portfoy" className="flex-1">
+                <Button
+                  variant="outline"
+                  className="w-full border-gold text-gold hover:bg-gold/10"
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  Portföy
+                </Button>
+              </Link>
             </div>
-          )}
+          </div>
+        </div>
+      )}
 
-    className="border-t border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
-    style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 0.75rem)" }}
-  >
-    <div className="mx-auto flex max-w-2xl gap-3 px-4 pt-3">
-      <Button
-        className="flex-1 bg-gold text-background hover:bg-gold-dark"
-        onClick={() => setQuoteOpen(true)}
-      >
-        <Camera className="mr-2 h-5 w-5" />
-        WhatsApp’tan Teklif Al
-      </Button>
-
-      <Link href="/portfoy" className="flex-1">
-        <Button
-          variant="outline"
-          className="w-full border-gold text-gold hover:bg-gold/10"
-        >
-          <Play className="mr-2 h-5 w-5" />
-          Portföy
-        </Button>
-      </Link>
-    </div>
-  </div>
-</div>
-
-      {/* ✅ Modal en dış katmanda: background kaybolmaz */}
-      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
+      {/* ✅ Modal en dış katmanda */}
+      <QuoteModal
+        open={quoteOpen}
+        onClose={() => setQuoteOpen(false)}
+      />
     </div>
   );
 }
