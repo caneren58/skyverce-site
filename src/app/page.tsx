@@ -47,7 +47,7 @@ function QuoteModal({
   const [purpose, setPurpose] = useState("");
   const [note, setNote] = useState("");
 
-  // Modal açılınca body scroll kilitle (isteğe bağlı ama UX iyi)
+  // Modal açılınca body scroll kilitle
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -278,7 +278,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative flex min-h-[100dvh] items-start justify-center overflow-hidden pt-24 sm:pt-16 pb-28 sm:pb-0">
-        {/* Background katmanı: modal açılınca bozulmasın */}
+        {/* Background katmanı */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
             src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?q=80&w=2070"
@@ -303,11 +303,11 @@ export default function Home() {
               en doğru paketi ben yönlendireyim.
             </p>
 
+            {/* PC/TABLET CTA (mobilde gizli) */}
             <div
               className="hidden sm:flex flex-col items-center justify-center gap-4 sm:flex-row pt-4 pb-6"
               style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1.5rem)" }}
             >
-              {/* ✅ Modal açar */}
               <Button
                 size="lg"
                 className="bg-gold text-background hover:bg-gold-dark"
@@ -421,9 +421,10 @@ export default function Home() {
         </div>
       </section>
 
-            <Footer />
+      <Footer />
 
       {/* ✅ Mobile Sticky CTA Bar (sadece mobil) */}
+      {/* İSTEK: Mobilde "WhatsApp’tan Teklif Al" KALKACAK -> "Hizmetler" + "Portföy" kalacak */}
       {!quoteOpen && (
         <div className="fixed inset-x-0 bottom-0 z-40 sm:hidden">
           <div
@@ -433,14 +434,17 @@ export default function Home() {
             }}
           >
             <div className="mx-auto flex max-w-2xl gap-3 px-4 pt-3">
-              <Button
-                className="flex-1 bg-gold text-background hover:bg-gold-dark"
-                onClick={() => setQuoteOpen(true)}
-              >
-                <Camera className="mr-2 h-5 w-5" />
-                WhatsApp’tan Teklif Al
-              </Button>
+              {/* 1) Hizmetler (mobil) */}
+              <Link href="/hizmetler" className="flex-1">
+                <Button
+                  className="w-full bg-gold text-background hover:bg-gold-dark"
+                >
+                  <Briefcase className="mr-2 h-5 w-5" />
+                  Hizmetler
+                </Button>
+              </Link>
 
+              {/* 2) Portföy (mobil) */}
               <Link href="/portfoy" className="flex-1">
                 <Button
                   variant="outline"
@@ -456,10 +460,7 @@ export default function Home() {
       )}
 
       {/* ✅ Modal en dış katmanda */}
-      <QuoteModal
-        open={quoteOpen}
-        onClose={() => setQuoteOpen(false)}
-      />
+      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </div>
   );
 }
