@@ -5,7 +5,7 @@ const siteUrl =
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
-    "", // ✅ ana sayfa da olsun
+    "", // ✅ ana sayfa 
     "/hizmetler",
     "/portfoy",
     "/hakkimizda",
