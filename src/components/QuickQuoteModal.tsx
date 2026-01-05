@@ -136,7 +136,9 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
 
   const modalUI = (
     <div
-      className="fixed inset-0 z-[10000] bg-black/70 p-4"
+      className="fixed inset-0 z-[10000] bg-black/70 px-4
+                 pt-[calc(env(safe-area-inset-top)+16px)]
+                 pb-[calc(env(safe-area-inset-bottom)+16px)]"
       role="dialog"
       aria-modal="true"
       aria-label="Hızlı Teklif"
@@ -145,11 +147,18 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="mx-auto flex h-[calc(100dvh-2rem)] max-w-xl items-center justify-center">
+      <div className="mx-auto flex min-h-[100dvh] max-w-xl items-start justify-center">
         {/* Modal Card */}
-        <div className="flex w-full max-w-xl flex-col overflow-hidden rounded-2xl border border-gold/20 bg-card shadow-2xl">
+        <div
+          className="flex w-full max-w-xl flex-col overflow-hidden rounded-2xl border border-gold/20 bg-card shadow-2xl"
+          style={{
+            // iOS/Safari için: kart ekrana her koşulda sığsın
+            maxHeight:
+              "calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom))",
+          }}
+        >
           {/* Header */}
-          <div className="flex items-start justify-between gap-4 border-b border-gold/20 p-5">
+          <div className="shrink-0 flex items-start justify-between gap-4 border-b border-gold/20 p-5">
             <div>
               <h3 className="text-xl font-semibold text-gold">Hızlı Teklif</h3>
               <p className="mt-1 text-sm text-muted-foreground">
@@ -169,7 +178,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
           {/* CONTENT (tek scroll alanı) */}
           <div
             ref={scrollRef}
-            className="flex-1 space-y-4 p-5 overflow-y-auto overscroll-contain"
+            className="flex-1 min-h-0 space-y-4 p-5 overflow-y-auto overscroll-contain"
             style={{ WebkitOverflowScrolling: "touch" }}
           >
             {/* Hizmet Türü */}
@@ -245,20 +254,14 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
                 WhatsApp’a gidecek mesaj:
               </label>
               <pre className="whitespace-pre-wrap rounded-md border border-gold/10 bg-background p-3 text-xs text-muted-foreground">
-{message}
+                {message}
               </pre>
             </div>
-
-            {/* iOS safe-area boşluğu (çok kısa ekranlarda footer üstüne binmesin) */}
-            <div
-              className="h-2"
-              style={{ height: "calc(env(safe-area-inset-bottom) + 0.5rem)" }}
-            />
           </div>
 
-          {/* FOOTER (sticky) */}
+          {/* FOOTER (always visible) */}
           <div
-            className="sticky bottom-0 flex flex-col gap-3 border-t border-gold/20 bg-card p-5 md:flex-row md:justify-end"
+            className="shrink-0 flex flex-col gap-3 border-t border-gold/20 bg-card p-5 md:flex-row md:justify-end"
             style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1rem)" }}
           >
             <Button
