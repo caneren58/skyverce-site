@@ -10,7 +10,7 @@ export default function QuoteFloatingButton() {
       type="button"
       onClick={() => openQuote({})}
       aria-label="WhatsApp’tan teklif al"
-      className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-transform hover:scale-105 md:hidden"
+      className="fixed right-4 bottom-24 md:bottom-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-transform hover:scale-105 md:hidden"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

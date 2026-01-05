@@ -203,7 +203,7 @@ export default function FAQPage() {
           <div className="flex items-center justify-center">
             <Button
               size="lg"
-              className="hidden sm:inline-flex bg-gold text-background hover:bg-gold-dark"
+              className="hidden sm:flex flex-1 bg-gold text-background hover:bg-gold-dark"
               onClick={() => setQuoteOpen(true)}
             >
               <MessageCircle className="mr-2 h-5 w-5" />
