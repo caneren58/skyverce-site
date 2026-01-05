@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -34,19 +34,11 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
   const [purpose, setPurpose] = useState(prefill?.purpose ?? "");
   const [note, setNote] = useState(prefill?.note ?? "");
 
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // Modal açılınca body scroll kilidi (mobil UX)
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [open]);
 
   // Prefill değişirse senkronla
   useEffect(() => {
@@ -56,6 +48,65 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
     if (prefill.purpose !== undefined) setPurpose(prefill.purpose);
     if (prefill.note !== undefined) setNote(prefill.note);
   }, [prefill]);
+
+  // Modal açılınca body scroll kilidi (iOS/Safari dahil)
+  useEffect(() => {
+    if (!open) return;
+
+    const scrollY = window.scrollY;
+
+    const prev = {
+      position: document.body.style.position,
+      top: document.body.style.top,
+      left: document.body.style.left,
+      right: document.body.style.right,
+      width: document.body.style.width,
+      overflow: document.body.style.overflow,
+      paddingRight: document.body.style.paddingRight,
+    };
+
+    // (opsiyonel) scrollbar kaymasını azaltmak için
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
+    // iOS: modal dışı touchmove scroll'u tamamen engelle
+    const onTouchMove = (e: TouchEvent) => {
+      const target = e.target as Node | null;
+      const scroller = scrollRef.current;
+
+      // Scrollable alanın içindeyse izin ver
+      if (scroller && target && scroller.contains(target)) return;
+
+      // Modal dışı tüm touchmove'ları engelle
+      e.preventDefault();
+    };
+
+    document.addEventListener("touchmove", onTouchMove, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchmove", onTouchMove as any);
+
+      document.body.style.position = prev.position;
+      document.body.style.top = prev.top;
+      document.body.style.left = prev.left;
+      document.body.style.right = prev.right;
+      document.body.style.width = prev.width;
+      document.body.style.overflow = prev.overflow;
+      document.body.style.paddingRight = prev.paddingRight;
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [open]);
 
   const message = useMemo(() => {
     const dateTR = date
@@ -78,7 +129,6 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
   }, [category, date, location, purpose, note]);
 
   const canSubmit = useMemo(() => {
-    // Minimum bilgi: kategori + lokasyon olsun (sen istersen gevşetebiliriz)
     return Boolean(category) && Boolean(location);
   }, [category, location]);
 
@@ -86,18 +136,18 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
 
   const modalUI = (
     <div
-      className="fixed inset-0 z-[10000] overflow-y-auto bg-black/70 p-4"
+      className="fixed inset-0 z-[10000] bg-black/70 p-4"
       role="dialog"
       aria-modal="true"
       aria-label="Hızlı Teklif"
-      onClick={(e) => {
-        // overlay tıkı: kapat
+      // overlay tıkı kapatsın (card dışı)
+      onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="mx-auto max-w-xl">
+      <div className="mx-auto flex h-[calc(100dvh-2rem)] max-w-xl items-center justify-center">
         {/* Modal Card */}
-        <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-gold/20 bg-card shadow-2xl max-h-[calc(100dvh-3rem)]">
+        <div className="flex w-full max-w-xl flex-col overflow-hidden rounded-2xl border border-gold/20 bg-card shadow-2xl">
           {/* Header */}
           <div className="flex items-start justify-between gap-4 border-b border-gold/20 p-5">
             <div>
@@ -117,7 +167,11 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
           </div>
 
           {/* CONTENT (tek scroll alanı) */}
-          <div className="space-y-4 p-5 overflow-y-auto max-h-[calc(100dvh-3rem-180px)]">
+          <div
+            ref={scrollRef}
+            className="flex-1 space-y-4 p-5 overflow-y-auto overscroll-contain"
+            style={{ WebkitOverflowScrolling: "touch" }}
+          >
             {/* Hizmet Türü */}
             <div className="space-y-2">
               <label className="text-sm text-muted-foreground">Hizmet Türü</label>
@@ -194,6 +248,12 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
 {message}
               </pre>
             </div>
+
+            {/* iOS safe-area boşluğu (çok kısa ekranlarda footer üstüne binmesin) */}
+            <div
+              className="h-2"
+              style={{ height: "calc(env(safe-area-inset-bottom) + 0.5rem)" }}
+            />
           </div>
 
           {/* FOOTER (sticky) */}
