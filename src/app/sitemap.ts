@@ -4,9 +4,8 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://skyverce-site-l5ln.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Buraya gerçekten var olan rotaları ekleyin
   const routes = [
-    "",
+    "", // ✅ ana sayfa da olsun
     "/hizmetler",
     "/portfoy",
     "/hakkimizda",
