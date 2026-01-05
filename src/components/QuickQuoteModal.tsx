@@ -86,7 +86,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
 
   const modalUI = (
     <div
-      className="fixed inset-0 z-[9999] overflow-y-auto bg-black/70 p-4"
+      className="fixed inset-0 z-[10000] overflow-y-auto bg-black/70 p-4"
       role="dialog"
       aria-modal="true"
       aria-label="Hızlı Teklif"

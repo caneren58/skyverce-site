@@ -423,8 +423,12 @@ export default function Home() {
 
       <Footer />
          {/* ✅ Mobile Sticky CTA Bar (sadece mobil) */}
-<div className="fixed inset-x-0 bottom-0 z-[9998] sm:hidden">
-  <div
+         {!quoteOpen && (
+            <div className="fixed inset-x-0 bottom-0 z-40 sm:hidden">
+              ...
+            </div>
+          )}
+
     className="border-t border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
     style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 0.75rem)" }}
   >
