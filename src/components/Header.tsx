@@ -42,7 +42,8 @@ export default function Header() {
 
   const navigation = [
     { name: "Ana Sayfa", href: "/" },
-    { name: "Hizmetler", href: "/hizmetler" },
+    // ✅ İsim değişti: Hizmetler -> Fiyat & Paketler
+    { name: "Fiyat & Paketler", href: "/hizmetler" },
     { name: "Portföy", href: "/portfoy" },
     { name: "Hakkımızda", href: "/hakkimizda" },
     { name: "SSS", href: "/sss" },
@@ -54,7 +55,6 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-gold/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <nav className="container mx-auto flex items-center justify-between px-4 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          {/* ✅ Plane yerine Drone */}
           <DroneIcon className="h-7 w-7 text-gold" />
           <span className="text-2xl font-bold text-gold gold-glow !whitespace-pre-line">
             SkyVerce by BC
@@ -73,7 +73,6 @@ export default function Header() {
             </Link>
           ))}
 
-          {/* ✅ İletişim butonu modala bağlı (doğru) */}
           <Button
             className="bg-gold text-background hover:bg-gold-dark"
             onClick={() => openQuote({ source: "header" })}

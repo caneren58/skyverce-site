@@ -24,6 +24,7 @@ export default function ServicesPage() {
 
   const serviceCategories = [
     {
+      id: "turizm",
       icon: <Landmark className="h-16 w-16 text-gold" />,
       category: "Turizm Çekimleri",
       description: "İstanbul'un ikonik noktalarını havadan, sinematik bir dille anlatın.",
@@ -57,6 +58,7 @@ export default function ServicesPage() {
       ],
     },
     {
+      id: "dugun",
       icon: <Heart className="h-16 w-16 text-gold" />,
       category: "Düğün & Nişan",
       description: "Özel gününüzü estetik, güvenli ve sinematik bir dille ölümsüzleştirin.",
@@ -80,6 +82,7 @@ export default function ServicesPage() {
       ],
     },
     {
+      id: "emlak",
       icon: <Building2 className="h-16 w-16 text-gold" />,
       category: "Emlak Tanıtımı",
       description: "Gayrimenkulünüzü doğru açı, doğru ışık ve doğru kurgu ile öne çıkarın.",
@@ -101,6 +104,7 @@ export default function ServicesPage() {
       ],
     },
     {
+      id: "kurumsal",
       icon: <Briefcase className="h-16 w-16 text-gold" />,
       category: "Kurumsal Çekimler",
       description: "Markanızı güçlü bir görsel anlatımla, premium bir sunumla konumlandırın.",
@@ -142,7 +146,7 @@ export default function ServicesPage() {
       <section className="border-b border-gold/20 bg-card py-20 pt-32">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h1 className="mb-6 text-5xl font-bold text-gold gold-glow md:text-6xl">
-            Hizmetlerimiz
+            Fiyat & Paketler
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
             Paketlerimiz “başlangıç” kapsamını temsil eder. Lokasyon, teslim formatı ve proje ihtiyaçlarına göre
@@ -153,7 +157,11 @@ export default function ServicesPage() {
 
       {/* Categories */}
       {serviceCategories.map((category, categoryIndex) => (
-        <section key={categoryIndex} className="border-b border-gold/20 py-20">
+        <section
+          key={categoryIndex}
+          id={category.id}
+          className="scroll-mt-28 border-b border-gold/20 py-20"
+        >
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mb-12 text-center">
               <div className="mb-6 flex justify-center">{category.icon}</div>
@@ -209,7 +217,6 @@ export default function ServicesPage() {
                     </ul>
                   </CardContent>
 
-                  {/* CTA -> Modal */}
                   <div className="p-6 pt-0">
                     <Button
                       className={`w-full ${
@@ -267,7 +274,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Modal (global) */}
       <QuickQuoteModal
         open={quoteOpen}
         onClose={() => setQuoteOpen(false)}
