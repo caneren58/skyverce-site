@@ -93,7 +93,7 @@ export default function Home() {
         {/* Background katmanı */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
-            src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?q=80&w=2070"
+            src="/hero.jpg"
             alt="İstanbul drone çekimi"
             fill
             priority
