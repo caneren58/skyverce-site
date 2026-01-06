@@ -216,24 +216,28 @@ export default function Home() {
 
   const services = [
     {
+      href: "/hizmetler#turizm",
       icon: <Landmark className="h-12 w-12 text-gold" />,
       title: "Turizm Çekimleri",
       description:
         "İstanbul'un tarihi ve turistik mekanlarını havadan çekerek tanıtım filmlerinizi oluşturuyoruz.",
     },
     {
+      href: "/hizmetler#dugun",
       icon: <Heart className="h-12 w-12 text-gold" />,
       title: "Düğün & Nişan",
       description:
         "Hayatınızın en özel günlerini sinematik drone görüntüleriyle ölümsüzleştiriyoruz.",
     },
     {
+      href: "/hizmetler#emlak",
       icon: <Building2 className="h-12 w-12 text-gold" />,
       title: "Emlak Tanıtımı",
       description:
         "Gayrimenkullerinizi profesyonel havadan çekimlerle en iyi şekilde tanıtıyoruz.",
     },
     {
+      href: "/hizmetler#kurumsal",
       icon: <Briefcase className="h-12 w-12 text-gold" />,
       title: "Kurumsal Çekimler",
       description:
@@ -281,7 +285,6 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      {/* ✅ DÜZELTME: items-start -> items-center (yazılar yukarı kaymasın) */}
       <section className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden pt-24 sm:pt-28">
         {/* Background katmanı */}
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -303,11 +306,8 @@ export default function Home() {
             </h1>
 
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl md:text-2xl">
-               Düğün, emlak, turizm ve kurumsal projeler için premium
-              drone video & fotoğraf. WhatsApp’tan yazın, size en doğru 
-                          paketi ben yönlendireyim. 
-              
-              
+              Düğün, emlak, turizm ve kurumsal projeler için premium drone video & fotoğraf.
+              WhatsApp’tan yazın, size en doğru paketi ben yönlendireyim.
             </p>
 
             {/* PC/TABLET CTA (mobilde gizli) */}
@@ -355,7 +355,9 @@ export default function Home() {
       <section className="border-t border-gold/20 py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">Hizmetlerimiz</h2>
+            <h2 className="mb-4 text-4xl font-bold text-gold md:text-5xl">
+              Hizmetlerimiz
+            </h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               İhtiyacınıza özel profesyonel drone çekim hizmetleri
             </p>
@@ -363,20 +365,28 @@ export default function Home() {
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service, index) => (
-              <Card
+              <Link
                 key={index}
-                className="gold-border-glow transition-transform hover:scale-105"
+                href={service.href}
+                className="block focus:outline-none"
+                aria-label={`${service.title} fiyat & paketlerini incele`}
               >
-                <CardHeader>
-                  <div className="mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                <Card className="gold-border-glow transition-transform hover:scale-105 hover:border-gold/60 active:scale-[1.02] cursor-pointer">
+                  <CardHeader>
+                    <div className="mb-4">{service.icon}</div>
+                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {service.description}
+                    </CardDescription>
+
+                    <p className="mt-4 text-sm font-medium text-gold">
+                      Fiyat & Paketleri Gör →
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
@@ -437,11 +447,11 @@ export default function Home() {
             }}
           >
             <div className="mx-auto flex max-w-2xl gap-3 px-4 pt-3">
-              {/* 1) Hizmetler (mobil) */}
+              {/* 1) Fiyat & Paketler (mobil) */}
               <Link href="/hizmetler" className="flex-1">
                 <Button className="w-full bg-gold text-background hover:bg-gold-dark">
                   <Briefcase className="mr-2 h-5 w-5" />
-                  Hizmetler
+                  Fiyat & Paketler
                 </Button>
               </Link>
 
