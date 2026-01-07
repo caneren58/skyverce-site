@@ -25,7 +25,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <Camera className="h-6 w-6 text-gold" />
               <span className="text-xl font-bold text-gold !whitespace-pre-line">
-                SkyVerce by BC
+                SkyVerse by BC
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
@@ -145,11 +145,11 @@ export default function Footer() {
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4 text-gold" />
                 <a
-                  href="mailto:skyverce@gmail.com"
+                  href="mailto:SkyVerse@gmail.com"
                   className="transition-colors hover:text-gold !whitespace-pre-line"
-                  aria-label="E-posta gönder: skyverce@gmail.com"
+                  aria-label="E-posta gönder: SkyVerse@gmail.com"
                 >
-                  skyverce@gmail.com
+                  SkyVerse@gmail.com
                 </a>
               </li>
 
@@ -169,7 +169,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-gold/20 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} SkyVerce by BC. Tüm hakları saklıdır.</p>
+          <p>&copy; {new Date().getFullYear()} SkyVerse by BC. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>

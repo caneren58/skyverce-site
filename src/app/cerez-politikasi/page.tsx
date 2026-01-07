@@ -13,7 +13,7 @@ export default function CerezPolitikasiPage() {
 
         <div className="prose prose-invert max-w-none text-muted-foreground">
           <p>
-            SkyVerce by BC web sitesinde, kullanıcı deneyimini geliştirmek amacıyla çerezler kullanılmaktadır.
+            SkyVerse by BC web sitesinde, kullanıcı deneyimini geliştirmek amacıyla çerezler kullanılmaktadır.
           </p>
 
           <h2>Çerez Nedir?</h2>

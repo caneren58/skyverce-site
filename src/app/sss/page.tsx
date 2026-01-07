@@ -23,7 +23,7 @@ export default function FAQPage() {
         {
           question: "Drone çekimi yasal mı?",
           answer:
-            "Evet, tamamen yasal. SkyVerce by BC olarak tüm gerekli SHGM (Sivil Havacılık Genel Müdürlüğü) izinlerine sahibiz. Pilotlarımız lisanslıdır ve her çekim için gerekli uçuş izinlerini alıyoruz. Ayrıca 5 milyon TL'ye kadar sorumluluk sigortamız bulunmaktadır.",
+            "Evet, tamamen yasal. SkyVerse by BC olarak tüm gerekli SHGM (Sivil Havacılık Genel Müdürlüğü) izinlerine sahibiz. Pilotlarımız lisanslıdır ve her çekim için gerekli uçuş izinlerini alıyoruz. Ayrıca 5 milyon TL'ye kadar sorumluluk sigortamız bulunmaktadır.",
         },
         {
           question: "Çekim için hava durumu önemli mi?",

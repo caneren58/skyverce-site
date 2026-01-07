@@ -61,7 +61,7 @@ function QuoteModal({
     const dateTR = formatDateTR(date);
     return (
       "Merhaba,\n" +
-      "SkyVerce by BC’den teklif almak istiyorum.\n\n" +
+      "SkyVerse by BC’den teklif almak istiyorum.\n\n" +
       `• Hizmet: ${serviceType || "-"}\n` +
       `• Tarih: ${dateTR || "-"}\n` +
       `• Lokasyon: ${location || "-"}\n` +

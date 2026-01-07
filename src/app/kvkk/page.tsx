@@ -13,7 +13,7 @@ export default function KvkkPage() {
 
         <div className="prose prose-invert max-w-none text-muted-foreground">
           <p>
-            SkyVerce by BC (“Veri Sorumlusu”) olarak, 6698 sayılı Kişisel Verilerin
+            SkyVerse by BC (“Veri Sorumlusu”) olarak, 6698 sayılı Kişisel Verilerin
             Korunması Kanunu (“KVKK”) kapsamında, kişisel verilerinizin güvenliğine önem veriyoruz.
           </p>
 
@@ -37,7 +37,7 @@ export default function KvkkPage() {
 
           <h2>Veri Toplama Yöntemi ve Hukuki Sebep</h2>
           <p>
-            Kişisel verileriniz; web sitemiz, WhatsApp hattımız (+90 505 946 71 66) ve e-posta (skyverce@gmail.com)
+            Kişisel verileriniz; web sitemiz, WhatsApp hattımız (+90 505 946 71 66) ve e-posta (SkyVerse@gmail.com)
             aracılığıyla, KVKK’nın 5/2 maddesi uyarınca “bir sözleşmenin kurulması veya ifasıyla doğrudan ilgili olması”
             ve “meşru menfaat” hukuki sebeplerine dayanarak işlenmektedir.
           </p>
@@ -52,7 +52,7 @@ export default function KvkkPage() {
           </p>
 
           <p>
-            Taleplerinizi <strong>skyverce@gmail.com</strong> adresine yazılı olarak iletebilirsiniz.
+            Taleplerinizi <strong>SkyVerse@gmail.com</strong> adresine yazılı olarak iletebilirsiniz.
           </p>
         </div>
       </main>

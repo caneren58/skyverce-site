@@ -96,7 +96,7 @@ export default function SafetyLegalPage() {
             Güvenlik & Yasal Uyumluluk
           </h1>
           <p className="mx-auto max-w-3xl text-xl text-muted-foreground">
-            SkyVerce by BC Istanbul olarak güvenlik ve yasal mevzuatlara tam uyumlu çalışıyoruz. 
+            SkyVerse by BC Istanbul olarak güvenlik ve yasal mevzuatlara tam uyumlu çalışıyoruz. 
             Her çekim profesyonel standartlarda ve yasalara uygun şekilde gerçekleştirilir.
           </p>
         </div>

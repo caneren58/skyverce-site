@@ -62,7 +62,7 @@ export default function AboutPage() {
               <h2 className="text-4xl font-bold text-gold">Hikayemiz</h2>
               <div className="space-y-4 text-lg text-muted-foreground">
                 <p className="!whitespace-pre-line">
-                  SkyVerce by BC, 2021 yılında İstanbul&apos;da kuruldu. Drone teknolojisini
+                  SkyVerse by BC, 2021 yılında İstanbul&apos;da kuruldu. Drone teknolojisini
                   yaratıcı prodüksiyon anlayışıyla birleştirerek, kısa sürede güçlü bir
                   referans portföyü oluşturduk.
                 </p>
@@ -84,7 +84,7 @@ export default function AboutPage() {
               <div className="aspect-[4/3] overflow-hidden rounded-xl">
                 <img
                   src="/images/hakkimizda/drone1.jpg"
-                  alt="SkyVerce Drone Çekimi"
+                  alt="SkyVerse Drone Çekimi"
                   className="h-full w-full object-cover object-[50%_35%]"
                 />
               </div>
@@ -98,7 +98,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-4xl font-bold text-gold">
-              Rakamlarla SkyVerce by BC
+              Rakamlarla SkyVerse by BC
             </h2>
           </div>
 

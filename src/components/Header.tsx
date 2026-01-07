@@ -57,7 +57,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <DroneIcon className="h-7 w-7 text-gold" />
           <span className="text-2xl font-bold text-gold gold-glow !whitespace-pre-line">
-            SkyVerce by BC
+            SkyVerse by BC
           </span>
         </Link>
 

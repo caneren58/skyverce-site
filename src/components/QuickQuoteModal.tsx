@@ -118,7 +118,7 @@ export default function QuickQuoteModal({ open, onClose, prefill }: Props) {
 
     return (
       "Merhaba,\n" +
-      "SkyVerce by BC’den teklif almak istiyorum.\n\n" +
+      "SkyVerse by BC’den teklif almak istiyorum.\n\n" +
       `• Hizmet: ${category || "-"}\n` +
       `• Tarih: ${dateTR || "-"}\n` +
       `• Lokasyon: ${location || "-"}\n` +

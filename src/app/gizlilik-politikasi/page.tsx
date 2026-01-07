@@ -13,7 +13,7 @@ export default function GizlilikPolitikasiPage() {
 
         <div className="prose prose-invert max-w-none text-muted-foreground">
           <p>
-            SkyVerce by BC, ziyaretçilerinin gizliliğini korumayı taahhüt eder. Web sitemizi ziyaret ettiğinizde
+            SkyVerse by BC, ziyaretçilerinin gizliliğini korumayı taahhüt eder. Web sitemizi ziyaret ettiğinizde
             veya bizimle iletişime geçtiğinizde paylaştığınız bilgiler gizli tutulur.
           </p>
 
@@ -27,7 +27,7 @@ export default function GizlilikPolitikasiPage() {
 
           <p>
             Web sitemiz üzerinden başka sitelere yönlendirme yapılması halinde, ilgili sitelerin gizlilik politikalarından
-            SkyVerce by BC sorumlu değildir.
+            SkyVerse by BC sorumlu değildir.
           </p>
 
           <p>

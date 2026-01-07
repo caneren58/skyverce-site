@@ -138,7 +138,7 @@ export default function ReservationPage() {
                     <div>
                       <p className="font-semibold">E-posta</p>
                       <p className="text-muted-foreground !whitespace-pre-line">
-                        info@skyvercebybc.com
+                        info@SkyVersebybc.com
                       </p>
                     </div>
                   </div>
@@ -169,7 +169,7 @@ export default function ReservationPage() {
                     projenizi hemen planlayalım.
                   </p>
                   <a
-                    href="https://wa.me/905059467166?text=Merhaba,%20SkyVerce%20by%20BC%20drone%20çekim%20hizmetiniz%20hakkında%20bilgi%20almak%20istiyorum."
+                    href="https://wa.me/905059467166?text=Merhaba,%20SkyVerse%20by%20BC%20drone%20çekim%20hizmetiniz%20hakkında%20bilgi%20almak%20istiyorum."
                     target="_blank"
                     rel="noopener noreferrer"
                   >
