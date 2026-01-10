@@ -57,9 +57,9 @@ export default function PortfolioPage() {
         "Ayasofya, Sultanahmet Camii ve Topkapı Sarayı'nın havadan görünümü",
       image:
         "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071",
-      duration: "2:30",
+      duration: "00:27",
       videoUrl:
-        "https://raw.githubusercontent.com/caneren58/drone-videos/main/190885-888554424_small.mp4",
+        "/videos/sultanahmet.mp4",
     },
     {
       id: 2,
@@ -69,7 +69,7 @@ export default function PortfolioPage() {
       description: "Ortaköy'de gerçekleşen romantik düğün töreni",
       image:
         "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070",
-      duration: "3:15",
+      duration: "00:19",
       videoUrl:
         "/videos/romantik-dugun.mp4",
     },
@@ -102,9 +102,9 @@ export default function PortfolioPage() {
       description: "İstanbul Boğazı'nın tüm güzelliklerini keşfedin",
       image:
         "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=2070",
-      duration: "4:00",
+      duration: "00:10",
       videoUrl:
-        "https://raw.githubusercontent.com/caneren58/drone-videos/main/19187231-uhd_3840_2160_25fps.mp4",
+        "/videos/bogaz-turu.mp4",
     },
     {
       id: 5,
@@ -114,7 +114,7 @@ export default function PortfolioPage() {
       description: "Maslak'ta modern ofis binası ve çalışma alanları",
       image:
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070",
-      duration: "2:00",
+      duration: "00:15",
       videoUrl:
         "/videos/teknoloji-sirketi.mp4",
     },
@@ -137,9 +137,9 @@ export default function PortfolioPage() {
       description: "Marmara kıyısında lüks villa tanıtımı",
       image:
         "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071",
-      duration: "1:45",
+      duration: "00:16",
       videoUrl:
-        "https://raw.githubusercontent.com/caneren58/drone-videos/main/215610_tiny.mp4",
+        "/videos/sahil-villasi.mp4",
     },
     {
       id: 8,
@@ -160,9 +160,9 @@ export default function PortfolioPage() {
       description: "Harbiye'de gerçekleşen müzik festivali",
       image:
         "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070",
-      duration: "3:30",
+      duration: "00:25",
       videoUrl:
-        "https://raw.githubusercontent.com/caneren58/drone-videos/main/Filmim.mp4",
+        "/videos/festival.mp4",
     },
   ];
 
