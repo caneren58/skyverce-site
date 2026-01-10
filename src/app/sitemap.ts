@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://SkyVerse-site-l5ln.vercel.app";
+const siteUrl = "https://skyverse.studio";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

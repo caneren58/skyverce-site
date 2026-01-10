@@ -8,6 +8,10 @@ const nextConfig = {
     ],
   },
 
+  env: {
+    NEXT_PUBLIC_SITE_URL: "https://skyverse.studio",
+  },
+
   // Vercel için güvenli ayarlar
   typescript: {
     ignoreBuildErrors: true,
