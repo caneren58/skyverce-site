@@ -71,7 +71,7 @@ export default function PortfolioPage() {
         "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070",
       duration: "3:15",
       videoUrl:
-        "https://raw.githubusercontent.com/caneren58/SkyVerse-site/main/12796332_1280_720_60fps.mp4",
+        "/videos/romantik-dugun.mp4",
     },
     {
       id: 3,
@@ -116,7 +116,7 @@ export default function PortfolioPage() {
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070",
       duration: "2:00",
       videoUrl:
-        "https://raw.githubusercontent.com/caneren58/SkyVerse-site/main/239974_tiny.mp4",
+        "/videos/teknoloji-sirketi.mp4",
     },
     {
       id: 6,
