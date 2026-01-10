@@ -1,8 +1,7 @@
-import type { MetadataRoute } from "next";
-
-const siteUrl = "https://skyverse.studio";
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = "https://skyverse.studio";
   const now = new Date();
 
   const routes = [
