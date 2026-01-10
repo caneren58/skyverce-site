@@ -116,7 +116,7 @@ export default function PortfolioPage() {
         "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070",
       duration: "00:15",
       videoUrl:
-        "/videos/teknoloji-sirketi.mp4",
+        "/videos/teknoloji-sirketi-v2.mp4",
     },
     {
       id: 6,
@@ -139,7 +139,7 @@ export default function PortfolioPage() {
         "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071",
       duration: "00:16",
       videoUrl:
-        "/videos/sahil-villasi.mp4",
+        "/videos/sahil-villasi-v2.mp4",
     },
     {
       id: 8,
