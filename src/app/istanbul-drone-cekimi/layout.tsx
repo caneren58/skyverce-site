@@ -114,18 +114,40 @@ const localBusinessJsonLd = {
   },
 };
 
+// ✅ BreadcrumbList
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Ana Sayfa",
+      item: "https://skyverse.studio/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "İstanbul Drone Çekimi",
+      item: "https://skyverse.studio/istanbul-drone-cekimi",
+    },
+  ],
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* ✅ FAQ Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      {/* ✅ LocalBusiness / ProfessionalService Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {children}
     </>
