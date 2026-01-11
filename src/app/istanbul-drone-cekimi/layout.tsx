@@ -55,14 +55,77 @@ const faqJsonLd = {
   ],
 };
 
+// ✅ LocalBusiness (ProfessionalService) — güvenli/minimal
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "SkyVerse by BC",
+  url: "https://skyverse.studio/istanbul-drone-cekimi",
+  areaServed: [
+    {
+      "@type": "City",
+      name: "İstanbul",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "İstanbul",
+        addressCountry: "TR",
+      },
+    },
+  ],
+  serviceType: [
+    "Drone çekimi",
+    "Drone video çekimi",
+    "Drone fotoğraf çekimi",
+    "Emlak drone çekimi",
+    "Düğün drone çekimi",
+    "Kurumsal tanıtım drone çekimi",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Drone Çekim Hizmetleri",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Düğün / Nişan Drone Çekimi" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Emlak / Rezidans Tanıtımı" },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Otel / Turizm Tanıtım Videoları",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Kurumsal Firma Tanıtımı",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Etkinlik / Festival" },
+      },
+    ],
+  },
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* ✅ FAQ Schema (JSON-LD) */}
+      {/* ✅ FAQ Schema */}
       <script
         type="application/ld+json"
-        // Next.js güvenli ekleme
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      {/* ✅ LocalBusiness / ProfessionalService Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
       {children}
     </>
