@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     "",
+    "/istanbul-drone-cekimi", // ✅ yeni landing sayfa eklendi
     "/hizmetler",
     "/portfoy",
     "/hakkimizda",
