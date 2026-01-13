@@ -75,25 +75,39 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold text-gold">Hızlı Bağlantılar</h3>
+            <h3 className="mb-4 text-sm font-semibold text-gold">
+              Hızlı Bağlantılar
+            </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/hizmetler" className="text-muted-foreground transition-colors hover:text-gold">
+                <Link
+                  href="/hizmetler"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
                   Hizmetlerimiz
                 </Link>
               </li>
               <li>
-                <Link href="/portfoy" className="text-muted-foreground transition-colors hover:text-gold">
+                <Link
+                  href="/portfoy"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
                   Portföy
                 </Link>
               </li>
               <li>
-                <Link href="/hakkimizda" className="text-muted-foreground transition-colors hover:text-gold">
+                <Link
+                  href="/hakkimizda"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
                   Hakkımızda
                 </Link>
               </li>
               <li>
-                <Link href="/sss" className="text-muted-foreground transition-colors hover:text-gold">
+                <Link
+                  href="/sss"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
                   Sıkça Sorulan Sorular
                 </Link>
               </li>
@@ -105,17 +119,26 @@ export default function Footer() {
             <h3 className="mb-4 text-sm font-semibold text-gold">Yasal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/kvkk" className="text-muted-foreground transition-colors hover:text-gold">
+                <Link
+                  href="/kvkk"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
                   KVKK Aydınlatma Metni
                 </Link>
               </li>
               <li>
-                <Link href="/gizlilik-politikasi" className="text-muted-foreground transition-colors hover:text-gold">
+                <Link
+                  href="/gizlilik-politikasi"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
                   Gizlilik Politikası
                 </Link>
               </li>
               <li>
-                <Link href="/cerez-politikasi" className="text-muted-foreground transition-colors hover:text-gold">
+                <Link
+                  href="/cerez-politikasi"
+                  className="text-muted-foreground transition-colors hover:text-gold"
+                >
                   Çerez Politikası
                 </Link>
               </li>
@@ -145,11 +168,11 @@ export default function Footer() {
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4 text-gold" />
                 <a
-                  href="mailto:SkyVerse@gmail.com"
+                  href="mailto:info@skyverse.studio"
                   className="transition-colors hover:text-gold !whitespace-pre-line"
-                  aria-label="E-posta gönder: SkyVerse@gmail.com"
+                  aria-label="E-posta gönder: info@skyverse.studio"
                 >
-                  SkyVerse@gmail.com
+                  info@skyverse.studio
                 </a>
               </li>
 
@@ -169,7 +192,9 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-gold/20 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} SkyVerse by BC. Tüm hakları saklıdır.</p>
+          <p>
+            &copy; {new Date().getFullYear()} SkyVerse by BC. Tüm hakları saklıdır.
+          </p>
         </div>
       </div>
     </footer>
