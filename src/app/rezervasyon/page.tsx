@@ -138,7 +138,7 @@ export default function ReservationPage() {
                     <div>
                       <p className="font-semibold">E-posta</p>
                       <p className="text-muted-foreground !whitespace-pre-line">
-                        info@SkyVersebybc.com
+                        info@skyverse.studio
                       </p>
                     </div>
                   </div>
