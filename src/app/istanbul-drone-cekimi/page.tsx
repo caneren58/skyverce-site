@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -40,9 +40,31 @@ export default function IstanbulDroneCekimiPage() {
     setQuoteOpen(true);
   }
 
+  // ✅ FAQ Schema (JSON-LD) - Google için
+  const faqJsonLd = useMemo(() => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQ.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Header />
+
+      {/* ✅ FAQ JSON-LD (görünmez, Google okur) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       {/* HERO */}
       <section className="border-b border-gold/20 bg-card pt-32">
@@ -66,7 +88,8 @@ export default function IstanbulDroneCekimiPage() {
                 onClick={() =>
                   openQuote({
                     service: "İstanbul Drone Çekimi",
-                    message: "İstanbul’da drone çekimi için teklif almak istiyorum.",
+                    message:
+                      "İstanbul’da drone çekimi için teklif almak istiyorum.",
                   })
                 }
               >
@@ -223,7 +246,10 @@ export default function IstanbulDroneCekimiPage() {
                 KVKK Aydınlatma Metni
               </Link>{" "}
               ve{" "}
-              <Link href="/gizlilik-politikasi" className="underline hover:text-gold">
+              <Link
+                href="/gizlilik-politikasi"
+                className="underline hover:text-gold"
+              >
                 Gizlilik Politikası
               </Link>{" "}
               koşullarını kabul etmiş sayılırsınız.
@@ -270,7 +296,8 @@ export default function IstanbulDroneCekimiPage() {
               onClick={() =>
                 openQuote({
                   service: "İstanbul Drone Çekimi",
-                  message: "İstanbul’da drone çekimi için teklif almak istiyorum.",
+                  message:
+                    "İstanbul’da drone çekimi için teklif almak istiyorum.",
                 })
               }
             >
