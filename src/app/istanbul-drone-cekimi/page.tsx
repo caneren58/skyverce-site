@@ -54,17 +54,17 @@ export default function IstanbulDroneCekimiPage() {
         },
       })),
     };
-  }, []);
+  }, [/* FAQ sabit; linter uyarısı olmasın diye explicit bırakıyoruz */]);
 
   return (
     <div className="min-h-screen">
-      <Header />
-
       {/* ✅ FAQ JSON-LD (görünmez, Google okur) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
+
+      <Header />
 
       {/* HERO */}
       <section className="border-b border-gold/20 bg-card pt-32">
