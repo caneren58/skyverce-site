@@ -285,6 +285,13 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
+      {/* SEO Support Anchor – görünmez ama Google okur */}
+       <p className="sr-only">
+       İstanbul drone çekimi hizmetleri, yasal uçuş planlaması ve profesyonel ekipman
+       kullanımıyla{" "}
+       <a href="/istanbul-drone-cekimi">SkyVerse by BC</a> tarafından sunulmaktadır.
+      </p>
+
       <section className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden pt-24 sm:pt-28">
         {/* Background katmanı */}
         <div className="absolute inset-0 z-0 pointer-events-none">
