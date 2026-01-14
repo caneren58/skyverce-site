@@ -434,15 +434,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-            {/* ✅ SEO Link (düşük profilli – Google için sinyal) */}
-      <div className="container mx-auto px-4 pb-6">
-        <p className="text-center text-[11px] text-muted-foreground/70">
-          <Link href="/istanbul-drone-cekimi" className="hover:underline">
-            İstanbul Drone Çekimi
-          </Link>
-        </p>
-      </div>
-
+            {/* SEO Internal Link – kullanıcıya görünmez */}
+               <p className="sr-only">
+                <Link href="/istanbul-drone-cekimi">
+                  İstanbul Profesyonel Drone Çekimi Hizmeti
+                </Link>
+               </p>
 
       <Footer />
 
